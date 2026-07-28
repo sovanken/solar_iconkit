@@ -1,16 +1,41 @@
 # solar_iconkit
 
+<p>
+
+<!-- pub.dev metrics -->
 [![pub version](https://img.shields.io/pub/v/solar_iconkit.svg?logo=dart&label=pub&color=0175C2)](https://pub.dev/packages/solar_iconkit)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
 [![pub likes](https://img.shields.io/pub/likes/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
 [![pub popularity](https://img.shields.io/pub/popularity/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![flutter](https://img.shields.io/badge/Flutter-%3E%3D3.27-02569B?logo=flutter)](https://flutter.dev)
+[![pub publisher](https://img.shields.io/pub/publisher/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit)
+
+<!-- Runtime & platforms -->
+[![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart 3](https://img.shields.io/badge/Dart-3-0175C2?logo=dart&logoColor=white)](https://dart.dev)
 [![platforms](https://img.shields.io/badge/platforms-android%20%7C%20ios%20%7C%20macos%20%7C%20windows%20%7C%20linux%20%7C%20web-4c1)](https://pub.dev/packages/solar_iconkit)
+
+<!-- Package content -->
+[![icons](https://img.shields.io/badge/icons-1%2C231-FFA500)](https://pub.dev/packages/solar_iconkit)
+[![styles](https://img.shields.io/badge/styles-6-FFA500)](#style-guide)
+[![variants](https://img.shields.io/badge/variants-7%2C386-FFA500)](https://pub.dev/packages/solar_iconkit)
+
+<!-- GitHub repo -->
 [![license](https://img.shields.io/github/license/sovankentech/solar_iconkit?color=blue)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
-[![github stars](https://img.shields.io/github/stars/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/stargazers)
-[![last commit](https://img.shields.io/github/last-commit/sovankentech/solar_iconkit?logo=github)](https://github.com/sovankentech/solar_iconkit/commits)
+[![stars](https://img.shields.io/github/stars/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/stargazers)
+[![forks](https://img.shields.io/github/forks/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/network/members)
+[![issues](https://img.shields.io/github/issues/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/issues)
+[![contributors](https://img.shields.io/github/contributors/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/graphs/contributors)
+[![last commit](https://img.shields.io/github/last-commit/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/commits)
+[![repo size](https://img.shields.io/github/repo-size/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit)
+
+<!-- Quality & community -->
 [![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-40C4FF)](https://pub.dev/packages/flutter_lints)
+[![Keep a Changelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog-E05735?logo=keepachangelog)](https://keepachangelog.com/en/1.1.0/)
+[![SemVer](https://img.shields.io/badge/versioning-SemVer-3F4551?logo=semver)](https://semver.org)
+[![Made with Flutter](https://img.shields.io/badge/Made%20with-Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/sovankentech/solar_iconkit/pulls)
+
+</p>
 
 A Flutter package that bundles the entire [Solar icon set](https://iconify.design/collections/solar) — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
