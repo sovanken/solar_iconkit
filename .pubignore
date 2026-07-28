@@ -1,0 +1,26 @@
+# Files excluded from pub.dev uploads (in addition to .gitignore).
+# Assets and lib/ are intentionally NOT ignored — they ship with the package.
+
+# Dev/tooling artefacts
+tools/__pycache__/
+tools/*.pyc
+.venv/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Example app build output (the example ships with source but not builds)
+example/build/
+example/.dart_tool/
+example/android/.gradle/
+example/ios/Pods/
+example/macos/Pods/
+
+# Publishing artefacts
+/*.tar.gz

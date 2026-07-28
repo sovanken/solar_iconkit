@@ -1,0 +1,56 @@
+name: solar_iconkit
+description: >-
+  Solar icon kit for Flutter. 1,231 icons in 6 native styles — linear, outline,
+  broken, bold, line-duotone, bold-duotone — behind a single SolarIcon widget.
+version: 0.1.0
+
+# Replace with the real URLs for your repo before publishing.
+homepage: https://github.com/your-org/solar_iconkit
+repository: https://github.com/your-org/solar_iconkit
+issue_tracker: https://github.com/your-org/solar_iconkit/issues
+documentation: https://github.com/your-org/solar_iconkit#readme
+
+topics:
+  - icons
+  - svg
+  - ui
+  - iconography
+  - widgets
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  assets:
+    - assets/icons/linear/
+    - assets/icons/outline/
+    - assets/icons/broken/
+    - assets/icons/bold/
+    - assets/icons/line_duotone/
+    - assets/icons/bold_duotone/
+
+# Uncomment and populate once you have screenshot PNGs in doc/screenshots/.
+# screenshots:
+#   - description: 'The six native Solar icon styles at 48 px.'
+#     path: doc/screenshots/styles.png
+#   - description: 'Category browser example app.'
+#     path: doc/screenshots/browser.png
