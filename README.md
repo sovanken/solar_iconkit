@@ -1,5 +1,8 @@
 # solar_iconkit
 
+[![pub package](https://img.shields.io/pub/v/solar_iconkit.svg)](https://pub.dev/packages/solar_iconkit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A Flutter package that bundles the entire [Solar icon set](https://iconify.design/collections/solar) — 1,231 icons across 6 native styles (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
 **What you get**
