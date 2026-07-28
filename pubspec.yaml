@@ -4,11 +4,10 @@ description: >-
   broken, bold, line-duotone, bold-duotone — behind a single SolarIcon widget.
 version: 0.1.0
 
-# Replace with the real URLs for your repo before publishing.
-homepage: https://github.com/your-org/solar_iconkit
-repository: https://github.com/your-org/solar_iconkit
-issue_tracker: https://github.com/your-org/solar_iconkit/issues
-documentation: https://github.com/your-org/solar_iconkit#readme
+homepage: https://github.com/sovankentech/solar_iconkit
+repository: https://github.com/sovankentech/solar_iconkit
+issue_tracker: https://github.com/sovankentech/solar_iconkit/issues
+documentation: https://github.com/sovankentech/solar_iconkit#readme
 
 topics:
   - icons
@@ -48,9 +47,3 @@ flutter:
     - assets/icons/line_duotone/
     - assets/icons/bold_duotone/
 
-# Uncomment and populate once you have screenshot PNGs in doc/screenshots/.
-# screenshots:
-#   - description: 'The six native Solar icon styles at 48 px.'
-#     path: doc/screenshots/styles.png
-#   - description: 'Category browser example app.'
-#     path: doc/screenshots/browser.png
