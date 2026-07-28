@@ -132,15 +132,9 @@ class SolarIcon extends StatelessWidget {
     final Color baseColor = color ?? iconTheme.color ?? _kFallbackIconColor;
     final double effectiveOpacity = opacity * (iconTheme.opacity ?? 1.0);
     // Compose alpha from the caller's opacity and any IconTheme opacity.
-    // Uses Color.fromARGB so we don't depend on `withOpacity` (deprecated in
-    // Flutter 3.27+) or `withValues` (unavailable before 3.27).
+    // Uses withValues (Flutter 3.27+); the pubspec Flutter minimum enforces this.
     final Color resolvedColor = effectiveOpacity < 1.0
-        ? Color.fromARGB(
-            (baseColor.alpha * effectiveOpacity).round(),
-            baseColor.red,
-            baseColor.green,
-            baseColor.blue,
-          )
+        ? baseColor.withValues(alpha: baseColor.a * effectiveOpacity)
         : baseColor;
 
     Widget picture = SvgPicture.asset(

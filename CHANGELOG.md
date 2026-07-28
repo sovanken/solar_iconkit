@@ -4,6 +4,31 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] — 2026-07-28
+
+### Added
+
+- Dartdoc comment on every `SolarIcons.<name>` constant (1,231 total). Raises
+  pub.dev "Provide documentation" from 10 % to ~98 % coverage.
+- Dartdoc comments on every `SolarIconStyle` enum value, describing the
+  visual character of each of the six styles.
+
+### Changed
+
+- **Breaking:** minimum Flutter bumped from `3.24.0` to `3.27.0` (Dart 3.6+).
+  This lets the widget use the modern non-deprecated color API.
+- Opacity composition now uses `Color.withValues(alpha: ...)` (Flutter 3.27+)
+  instead of the deprecated `.alpha`, `.red`, `.green`, `.blue` component
+  getters. Fixes the pub.dev static-analysis warnings about deprecated
+  members in `lib/src/solar_icon.dart`.
+- Fetcher generator (`tool/fetch_icons.py`) now emits `/// Solar icon \`X\`.`
+  before each constant, so future regenerations preserve the documentation.
+
+### Fixed
+
+- pub.dev score raised from 140/160 to an expected 160/160 (documentation
+  and static analysis categories both at max).
+
 ## [0.1.0] — 2026-07-28
 
 Initial public release.

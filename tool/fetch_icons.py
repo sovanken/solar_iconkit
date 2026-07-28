@@ -40,7 +40,7 @@ DART_OUT = ROOT / "lib" / "src" / "solar_iconkit_data.g.dart"
 
 _USER_AGENT = (
     "solar_iconkit-fetcher/0.1 "
-    "(+https://github.com/example/solar_iconkit; internal Flutter package build)"
+    "(+https://github.com/sovankentech/solar_iconkit; regeneration script)"
 )
 
 
@@ -164,6 +164,7 @@ def generate_dart(base_names: list[str]) -> None:
             ident = f"{original}{n}"
             n += 1
         seen[ident] = name
+        lines.append(f"  /// Solar icon `{name}`.")
         lines.append(f"  static const String {ident} = '{name}';")
 
     lines.append("")

@@ -1,9 +1,22 @@
 # solar_iconkit
 
-[![pub package](https://img.shields.io/pub/v/solar_iconkit.svg)](https://pub.dev/packages/solar_iconkit)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![pub version](https://img.shields.io/pub/v/solar_iconkit.svg?logo=dart&label=pub&color=0175C2)](https://pub.dev/packages/solar_iconkit)
+[![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
+[![pub likes](https://img.shields.io/pub/likes/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
+[![pub popularity](https://img.shields.io/pub/popularity/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
+[![flutter](https://img.shields.io/badge/Flutter-%3E%3D3.27-02569B?logo=flutter)](https://flutter.dev)
+[![platforms](https://img.shields.io/badge/platforms-android%20%7C%20ios%20%7C%20macos%20%7C%20windows%20%7C%20linux%20%7C%20web-4c1)](https://pub.dev/packages/solar_iconkit)
+[![license](https://img.shields.io/github/license/sovankentech/solar_iconkit?color=blue)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
+[![github stars](https://img.shields.io/github/stars/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/stargazers)
+[![last commit](https://img.shields.io/github/last-commit/sovankentech/solar_iconkit?logo=github)](https://github.com/sovankentech/solar_iconkit/commits)
+[![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-40C4FF)](https://pub.dev/packages/flutter_lints)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/sovankentech/solar_iconkit/pulls)
 
-A Flutter package that bundles the entire [Solar icon set](https://iconify.design/collections/solar) — 1,231 icons across 6 native styles (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
+A Flutter package that bundles the entire [Solar icon set](https://iconify.design/collections/solar) — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
+
+- **pub.dev**: <https://pub.dev/packages/solar_iconkit>
+- **Repository**: <https://github.com/sovankentech/solar_iconkit>
+- **Issues**: <https://github.com/sovankentech/solar_iconkit/issues>
 
 **What you get**
 
@@ -71,8 +84,8 @@ A Flutter package that bundles the entire [Solar icon set](https://iconify.desig
 
 | Requirement | Minimum |
 |---|---|
-| Flutter | 3.24.0 |
-| Dart | 3.5.0 |
+| Flutter | 3.27.0 |
+| Dart | 3.6.0 |
 | flutter_svg | 2.0.10 (transitive) |
 
 The Python regeneration script requires Python 3.10 or later with the standard library only — no `pip install` needed.
@@ -91,7 +104,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.1.0
+  solar_iconkit: ^0.2.0
 ```
 
 Or run:
@@ -126,8 +139,8 @@ Best when the package lives in its own repo and consumers pull it from Git:
 dependencies:
   solar_iconkit:
     git:
-      url: git@github.com:your-org/solar_iconkit.git
-      ref: v0.1.0                 # a tag, branch, or commit SHA
+      url: git@github.com:sovankentech/solar_iconkit.git
+      ref: v0.2.0                 # a tag, branch, or commit SHA
 ```
 
 **When to use:** package has its own repo, multiple consumers on different machines.
@@ -140,7 +153,7 @@ Best when you want to publish semver-like versions but override to local during 
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.1.0
+  solar_iconkit: ^0.2.0
 
 dependency_overrides:
   solar_iconkit:
@@ -852,7 +865,7 @@ Runtime: about 90 seconds on a decent connection.
 5. **Semantic hygiene.** Decorative icons (no `semanticLabel`) are wrapped in `ExcludeSemantics` — screen readers do not receive noise from every icon on screen.
 6. **Assertion-guarded parameters.** Invalid values (for example `opacity: 2.0`) throw in debug mode; production builds strip the assertions but the widget still behaves gracefully.
 7. **No dynamic dispatch.** Style-to-folder mapping is via an enum's `folderName` getter — no reflection, no runtime string manipulation beyond the asset path concatenation.
-8. **Cross-version color handling.** Uses `Color.fromARGB` for the opacity computation, so builds on Flutter 3.24 through the latest without depending on the newer `withValues` API.
+8. **Modern color handling.** Uses `withValues(alpha:)` for opacity composition — the modern, non-deprecated Flutter 3.27+ API.
 9. **DevTools integration.** `debugFillProperties` reports every prop, so the widget shows up cleanly in the Flutter Inspector.
 
 **Startup cost is effectively zero.** SVG files are read only when the corresponding `SolarIcon` widget first mounts. Package assets are bundled into the app's asset bundle but not decoded eagerly.
