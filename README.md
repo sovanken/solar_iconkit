@@ -1,6 +1,6 @@
 # solar_iconkit
 
-[![pub version](https://img.shields.io/pub/v/solar_iconkit.svg?logo=dart&label=pub&color=0175C2)](https://pub.dev/packages/solar_iconkit)
+[![platforms](https://img.shields.io/badge/platforms-android%20%7C%20ios%20%7C%20macos%20%7C%20windows%20%7C%20linux%20%7C%20web-4c1)](https://pub.dev/packages/solar_iconkit)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![license](https://img.shields.io/github/license/sovankentech/solar_iconkit?color=blue)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
