@@ -7,24 +7,48 @@ on:
     branches: [main]
 
 jobs:
-  analyze-and-test:
-    name: Analyze & test (Flutter ${{ matrix.flutter-version }})
+  # Run against the minimum Flutter version declared in pubspec.yaml so we
+  # catch accidental use of newer APIs that would break the stated minimum.
+  min-flutter:
+    name: Analyze & test (Flutter 3.27.0)
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        # Test against the minimum Flutter version declared in pubspec and
-        # the current stable channel. Catches accidental use of newer APIs
-        # that would break the stated minimum.
-        flutter-version: ["3.27.0", "stable"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: Set up Flutter 3.27.0
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ matrix.flutter-version }}
+          flutter-version: "3.27.0"
+          channel: stable
+          cache: true
+
+      - name: Show versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Static analysis
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run tests
+        run: flutter test
+
+  # Also run against the current stable channel so we catch regressions caused
+  # by new Flutter releases.
+  stable-flutter:
+    name: Analyze & test (Flutter stable)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
           channel: stable
           cache: true
 
