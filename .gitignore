@@ -26,3 +26,6 @@ __pycache__/
 # Node (for the screenshot capture tool in screenshots/)
 node_modules/
 *.log
+
+# Test coverage output (uploaded to Codecov but not tracked in git)
+coverage/
