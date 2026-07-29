@@ -1,9 +1,8 @@
 # solar_iconkit
 
-[![platforms](https://img.shields.io/badge/platforms-android%20%7C%20ios%20%7C%20macos%20%7C%20windows%20%7C%20linux%20%7C%20web-4c1)](https://pub.dev/packages/solar_iconkit)
+[![CI](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml/badge.svg)](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![icons](https://img.shields.io/badge/icons-1%2C231%20%C2%B7%206%20styles-FFA500)](https://solar-icons-web.vercel.app)
 [![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
 A Flutter package that bundles the entire Solar icon set — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
@@ -768,7 +767,9 @@ Call from an `initState` or a route enter callback for icons visible in the firs
 
 ### Reducing bundle size
 
-The full asset bundle is about 23 MB uncompressed. If your app only uses a subset of styles, trim the asset declaration in your own build. Fork the package or edit `pubspec.yaml` locally:
+The full asset bundle is about **23 MB uncompressed / ~4–5 MB gzipped** (7,386 SVGs across six styles). Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
+
+If bundle size matters, drop the styles you don't use. Fork the package (or use a `dependency_overrides` path to a local copy) and trim `pubspec.yaml`:
 
 ```yaml
 flutter:
@@ -778,7 +779,9 @@ flutter:
     # remove the styles you do not use
 ```
 
-Then delete the unused style folders under `assets/icons/`. The build will only include the assets you declare.
+Then delete the unused style folders under `assets/icons/`. The build will only include the assets you declare. Cutting from 6 styles to 2 removes roughly two-thirds of the bundle.
+
+> **Roadmap.** Per-icon tree-shaking (via a `build_runner` step that scans consumer code for `SolarIcons.xxx` references and emits an asset subset) is on the plan for `v1.0`. Track progress at <https://github.com/sovankentech/solar_iconkit/issues>.
 
 ### Wrapping SolarIcon in a project-level widget
 

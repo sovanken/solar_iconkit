@@ -4,6 +4,27 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] — 2026-07-29
+
+### Changed
+
+- **LICENSE cleanup.** The bundled Solar attribution has been moved to a new
+  top-level `NOTICE` file so `LICENSE` is now a clean, unaltered MIT template.
+  `licensee`/pub.dev can now confidently detect the license — the pub.dev
+  license status will resolve from "pending" to "MIT".
+
+### Added
+
+- **Continuous integration.** A GitHub Actions workflow at
+  `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` on
+  every push and pull request, against Flutter 3.27.0 (the minimum declared
+  in `pubspec.yaml`) and the current stable channel. Status badge added to
+  the README.
+- **Bundle-size roadmap.** The "Reducing bundle size" section in the README
+  now explicitly documents the 23 MB / 4–5 MB gzipped footprint, the
+  per-style trimming workflow (fork + edit `pubspec.yaml`), and flags
+  per-icon tree-shaking via `build_runner` as the direction for `v1.0`.
+
 ## [0.3.0] — 2026-07-29
 
 ### Added
