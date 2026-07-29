@@ -42,12 +42,14 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
           flags: unittests
           name: solar_iconkit
           fail_ci_if_error: false
-        # Uses CODECOV_TOKEN from repository secrets. Public repos can also
-        # upload tokenlessly, but a token increases upload reliability.
+        # Public repos also accept tokenless uploads, but passing the token
+        # explicitly gives faster + more reliable ingest and lets Codecov
+        # correlate upload with the pull-request source.
 
   # Cross-platform check on the current stable channel. Windows and macOS
   # skip the golden tag because pixel-level rasterization can differ across
