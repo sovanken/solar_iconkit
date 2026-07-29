@@ -1,0 +1,16 @@
+{
+  "name": "screenshots",
+  "version": "1.0.0",
+  "description": "pub.dev displays up to 10 screenshots on the package landing page. Packages with screenshots see roughly 2–3× higher click-through from search results.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright": "^1.62.0"
+  }
+}

@@ -4,6 +4,23 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] — 2026-07-29
+
+### Added
+
+- **pub.dev screenshots.** Three screenshots are now shipped in the package
+  and rendered on the pub.dev landing page:
+    - `browser-grid.png` — the interactive icon browser with sidebar,
+      style chips, and icon grid.
+    - `style-comparison.png` — the detail dialog showing an icon in all
+      six native styles, hero preview, "Preview in context", and Copy tab.
+    - `widget-in-app.png` — the "Preview in context" strip demonstrating
+      SolarIcon in menu, sidebar, button, and toolbar UI patterns.
+- **Capture script.** `screenshots/capture.mjs` uses Playwright to
+  regenerate all three PNGs from the live icon browser
+  (<https://solar-icons-web.vercel.app>) — makes future re-captures a
+  one-command operation.
+
 ## [0.3.2] — 2026-07-29
 
 ### Added

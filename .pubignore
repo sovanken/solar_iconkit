@@ -7,6 +7,15 @@
 tool/
 .venv/
 
+# Screenshot capture machinery — only the PNGs referenced by pubspec.yaml
+# should ship. Playwright, its node_modules, and the capture script are
+# maintainer-only.
+screenshots/capture.mjs
+screenshots/README.md
+screenshots/package.json
+screenshots/package-lock.json
+screenshots/node_modules/
+
 # IDE files
 .idea/
 .vscode/

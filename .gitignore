@@ -22,3 +22,7 @@ Thumbs.db
 __pycache__/
 *.pyc
 .venv/
+
+# Node (for the screenshot capture tool in screenshots/)
+node_modules/
+*.log
