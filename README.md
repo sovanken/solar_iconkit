@@ -3,6 +3,7 @@
 [![CI](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml/badge.svg)](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
+[![license](https://img.shields.io/github/license/sovankentech/solar_iconkit?color=blue)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
 [![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
 A Flutter package that bundles the entire Solar icon set — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
