@@ -1,0 +1,93 @@
+name: Bug report
+description: File a bug report for solar_iconkit
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Please fill in as much of the template below as you can — it helps us reproduce and fix the issue faster.
+
+  - type: input
+    id: version
+    attributes:
+      label: solar_iconkit version
+      description: Which version are you using? (find it in your `pubspec.lock`)
+      placeholder: 0.3.1
+    validations:
+      required: true
+
+  - type: input
+    id: flutter-version
+    attributes:
+      label: Flutter version
+      description: Output of `flutter --version`
+      placeholder: Flutter 3.27.0 · Dart 3.6.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Where did you see the bug?
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Web
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of what went wrong.
+      placeholder: When I use `SolarIcon(SolarIcons.home2)`, the icon renders as an empty box on Web only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: The icon should render identically to Android/iOS.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: A minimal code sample that reproduces the issue. Ideally a Dartpad link or a `flutter create` sample under 30 lines.
+      render: dart
+      placeholder: |
+        import 'package:flutter/material.dart';
+        import 'package:solar_iconkit/solar_iconkit.dart';
+
+        void main() => runApp(const MaterialApp(
+          home: Scaffold(body: Center(child: SolarIcon(SolarIcons.home2))),
+        ));
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / stack trace
+      description: If applicable, paste any errors or warnings.
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I have searched existing issues and this bug hasn't been reported.
+          required: true
+        - label: I have provided a minimal reproduction.
+          required: true

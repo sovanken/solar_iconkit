@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or general discussion
+    url: https://github.com/sovankentech/solar_iconkit/discussions
+    about: For usage questions, discussion, and community help, please use Discussions.
+  - name: pub.dev package page
+    url: https://pub.dev/packages/solar_iconkit
+    about: See documentation, versions, and API reference.
+  - name: Interactive icon browser
+    url: https://solar-icons-web.vercel.app
+    about: Preview all 1,231 icons and copy Flutter widget code.

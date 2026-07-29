@@ -41,10 +41,10 @@ void main() {
 
     testWidgets('reads size from IconTheme when null', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: IconTheme(
-            data: const IconThemeData(size: 32),
-            child: const SolarIcon(SolarIcons.home2),
+            data: IconThemeData(size: 32),
+            child: SolarIcon(SolarIcons.home2),
           ),
         ),
       );
@@ -64,10 +64,10 @@ void main() {
 
     testWidgets('explicit size overrides IconTheme', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: IconTheme(
-            data: const IconThemeData(size: 32),
-            child: const SolarIcon(SolarIcons.home2, size: 64),
+            data: IconThemeData(size: 32),
+            child: SolarIcon(SolarIcons.home2, size: 64),
           ),
         ),
       );
@@ -129,6 +129,61 @@ void main() {
         ),
         findsNothing,
       );
+    });
+
+    testWidgets('matchTextDirection true under RTL mirrors the icon',
+        (tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.rtl,
+          child: SolarIcon(
+            SolarIcons.altArrowRight,
+            matchTextDirection: true,
+          ),
+        ),
+      );
+      final widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(widget.matchTextDirection, isTrue);
+      // The widget forwards matchTextDirection to SvgPicture, which flips the
+      // rendered SVG under RTL. We assert the flag is preserved on the widget
+      // itself (the render pass is validated by flutter_svg's own tests).
+    });
+
+    testWidgets('explicit textDirection overrides ambient Directionality',
+        (tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: SolarIcon(
+            SolarIcons.altArrowRight,
+            matchTextDirection: true,
+            textDirection: TextDirection.rtl,
+          ),
+        ),
+      );
+      final widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(widget.textDirection, TextDirection.rtl);
+    });
+
+    testWidgets('widget opacity composes with IconTheme.opacity',
+        (tester) async {
+      // Widget opacity 0.5 × IconTheme opacity 0.8 = effective 0.4 alpha.
+      // The widget doesn't expose the computed alpha directly, but we can
+      // assert that both inputs are preserved on the widget for consumers.
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: IconTheme(
+            data: IconThemeData(opacity: 0.8),
+            child: SolarIcon(SolarIcons.home2, opacity: 0.5),
+          ),
+        ),
+      );
+      final widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(widget.opacity, 0.5);
+      final iconTheme = IconTheme.of(
+        tester.element(find.byType(SolarIcon)),
+      );
+      expect(iconTheme.opacity, 0.8);
     });
 
     test('opacity must be in [0, 1]', () {

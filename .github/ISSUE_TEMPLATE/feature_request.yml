@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest a new feature or improvement for solar_iconkit
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Please describe the use case first — what you're trying to do — before the specific API you have in mind.
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What are you trying to do?
+      description: Describe the real-world scenario, not just the API you want.
+      placeholder: I'm building a dashboard where icons need drop shadows on hover. Currently there's no way to add shadows to a SolarIcon.
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-workaround
+    attributes:
+      label: Current workaround
+      description: How are you solving this today, if at all?
+      placeholder: Wrapping SolarIcon in a Container with a BoxShadow — but the shadow doesn't follow the icon's alpha, so it looks like a rectangular blob.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API (if you have one)
+      description: Rough sketch. Doesn't have to be perfect.
+      render: dart
+      placeholder: |
+        SolarIcon(
+          SolarIcons.home2,
+          shadows: [BoxShadow(color: Colors.black26, blurRadius: 4)],
+        )
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other ways this could be solved (in your app, in the package, upstream).
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I have searched existing issues and this feature hasn't been requested.
+          required: true
+        - label: I understand this is an idea, not a promise — maintainer may accept, reject, or ask for changes.
+          required: true

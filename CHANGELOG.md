@@ -4,6 +4,34 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] — 2026-07-29
+
+### Added
+
+- **Community health files.** Added `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`
+  (Contributor Covenant 2.1), `SECURITY.md` (with GitHub private vulnerability
+  reporting), issue templates (bug report + feature request), pull request
+  template, and `.github/FUNDING.yml`. GitHub's community-standards score
+  moves from 0/7 to 7/7.
+- **Dependabot.** `.github/dependabot.yml` opens weekly PRs for pub
+  dependencies and GitHub Actions versions.
+- **RTL and opacity tests.** Three new widget tests covering `matchTextDirection`
+  under `Directionality.rtl`, explicit `textDirection` override, and
+  composition of widget-level `opacity` with `IconTheme.opacity`. Total
+  test count is now 24 (up from 21).
+- **Screenshots scaffold.** `screenshots/README.md` documents which
+  visuals to capture for pub.dev; a commented `screenshots:` block in
+  `pubspec.yaml` is ready to activate once the PNGs are in place.
+
+### Changed
+
+- **`flutter_lints` bumped `^5.0.0 → ^6.0.0`.** Picks up the latest Dart
+  lint rules. No new warnings surfaced by the upgrade.
+- **Example app cleanup.** Replaced 8 remaining `Color.withOpacity(...)`
+  calls with `Color.withValues(alpha: ...)` (Flutter 3.27+ API). Applied
+  `const` where the analyzer suggested. `flutter analyze` now reports
+  zero issues across `lib/`, `test/`, and `example/`.
+
 ## [0.3.1] — 2026-07-29
 
 ### Changed

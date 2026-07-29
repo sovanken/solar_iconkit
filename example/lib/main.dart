@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
               pinned: true,
               delegate: _StickyControls(
                 background: scheme.surface,
-                border: scheme.outlineVariant.withOpacity(0.5),
+                border: scheme.outlineVariant.withValues(alpha: 0.5),
                 child: _ControlsPanel(
                   searchController: _searchController,
                   onSearchChanged: (v) => setState(() => _query = v),
@@ -414,7 +414,7 @@ class _SegmentChip extends StatelessWidget {
         boxShadow: selected
             ? [
                 BoxShadow(
-                  color: scheme.shadow.withOpacity(0.06),
+                  color: scheme.shadow.withValues(alpha: 0.06),
                   blurRadius: 4,
                   offset: const Offset(0, 1),
                 ),
@@ -521,12 +521,12 @@ class _IconCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        splashColor: scheme.primary.withOpacity(0.08),
-        highlightColor: scheme.primary.withOpacity(0.04),
+        splashColor: scheme.primary.withValues(alpha: 0.08),
+        highlightColor: scheme.primary.withValues(alpha: 0.04),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: scheme.outlineVariant.withOpacity(0.4),
+              color: scheme.outlineVariant.withValues(alpha: 0.4),
             ),
             borderRadius: BorderRadius.circular(14),
           ),
@@ -702,7 +702,7 @@ class _IconDetailSheetState extends State<IconDetailSheet> {
                 color: scheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: scheme.outlineVariant.withOpacity(0.5),
+                  color: scheme.outlineVariant.withValues(alpha: 0.5),
                 ),
               ),
               alignment: Alignment.center,
@@ -747,7 +747,7 @@ class _IconDetailSheetState extends State<IconDetailSheet> {
                                 borderRadius: BorderRadius.circular(14),
                                 border: Border.all(
                                   color: scheme.outlineVariant
-                                      .withOpacity(0.5),
+                                      .withValues(alpha: 0.5),
                                 ),
                               ),
                         child: Column(
@@ -794,7 +794,7 @@ class _IconDetailSheetState extends State<IconDetailSheet> {
                 color: scheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(
-                  color: scheme.outlineVariant.withOpacity(0.5),
+                  color: scheme.outlineVariant.withValues(alpha: 0.5),
                 ),
               ),
               child: SelectableText(
