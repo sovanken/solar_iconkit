@@ -1,0 +1,35 @@
+# Codecov configuration
+# Docs: https://docs.codecov.com/docs/codecov-yaml
+
+# Files excluded from coverage calculation.
+#
+# Generated code (*.g.dart) contains declarations we don't hand-write and
+# often can't test — e.g. private namespace-class constructors that exist
+# purely to prevent instantiation. Excluding them gives an accurate picture
+# of tested vs. untested hand-written code.
+ignore:
+  - "**/*.g.dart"
+  - "example/**"
+
+# Coverage targets. If coverage on a PR drops below the project baseline
+# (or a PR touches uncovered lines), Codecov will comment / fail the check.
+coverage:
+  status:
+    project:
+      default:
+        # New commits must not drop project coverage by more than 1 percentage
+        # point. Absolute floor: 90%.
+        target: 90%
+        threshold: 1%
+        base: auto
+    patch:
+      default:
+        # New lines introduced in a PR must be at least 80% covered.
+        target: 80%
+        threshold: 5%
+
+# Comment on pull requests with a coverage summary.
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
