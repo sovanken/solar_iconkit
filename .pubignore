@@ -1,9 +1,10 @@
 # Files excluded from pub.dev uploads (in addition to .gitignore).
 # Assets and lib/ are intentionally NOT ignored — they ship with the package.
 
-# Dev/tooling artefacts
-tools/__pycache__/
-tools/*.pyc
+# Dev/tooling — maintainer-only regeneration script. Kept in git for
+# contributors but not shipped in the published archive; consumers of the
+# package have no use for it.
+tool/
 .venv/
 
 # IDE files

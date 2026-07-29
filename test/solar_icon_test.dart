@@ -48,11 +48,15 @@ void main() {
           ),
         ),
       );
+      // The outer SizedBox.square is the first SizedBox descendant of
+      // SolarIcon; flutter_svg may add its own SizedBox deeper in the tree.
       final sizedBox = tester.widget<SizedBox>(
-        find.descendant(
-          of: find.byType(SolarIcon),
-          matching: find.byType(SizedBox),
-        ),
+        find
+            .descendant(
+              of: find.byType(SolarIcon),
+              matching: find.byType(SizedBox),
+            )
+            .first,
       );
       expect(sizedBox.width, 32);
       expect(sizedBox.height, 32);
@@ -68,10 +72,12 @@ void main() {
         ),
       );
       final sizedBox = tester.widget<SizedBox>(
-        find.descendant(
-          of: find.byType(SolarIcon),
-          matching: find.byType(SizedBox),
-        ),
+        find
+            .descendant(
+              of: find.byType(SolarIcon),
+              matching: find.byType(SizedBox),
+            )
+            .first,
       );
       expect(sizedBox.width, 64);
     });
@@ -85,10 +91,12 @@ void main() {
         ),
       );
       final sizedBox = tester.widget<SizedBox>(
-        find.descendant(
-          of: find.byType(SolarIcon),
-          matching: find.byType(SizedBox),
-        ),
+        find
+            .descendant(
+              of: find.byType(SolarIcon),
+              matching: find.byType(SizedBox),
+            )
+            .first,
       );
       expect(sizedBox.width, 24);
     });
