@@ -250,6 +250,34 @@ void main() {
       );
     });
 
+    testWidgets('debugFillProperties reports every parameter', (tester) async {
+      // Ensures the widget is inspectable in Flutter DevTools with all props
+      // showing up. Also brings debugFillProperties into coverage.
+      const widget = SolarIcon(
+        SolarIcons.rocket,
+        style: SolarIconStyle.boldDuotone,
+        size: 32,
+        color: Color(0xFF6366F1),
+        opacity: 0.8,
+        semanticLabel: 'Launch',
+        matchTextDirection: true,
+        fit: BoxFit.fitWidth,
+        alignment: Alignment.topLeft,
+        blendMode: BlendMode.multiply,
+        shadows: [Shadow(color: Color(0x40000000), blurRadius: 4)],
+      );
+      final dump = widget.toDiagnosticsNode().toStringDeep();
+      expect(dump, contains('name: "rocket"'));
+      expect(dump, contains('style: boldDuotone'));
+      expect(dump, contains('size: 32'));
+      expect(dump, contains('opacity: 0.8'));
+      expect(dump, contains('semanticLabel: "Launch"'));
+      expect(dump, contains('matches text direction'));
+      expect(dump, contains('fit: fitWidth'));
+      expect(dump, contains('blendMode: multiply'));
+      expect(dump, contains('shadows'));
+    });
+
     test('opacity must be in [0, 1]', () {
       expect(() => SolarIcon(SolarIcons.home2, opacity: -0.1),
           throwsAssertionError);
