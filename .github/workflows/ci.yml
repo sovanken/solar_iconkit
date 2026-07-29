@@ -36,8 +36,18 @@ jobs:
       - name: Static analysis
         run: flutter analyze --no-fatal-infos
 
-      - name: Run tests (includes golden tests)
-        run: flutter test
+      - name: Run tests with coverage
+        run: flutter test --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: solar_iconkit
+          fail_ci_if_error: false
+        # Uses CODECOV_TOKEN from repository secrets. Public repos can also
+        # upload tokenlessly, but a token increases upload reliability.
 
   # Cross-platform check on the current stable channel. Windows and macOS
   # skip the golden tag because pixel-level rasterization can differ across

@@ -1,6 +1,7 @@
 # solar_iconkit
 
 [![CI](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml/badge.svg)](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/sovankentech/solar_iconkit/branch/main/graph/badge.svg)](https://codecov.io/gh/sovankentech/solar_iconkit)
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
