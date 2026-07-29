@@ -7,14 +7,13 @@ on:
     branches: [main]
 
 jobs:
-  # Run against the minimum Flutter version declared in pubspec.yaml so we
+  # Test against the minimum Flutter version declared in pubspec.yaml so we
   # catch accidental use of newer APIs that would break the stated minimum.
   min-flutter:
-    name: Analyze & test (Flutter 3.27.0)
+    name: Analyze & test (Ubuntu · Flutter 3.27.0)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Flutter 3.27.0
         uses: subosito/flutter-action@v2
@@ -31,20 +30,27 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib test example/lib
+
       - name: Static analysis
         run: flutter analyze --no-fatal-infos
 
-      - name: Run tests
+      - name: Run tests (includes golden tests)
         run: flutter test
 
-  # Also run against the current stable channel so we catch regressions caused
-  # by new Flutter releases.
-  stable-flutter:
-    name: Analyze & test (Flutter stable)
-    runs-on: ubuntu-latest
+  # Cross-platform check on the current stable channel. Windows and macOS
+  # skip the golden tag because pixel-level rasterization can differ across
+  # platforms and produce false regressions.
+  stable-cross-platform:
+    name: Analyze & test (${{ matrix.os }} · Flutter stable)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Flutter stable
         uses: subosito/flutter-action@v2
@@ -63,5 +69,10 @@ jobs:
       - name: Static analysis
         run: flutter analyze --no-fatal-infos
 
-      - name: Run tests
+      - name: Run tests (Ubuntu — includes goldens)
+        if: matrix.os == 'ubuntu-latest'
         run: flutter test
+
+      - name: Run tests (Windows/macOS — skip goldens)
+        if: matrix.os != 'ubuntu-latest'
+        run: flutter test --exclude-tags golden

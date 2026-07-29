@@ -1,0 +1,9 @@
+# Package-level test configuration.
+#
+# Golden tests are pixel-sensitive and can produce false failures across
+# platforms due to font-rasterization differences. We run them only on the
+# canonical CI platform (Ubuntu) — Windows and macOS CI jobs exclude the
+# `golden` tag.
+tags:
+  golden:
+    description: "Visual regression tests. Run only on the canonical platform."

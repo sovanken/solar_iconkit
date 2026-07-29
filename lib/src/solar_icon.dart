@@ -1,3 +1,5 @@
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -17,8 +19,10 @@ const Color _kFallbackIconColor = Color(0xDD000000);
 ///   directly on the widget (matching the behaviour of [Icon]).
 /// * Falls back to a sane default (24 px, opaque black) only when no context
 ///   is available.
-/// * Uses `ColorFilter.mode(..., BlendMode.srcIn)` so duotone variants keep
-///   their opacity-based accent while still respecting the caller's color.
+/// * Uses `ColorFilter.mode(..., BlendMode.srcIn)` by default so duotone
+///   variants keep their opacity-based accent while still respecting the
+///   caller's color. The blend mode is configurable via [blendMode].
+/// * Optional drop shadows via [shadows], mirroring Flutter's built-in [Icon].
 /// * Wraps decorative usages with [ExcludeSemantics] to avoid noise from
 ///   screen readers when no [semanticLabel] is supplied.
 /// * Is `const`-constructible and immutable, so it can be reused freely in
@@ -38,6 +42,7 @@ const Color _kFallbackIconColor = Color(0xDD000000);
 ///   style: SolarIconStyle.boldDuotone,
 ///   size: 32,
 ///   color: Theme.of(context).colorScheme.primary,
+///   shadows: const [Shadow(color: Colors.black26, blurRadius: 4)],
 ///   semanticLabel: 'Launch',
 /// )
 /// ```
@@ -62,6 +67,8 @@ class SolarIcon extends StatelessWidget {
     this.matchTextDirection = false,
     this.fit = BoxFit.contain,
     this.alignment = Alignment.center,
+    this.blendMode = BlendMode.srcIn,
+    this.shadows,
   }) : assert(opacity >= 0.0 && opacity <= 1.0,
             'SolarIcon.opacity must be between 0.0 and 1.0');
 
@@ -78,7 +85,8 @@ class SolarIcon extends StatelessWidget {
   /// If [IconTheme] does not provide a size either, defaults to 24 px.
   final double? size;
 
-  /// Fill/stroke color applied via [ColorFilter.mode] with [BlendMode.srcIn].
+  /// Fill/stroke color applied via [ColorFilter.mode] with the current
+  /// [blendMode] (default [BlendMode.srcIn]).
   ///
   /// When null, the widget reads [IconTheme.color] from the enclosing context.
   /// If [IconTheme] does not provide a color either, defaults to a near-opaque
@@ -114,6 +122,37 @@ class SolarIcon extends StatelessWidget {
   /// [Alignment.center].
   final AlignmentGeometry alignment;
 
+  /// The [BlendMode] used to composite [color] onto the SVG.
+  ///
+  /// Defaults to [BlendMode.srcIn], which replaces the source color while
+  /// keeping the source alpha — the standard "recolor an icon" behaviour.
+  ///
+  /// Set to [BlendMode.multiply] or [BlendMode.plus] for advanced effects
+  /// where you want the icon to interact with the background instead of
+  /// fully replacing pixels. Set to [BlendMode.dst] to disable recoloring
+  /// entirely and render the icon in its native SVG colors.
+  final BlendMode blendMode;
+
+  /// Optional drop shadows painted underneath the icon.
+  ///
+  /// Mirrors the [Icon.shadows] parameter from Flutter's built-in [Icon].
+  /// When non-empty, the shadows are drawn as blurred, offset copies of the
+  /// icon behind the main render. Cheap for a couple of shadows; avoid
+  /// large lists in scrolling contexts.
+  ///
+  /// Example:
+  /// ```dart
+  /// SolarIcon(
+  ///   SolarIcons.heart,
+  ///   style: SolarIconStyle.bold,
+  ///   color: Colors.red,
+  ///   shadows: const [
+  ///     Shadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 2)),
+  ///   ],
+  /// )
+  /// ```
+  final List<Shadow>? shadows;
+
   /// Returns the asset path used to load this icon.
   ///
   /// Useful for advanced cases where you need the raw path — for example when
@@ -142,7 +181,7 @@ class SolarIcon extends StatelessWidget {
       package: packageName,
       width: resolvedSize,
       height: resolvedSize,
-      colorFilter: ColorFilter.mode(resolvedColor, BlendMode.srcIn),
+      colorFilter: ColorFilter.mode(resolvedColor, blendMode),
       fit: fit,
       alignment: alignment,
       matchTextDirection: matchTextDirection,
@@ -153,11 +192,52 @@ class SolarIcon extends StatelessWidget {
     // This helps consistent alignment in Rows, ListTiles, and Buttons.
     picture = SizedBox.square(dimension: resolvedSize, child: picture);
 
+    // Drop shadows are painted via a Stack of blurred copies. Kept cheap by
+    // sharing the same SvgPicture widget for the shadow layer.
+    if (shadows != null && shadows!.isNotEmpty) {
+      final List<Widget> layers = <Widget>[
+        for (final shadow in shadows!)
+          Positioned(
+            left: shadow.offset.dx,
+            top: shadow.offset.dy,
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(
+                sigmaX: shadow.blurRadius,
+                sigmaY: shadow.blurRadius,
+              ),
+              child: _shadowLayer(resolvedSize, shadow.color),
+            ),
+          ),
+        picture,
+      ];
+      picture = SizedBox.square(
+        dimension: resolvedSize,
+        child: Stack(clipBehavior: Clip.none, children: layers),
+      );
+    }
+
     if (semanticLabel == null) {
       picture = ExcludeSemantics(child: picture);
     }
 
     return picture;
+  }
+
+  /// Renders a solid-color copy of the icon for use as a shadow layer.
+  Widget _shadowLayer(double dimension, Color shadowColor) {
+    return SizedBox.square(
+      dimension: dimension,
+      child: SvgPicture.asset(
+        assetPath(name, style),
+        package: packageName,
+        width: dimension,
+        height: dimension,
+        colorFilter: ColorFilter.mode(shadowColor, BlendMode.srcIn),
+        fit: fit,
+        alignment: alignment,
+        matchTextDirection: matchTextDirection,
+      ),
+    );
   }
 
   @override
@@ -176,6 +256,9 @@ class SolarIcon extends StatelessWidget {
           defaultValue: false))
       ..add(EnumProperty<BoxFit>('fit', fit, defaultValue: BoxFit.contain))
       ..add(DiagnosticsProperty<AlignmentGeometry>('alignment', alignment,
-          defaultValue: Alignment.center));
+          defaultValue: Alignment.center))
+      ..add(EnumProperty<BlendMode>('blendMode', blendMode,
+          defaultValue: BlendMode.srcIn))
+      ..add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
   }
 }

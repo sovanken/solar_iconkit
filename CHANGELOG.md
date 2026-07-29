@@ -4,6 +4,55 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-07-29
+
+### Added
+
+- **`SolarIcon.blendMode`** parameter (defaults to `BlendMode.srcIn`). Lets
+  advanced consumers customise how the icon's color composites onto the
+  background — for example `BlendMode.multiply` for icon-over-texture
+  effects, or `BlendMode.dst` to render the SVG in its native colors.
+- **`SolarIcon.shadows`** parameter — a `List<Shadow>?`. Mirrors the
+  `shadows` parameter on Flutter's built-in `Icon` widget. When
+  non-empty, blurred and offset copies of the icon are painted behind
+  the main render.
+
+  ```dart
+  SolarIcon(
+    SolarIcons.heart,
+    style: SolarIconStyle.bold,
+    color: Colors.red,
+    shadows: const [
+      Shadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 2)),
+    ],
+  )
+  ```
+
+- **Golden tests** covering all six styles. `test/golden_test.dart`
+  renders `SolarIcons.home2` per style and compares against reference
+  PNGs in `test/goldens/`. Catches visual regressions caused by
+  `flutter_svg` upgrades or widget-layout changes.
+- **Cross-platform CI.** The workflow now runs a matrix on Ubuntu,
+  Windows, and macOS against the current Flutter stable channel, plus
+  a dedicated Ubuntu job on the declared minimum Flutter 3.27.0. Golden
+  tests are gated to Ubuntu only via the `golden` test tag
+  (`dart_test.yaml`) — pixel-level rasterization can differ across
+  platforms.
+- **Format enforcement in CI.** `dart format --set-exit-if-changed` runs
+  as part of the min-flutter job. Codebase is now fully dart-formatted.
+
+### Changed
+
+- **Test count 24 → 32.** Two new widget tests (`blendMode`, `shadows`)
+  plus six golden tests.
+- **`debugFillProperties`** now reports `blendMode` and `shadows` so
+  they show up in Flutter DevTools.
+
+### Notes
+
+- No breaking changes. Both new parameters are optional and default to
+  the pre-existing behaviour (srcIn blend, no shadows).
+
 ## [0.3.3] — 2026-07-29
 
 ### Added

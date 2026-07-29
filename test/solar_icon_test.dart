@@ -186,9 +186,75 @@ void main() {
       expect(iconTheme.opacity, 0.8);
     });
 
+    testWidgets('blendMode defaults to srcIn but is configurable',
+        (tester) async {
+      // Default: srcIn.
+      await tester.pumpWidget(
+        const MaterialApp(home: SolarIcon(SolarIcons.home2)),
+      );
+      final defaultWidget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(defaultWidget.blendMode, BlendMode.srcIn);
+
+      // Explicit override.
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIcon(
+            SolarIcons.home2,
+            blendMode: BlendMode.multiply,
+          ),
+        ),
+      );
+      final customWidget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(customWidget.blendMode, BlendMode.multiply);
+    });
+
+    testWidgets('shadows default to null and render when provided',
+        (tester) async {
+      // Default: no shadows, no Stack wrapper.
+      await tester.pumpWidget(
+        const MaterialApp(home: SolarIcon(SolarIcons.home2)),
+      );
+      var widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(widget.shadows, isNull);
+      expect(
+        find.descendant(
+          of: find.byType(SolarIcon),
+          matching: find.byType(Stack),
+        ),
+        findsNothing,
+      );
+
+      // With shadows: Stack wrapper appears with one child per shadow + main.
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIcon(
+            SolarIcons.home2,
+            shadows: [
+              Shadow(color: Color(0x40000000), blurRadius: 4),
+              Shadow(
+                  color: Color(0x20000000),
+                  blurRadius: 8,
+                  offset: Offset(0, 2)),
+            ],
+          ),
+        ),
+      );
+      widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
+      expect(widget.shadows, hasLength(2));
+      expect(
+        find.descendant(
+          of: find.byType(SolarIcon),
+          matching: find.byType(Stack),
+        ),
+        findsOneWidget,
+      );
+    });
+
     test('opacity must be in [0, 1]', () {
-      expect(() => SolarIcon(SolarIcons.home2, opacity: -0.1), throwsAssertionError);
-      expect(() => SolarIcon(SolarIcons.home2, opacity: 1.1), throwsAssertionError);
+      expect(() => SolarIcon(SolarIcons.home2, opacity: -0.1),
+          throwsAssertionError);
+      expect(() => SolarIcon(SolarIcons.home2, opacity: 1.1),
+          throwsAssertionError);
     });
 
     test('assetPath resolves to package-scoped SVG path', () {
@@ -244,8 +310,7 @@ void main() {
     test('every name in all matches expected kebab-case grammar', () {
       final valid = RegExp(r'^[a-z0-9]+(-[a-z0-9]+)*$');
       for (final n in SolarIcons.all) {
-        expect(valid.hasMatch(n), isTrue,
-            reason: 'Invalid icon name: $n');
+        expect(valid.hasMatch(n), isTrue, reason: 'Invalid icon name: $n');
       }
     });
 

@@ -438,9 +438,7 @@ class _SegmentChip extends StatelessWidget {
               child: IconTheme(
                 data: IconThemeData(
                   size: 14,
-                  color: selected
-                      ? scheme.onSurface
-                      : scheme.onSurfaceVariant,
+                  color: selected ? scheme.onSurface : scheme.onSurfaceVariant,
                 ),
                 child: child,
               ),
@@ -678,8 +676,8 @@ class _IconDetailSheetState extends State<IconDetailSheet> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: scheme.primaryContainer,
                     borderRadius: BorderRadius.circular(999),
