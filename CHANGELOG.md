@@ -4,6 +4,37 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-07-29
+
+### Added
+
+- **Icon browser website** — <https://solar-icons-web.vercel.app> is now the
+  primary place to preview icons, pick a style, and copy Flutter widget code
+  for any icon in the set. Referenced throughout the README and set as the
+  package `homepage`.
+- **Sponsorship link** — Ko-fi funding URL declared in `pubspec.yaml` under
+  the `funding` field (pub.dev renders a "Sponsor" button pointing to
+  <https://ko-fi.com/sovanken>). README now includes a short "Support" section.
+
+### Changed
+
+- README trimmed to five essential badges (pub version, pub points, Flutter,
+  license, Ko-fi) — the badge cluster is easier to read and each badge now
+  communicates something distinct.
+- External links to the Solar collection page were replaced with links to the
+  new browser website so readers land on an interactive preview instead of an
+  outdated third-party listing.
+- Package `homepage` now points at the icon browser
+  (<https://solar-icons-web.vercel.app>) rather than pub.dev — pub.dev already
+  links to itself.
+
+### Removed
+
+- README sections that documented the internal regeneration script have been
+  removed. The script is still shipped for maintainers under `tool/`, but it
+  is not part of the public API and no longer surfaces in the readme,
+  troubleshooting, or requirements sections.
+
 ## [0.2.0] — 2026-07-28
 
 ### Added

@@ -1,47 +1,17 @@
 # solar_iconkit
 
-<p>
-
-<!-- pub.dev metrics -->
 [![pub version](https://img.shields.io/pub/v/solar_iconkit.svg?logo=dart&label=pub&color=0175C2)](https://pub.dev/packages/solar_iconkit)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![pub likes](https://img.shields.io/pub/likes/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![pub popularity](https://img.shields.io/pub/popularity/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![pub publisher](https://img.shields.io/pub/publisher/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit)
-
-<!-- Runtime & platforms -->
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
-[![Dart 3](https://img.shields.io/badge/Dart-3-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![platforms](https://img.shields.io/badge/platforms-android%20%7C%20ios%20%7C%20macos%20%7C%20windows%20%7C%20linux%20%7C%20web-4c1)](https://pub.dev/packages/solar_iconkit)
-
-<!-- Package content -->
-[![icons](https://img.shields.io/badge/icons-1%2C231-FFA500)](https://pub.dev/packages/solar_iconkit)
-[![styles](https://img.shields.io/badge/styles-6-FFA500)](#style-guide)
-[![variants](https://img.shields.io/badge/variants-7%2C386-FFA500)](https://pub.dev/packages/solar_iconkit)
-
-<!-- GitHub repo -->
 [![license](https://img.shields.io/github/license/sovankentech/solar_iconkit?color=blue)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
-[![stars](https://img.shields.io/github/stars/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/stargazers)
-[![forks](https://img.shields.io/github/forks/sovankentech/solar_iconkit?style=flat&logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/network/members)
-[![issues](https://img.shields.io/github/issues/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/issues)
-[![contributors](https://img.shields.io/github/contributors/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/graphs/contributors)
-[![last commit](https://img.shields.io/github/last-commit/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit/commits)
-[![repo size](https://img.shields.io/github/repo-size/sovankentech/solar_iconkit?logo=github&color=181717)](https://github.com/sovankentech/solar_iconkit)
+[![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
-<!-- Quality & community -->
-[![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-40C4FF)](https://pub.dev/packages/flutter_lints)
-[![Keep a Changelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog-E05735?logo=keepachangelog)](https://keepachangelog.com/en/1.1.0/)
-[![SemVer](https://img.shields.io/badge/versioning-SemVer-3F4551?logo=semver)](https://semver.org)
-[![Made with Flutter](https://img.shields.io/badge/Made%20with-Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/sovankentech/solar_iconkit/pulls)
+A Flutter package that bundles the entire Solar icon set — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
-</p>
-
-A Flutter package that bundles the entire [Solar icon set](https://iconify.design/collections/solar) — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
-
+- **Browse icons**: <https://solar-icons-web.vercel.app>
 - **pub.dev**: <https://pub.dev/packages/solar_iconkit>
-- **Repository**: <https://github.com/sovankentech/solar_iconkit>
 - **Issues**: <https://github.com/sovankentech/solar_iconkit/issues>
+- **Support**: <https://ko-fi.com/sovanken>
 
 **What you get**
 
@@ -51,7 +21,6 @@ A Flutter package that bundles the entire [Solar icon set](https://iconify.desig
 - Bundled SVG assets in `assets/icons/`. No network access at runtime, works fully offline.
 - Full `IconTheme` integration — size, color, and opacity resolve from the ambient theme when unset on the widget.
 - Deterministic asset resolution — `packages/solar_iconkit/assets/icons/{style}/{name}.svg`.
-- A Python regeneration script that pulls the latest Solar icons from the Iconify API and rebuilds the constants file.
 - Example browser app under `example/` demonstrating every usage pattern.
 - Runs on Android, iOS, macOS, Windows, Linux, and Web.
 
@@ -67,7 +36,7 @@ A Flutter package that bundles the entire [Solar icon set](https://iconify.desig
   - [Table of contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Installation](#installation)
-    - [Option A: pub.dev (recommended once released)](#option-a-pubdev-recommended-once-released)
+    - [Option A: pub.dev (recommended)](#option-a-pubdev-recommended)
     - [Option B: Path dependency](#option-b-path-dependency)
     - [Option C: Git dependency](#option-c-git-dependency)
     - [Option D: Version pin with dependency\_overrides](#option-d-version-pin-with-dependency_overrides)
@@ -95,13 +64,13 @@ A Flutter package that bundles the entire [Solar icon set](https://iconify.desig
     - [Precaching for smooth scrolling](#precaching-for-smooth-scrolling)
     - [Reducing bundle size](#reducing-bundle-size)
     - [Wrapping SolarIcon in a project-level widget](#wrapping-solaricon-in-a-project-level-widget)
-  - [Regenerating the icon set](#regenerating-the-icon-set)
   - [Performance notes](#performance-notes)
   - [Testing](#testing)
   - [Troubleshooting](#troubleshooting)
   - [Package layout](#package-layout)
   - [Versioning](#versioning)
   - [License and attribution](#license-and-attribution)
+  - [Support](#support)
 
 ---
 
@@ -113,8 +82,6 @@ A Flutter package that bundles the entire [Solar icon set](https://iconify.desig
 | Dart | 3.6.0 |
 | flutter_svg | 2.0.10 (transitive) |
 
-The Python regeneration script requires Python 3.10 or later with the standard library only — no `pip install` needed.
-
 The package targets all Flutter platforms supported by `flutter_svg`: Android, iOS, macOS, Windows, Linux, and Web.
 
 ---
@@ -123,13 +90,13 @@ The package targets all Flutter platforms supported by `flutter_svg`: Android, i
 
 Choose one of the four dependency forms below.
 
-### Option A: pub.dev (recommended once released)
+### Option A: pub.dev (recommended)
 
 Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.2.0
+  solar_iconkit: ^0.3.0
 ```
 
 Or run:
@@ -165,7 +132,7 @@ dependencies:
   solar_iconkit:
     git:
       url: git@github.com:sovankentech/solar_iconkit.git
-      ref: v0.2.0                 # a tag, branch, or commit SHA
+      ref: v0.3.0                 # a tag, branch, or commit SHA
 ```
 
 **When to use:** package has its own repo, multiple consumers on different machines.
@@ -178,7 +145,7 @@ Best when you want to publish semver-like versions but override to local during 
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.2.0
+  solar_iconkit: ^0.3.0
 
 dependency_overrides:
   solar_iconkit:
@@ -813,8 +780,6 @@ flutter:
 
 Then delete the unused style folders under `assets/icons/`. The build will only include the assets you declare.
 
-You can also strip icons you do not use by generating a smaller `.g.dart` file — extend `tools/fetch_icons.py` with an allow-list of icon base names.
-
 ### Wrapping SolarIcon in a project-level widget
 
 For consistency across screens, define your own primitive:
@@ -845,37 +810,6 @@ enum AppIconEmphasis { regular, selected, feature }
 ```
 
 Now the rest of the app uses `AppIcon(SolarIcons.home2, emphasis: AppIconEmphasis.selected)` — one place to change styling for every screen.
-
----
-
-## Regenerating the icon set
-
-Solar occasionally ships new icons on Iconify. To pull the latest set into this package:
-
-```bash
-cd path/to/solar_iconkit
-python tools/fetch_icons.py
-```
-
-The script:
-
-1. Fetches `https://api.iconify.design/collection?prefix=solar` to enumerate every icon.
-2. For each of the 6 styles, batch-downloads SVG bodies (60 icons per request, throttled to be gentle on the API).
-3. Writes each SVG to `assets/icons/{style_folder}/{name}.svg` — overwrites any existing file.
-4. Regenerates `lib/src/solar_iconkit_data.g.dart` with typed string constants and the `all` list.
-
-Runtime: about 90 seconds on a decent connection.
-
-**Requirements:** Python 3.10+, standard library only. The script uses `urllib.request` and sends a proper `User-Agent`; Iconify's API returns HTTP 403 to requests without one.
-
-**After regenerating:**
-
-1. Review the diff — `git diff lib/src/solar_iconkit_data.g.dart` will show added/removed/renamed icons.
-2. Bump the version in `pubspec.yaml` (`0.1.1 -> 0.2.0` if any icon names changed).
-3. Update `CHANGELOG.md`.
-4. Commit both the SVG asset changes and the `.g.dart` file.
-
-**Idempotence:** Re-running the script is safe. If nothing changed upstream, files are rewritten identically and no diff appears.
 
 ---
 
@@ -965,7 +899,7 @@ if (!SolarIcons.all.contains(name)) {
 
 **`Unable to load asset: assets/icons/linear/xxx.svg` at runtime.**
 
-The base name exists in one style but not another (very rare upstream, but possible). Confirm by inspecting the file system under `packages/solar_iconkit/assets/icons/{style}/`. If the file is genuinely missing, re-run the regeneration script.
+The base name exists in one style but not another (very rare upstream, but possible). Confirm by inspecting the file system under `packages/solar_iconkit/assets/icons/{style}/`. If the file is genuinely missing, please open an issue.
 
 **"A value of type 'List<dynamic>' can't be assigned to 'List<String>'."**
 
@@ -989,14 +923,6 @@ Verify you are passing a color from `Theme.of(context)` (a rebuild-tracked sourc
 **`flutter_svg` version conflict with another package.**
 
 `solar_iconkit` pins `flutter_svg: ^2.0.10`. If a peer package pins a lower version, run `flutter pub upgrade flutter_svg`. If two packages pin incompatible ranges, use `dependency_overrides` to force a single version.
-
-**Iconify returns HTTP 403 during regeneration.**
-
-The script now sends a `User-Agent` header, which resolves this. If you fork the script and remove that header, requests will be blocked. Keep the `User-Agent` in place.
-
-**A newly added Solar icon has an unusable identifier.**
-
-If Solar publishes an icon whose base name is a Dart reserved word not in the generator's list, add it to `DART_RESERVED` in `tools/fetch_icons.py` and rerun. The current list covers every reserved word, built-in identifier, and contextual keyword in Dart 3.5.
 
 ---
 
@@ -1024,8 +950,6 @@ solar_iconkit/
 │       ├── bold/                           Bold-style SVGs.
 │       ├── line_duotone/                   Line-duotone-style SVGs.
 │       └── bold_duotone/                   Bold-duotone-style SVGs.
-├── tools/
-│   └── fetch_icons.py                      Regeneration script.
 ├── test/
 │   └── solar_icon_test.dart                Widget and unit tests.
 └── example/
@@ -1062,3 +986,15 @@ When shipping an application that uses `solar_iconkit`, include the following at
 > Icons: Solar by 480 Design, licensed under the MIT License.
 
 Flutter's `showLicensePage()` automatically picks up `LICENSE` files from every dependency and displays them together — no additional integration is needed on the consumer side.
+
+---
+
+## Support
+
+`solar_iconkit` is MIT-licensed and will always be free. If it saved you time in your Flutter project, a coffee helps me keep it updated, add features to the [icon browser](https://solar-icons-web.vercel.app), and build more open-source tools for the Flutter community.
+
+[![Support on Ko-fi](https://img.shields.io/badge/Support%20on-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
+
+- Sponsor: <https://ko-fi.com/sovanken>
+- Browse icons: <https://solar-icons-web.vercel.app>
+- pub.dev: <https://pub.dev/packages/solar_iconkit>
