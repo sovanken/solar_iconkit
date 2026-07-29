@@ -4,6 +4,29 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] — 2026-07-29
+
+Quality release — no API changes, no behavioural changes. Consumers of
+1.0.0 can upgrade with zero migration effort.
+
+### Added
+
+- **Codecov integration.** Every CI run uploads `lcov.info` to Codecov;
+  the coverage badge is live on the README. Coverage on `lib/` is now
+  **100%** (generated `.g.dart` files excluded, per `codecov.yml`).
+- **Coverage gates.** New `codecov.yml` sets a 90% project baseline and
+  an 80% patch baseline. PRs that drop coverage below these thresholds
+  are flagged automatically.
+- **`debugFillProperties` test.** One new widget test constructs a
+  `SolarIcon` with every parameter non-default and asserts each is
+  reported in the Flutter DevTools diagnostics dump. Brings total test
+  count to **33 + 6 goldens**.
+
+### Changed
+
+- CI workflow passes `CODECOV_TOKEN` explicitly to `codecov-action@v5`
+  for faster and more reliable coverage ingestion.
+
 ## [1.0.0] — 2026-07-29
 
 🎉 **First stable release.**
