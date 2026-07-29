@@ -97,7 +97,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.3.0
+  solar_iconkit: ^1.0.0
 ```
 
 Or run:
@@ -133,7 +133,7 @@ dependencies:
   solar_iconkit:
     git:
       url: git@github.com:sovankentech/solar_iconkit.git
-      ref: v0.3.0                 # a tag, branch, or commit SHA
+      ref: v1.0.0                 # a tag, branch, or commit SHA
 ```
 
 **When to use:** package has its own repo, multiple consumers on different machines.
@@ -146,7 +146,7 @@ Best when you want to publish semver-like versions but override to local during 
 
 ```yaml
 dependencies:
-  solar_iconkit: ^0.3.0
+  solar_iconkit: ^1.0.0
 
 dependency_overrides:
   solar_iconkit:

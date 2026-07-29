@@ -4,6 +4,54 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] — 2026-07-29
+
+🎉 **First stable release.**
+
+`solar_iconkit` is now API-stable and production-endorsed. The 1.0 line
+commits to backwards compatibility — future 1.x releases will only add
+optional parameters or fix bugs. Breaking changes will bump to 2.0.
+
+### Highlights from the 0.x → 1.0 journey
+
+- **1,231 Solar icons** across **6 native styles** (7,386 SVG variants) —
+  behind a single, type-safe `SolarIcon` widget.
+- **160/160 pub.dev score** across all five evaluation categories.
+- **32 tests + 6 golden files** covering widget behaviour, IconTheme
+  integration, RTL mirroring, opacity composition, blendMode, shadows,
+  and visual regression on all six styles.
+- **Cross-platform CI** on Ubuntu, macOS, and Windows, plus a dedicated
+  Ubuntu job on the declared minimum Flutter 3.27.0.
+- **Zero deprecated API use** — modern `Color.withValues(alpha:)` for
+  opacity composition, `Directionality.of` for RTL, `IconTheme.of` for
+  ambient theme integration.
+- **Strict analyzer** — `strict-casts`, `strict-inference`, and
+  `strict-raw-types` all enabled, plus 11 additional lint rules.
+- **Full community-standards** compliance: `CONTRIBUTING.md`,
+  `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue templates, PR template,
+  Dependabot, FUNDING.
+- **Branch protection** on `main` — all four CI matrix jobs must pass
+  before merge.
+
+### Since 0.4.0
+
+- **Analyzer strictness bumped** — 11 additional lint rules and full
+  strict-type-checking. Codebase already compliant; no user-visible
+  changes.
+- **Coverage tracked via Codecov** — every push and PR uploads
+  `lcov.info` from the min-Flutter CI job. Coverage badge in the README.
+- **Branch protection on `main`** — the four CI matrix jobs are required
+  status checks. Force-push and deletion blocked.
+- Version references bumped throughout the docs to `^1.0.0`.
+
+### Roadmap toward 2.0
+
+- **Per-style sub-packages** (`solar_iconkit_linear`,
+  `solar_iconkit_bold_duotone`, etc.) for consumers who only need a
+  subset of styles. Would cut typical bundle size from 23 MB to ~4 MB.
+- **Icon-font distribution** as an alternative to SVG for consumers who
+  prioritise bundle size over duotone rendering.
+
 ## [0.4.0] — 2026-07-29
 
 ### Added

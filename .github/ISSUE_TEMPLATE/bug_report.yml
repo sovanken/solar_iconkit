@@ -13,7 +13,7 @@ body:
     attributes:
       label: solar_iconkit version
       description: Which version are you using? (find it in your `pubspec.lock`)
-      placeholder: 0.3.1
+      placeholder: 1.0.0
     validations:
       required: true
 
