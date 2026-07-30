@@ -4,6 +4,37 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] — 2026-07-29
+
+### Added
+
+- **Debug-mode validation for icon names.** `SolarIcon('typo-name')` now
+  throws a detailed [FlutterError] in debug builds instead of silently
+  rendering an empty box. The assertion is stripped from release builds
+  (zero production cost). Typos surface immediately during development
+  with a stack trace pointing to the offending call site and a hint to
+  use the `SolarIcons.<name>` constants.
+
+### Changed
+
+- **SVG assets minified further via SVGO.** All 7,386 SVGs were run
+  through SVGO with a conservative config (preserves `currentColor`,
+  `viewBox`, duotone opacities, and gradient ids). Savings were modest
+  (~0.7%) — Solar's upstream SVGs were already well-optimised — but
+  it's a free win with no visible change to rendering. Golden tests
+  still match.
+- **README bundle-size figures corrected.** Earlier releases quoted
+  "23 MB uncompressed" — that number came from `du -sh` reporting
+  filesystem block-allocation slack (each ~500-byte SVG rounds up to
+  a 4 KB block). The actual on-wire SVG content is **6.1 MB**. The
+  README now reports the accurate number and explains the discrepancy.
+
+### Tests
+
+- New test verifying the unknown-icon assertion throws a `FlutterError`
+  whose message includes the offending name. Total tests: **34** (up
+  from 33) + 6 goldens.
+
 ## [1.0.1] — 2026-07-29
 
 Quality release — no API changes, no behavioural changes. Consumers of

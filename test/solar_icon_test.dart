@@ -278,6 +278,23 @@ void main() {
       expect(dump, contains('shadows'));
     });
 
+    testWidgets('unknown icon name throws FlutterError in debug',
+        (tester) async {
+      // The assertion lives in build(), so we need to actually pump the
+      // widget to trigger it. Wrapped in an ErrorWidget to catch the throw.
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIcon('totally-not-a-real-icon-name'),
+        ),
+      );
+      final exception = tester.takeException();
+      expect(exception, isA<FlutterError>());
+      expect(
+        exception.toString(),
+        contains('unknown icon name: "totally-not-a-real-icon-name"'),
+      );
+    });
+
     test('opacity must be in [0, 1]', () {
       expect(() => SolarIcon(SolarIcons.home2, opacity: -0.1),
           throwsAssertionError);

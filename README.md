@@ -769,7 +769,9 @@ Call from an `initState` or a route enter callback for icons visible in the firs
 
 ### Reducing bundle size
 
-The full asset bundle is about **23 MB uncompressed / ~4–5 MB gzipped** (7,386 SVGs across six styles). Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
+The full asset bundle is about **6.1 MB of actual SVG bytes** (7,386 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
+
+Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
 
 If bundle size matters, drop the styles you don't use. Fork the package (or use a `dependency_overrides` path to a local copy) and trim `pubspec.yaml`:
 
@@ -840,7 +842,7 @@ Now the rest of the app uses `AppIcon(SolarIcons.home2, emphasis: AppIconEmphasi
 
 **Widget rebuilds are cheap.** `SolarIcon` is a `const` constructor and `SvgPicture.asset` is efficient to rebuild — the widget layer does not re-decode the SVG.
 
-**Bundle size**: about 23 MB uncompressed, roughly 4–5 MB after gzip. See [Reducing bundle size](#reducing-bundle-size) to trim.
+**Bundle size**: about 6.1 MB of actual SVG bytes across all six styles (previous releases quoted 23 MB, which was a filesystem-block artefact, not the real footprint). See [Reducing bundle size](#reducing-bundle-size) to trim further.
 
 **Do not** put an icon's size in a value that changes every frame (for example a raw animation controller value) — that forces layout recalculation. If you need to animate size, do so with `TweenAnimationBuilder` at reasonable durations, or animate the container's scale via `Transform.scale`.
 

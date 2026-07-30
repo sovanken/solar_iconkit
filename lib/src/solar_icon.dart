@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'solar_icon_style.dart';
+import 'solar_iconkit_data.g.dart';
 
 const double _kDefaultIconSize = 24.0;
 const Color _kFallbackIconColor = Color(0xDD000000);
@@ -166,6 +167,11 @@ class SolarIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Debug-only: validate that [name] refers to a real Solar icon. The
+    // assert is stripped in release builds so this has zero production cost.
+    // A typo throws a clear FlutterError with a stack trace pointing to the
+    // offending call site — much better than silently rendering blank.
+    assert(_debugAssertKnownIcon(name));
     final IconThemeData iconTheme = IconTheme.of(context);
     final double resolvedSize = size ?? iconTheme.size ?? _kDefaultIconSize;
     final Color baseColor = color ?? iconTheme.color ?? _kFallbackIconColor;
@@ -262,3 +268,32 @@ class SolarIcon extends StatelessWidget {
       ..add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
   }
 }
+
+/// Validates that [name] refers to a real Solar icon and throws a detailed
+/// [FlutterError] if not. Called from an `assert` on [SolarIcon]'s constructor,
+/// so this function only runs in debug/profile builds — release builds strip
+/// assertions and never touch the lookup [Set].
+///
+/// Returns `true` when the name is valid so `assert(_debugAssertKnownIcon(...))`
+/// stays quiet. Never returns `false`: an invalid name throws instead, giving
+/// consumers a stack trace that points to the offending call site.
+bool _debugAssertKnownIcon(String name) {
+  if (_iconNameLookup.contains(name)) return true;
+  throw FlutterError.fromParts(<DiagnosticsNode>[
+    ErrorSummary('SolarIcon received an unknown icon name: "$name".'),
+    ErrorDescription(
+      'The name did not match any of the ${_iconNameLookup.length} icons '
+      'in the Solar catalog. This usually indicates a typo.',
+    ),
+    ErrorHint(
+      'Use the SolarIcons.<name> constants (for example SolarIcons.home2) '
+      'so the Dart analyzer catches typos at compile time. Browse the full '
+      'catalog at https://solar-icons-web.vercel.app.',
+    ),
+  ]);
+}
+
+/// Lazily-built `Set<String>` for O(1) icon name lookups. Populated the first
+/// time [_debugAssertKnownIcon] is called. Because `assert` is compiled out of
+/// release builds, this Set is only ever allocated in debug/profile modes.
+final Set<String> _iconNameLookup = SolarIcons.all.toSet();
