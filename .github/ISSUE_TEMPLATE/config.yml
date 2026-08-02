@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Question or general discussion
-    url: https://github.com/sovankentech/solar_iconkit/discussions
+    url: https://github.com/sovanken/solar_iconkit/discussions
     about: For usage questions, discussion, and community help, please use Discussions.
   - name: pub.dev package page
     url: https://pub.dev/packages/solar_iconkit

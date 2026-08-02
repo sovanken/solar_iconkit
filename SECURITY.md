@@ -15,7 +15,7 @@ If you discover a security vulnerability in `solar_iconkit`, please **do not ope
 
 ### How to report
 
-- **Preferred**: use GitHub's [private vulnerability reporting](https://github.com/sovankentech/solar_iconkit/security/advisories/new) — this creates a private advisory that only the maintainer can see.
+- **Preferred**: use GitHub's [private vulnerability reporting](https://github.com/sovanken/solar_iconkit/security/advisories/new) — this creates a private advisory that only the maintainer can see.
 - **Alternative**: email [sovanken.tech@gmail.com](mailto:sovanken.tech@gmail.com) with the subject line `[SECURITY] solar_iconkit — <short summary>`.
 
 ### What to include

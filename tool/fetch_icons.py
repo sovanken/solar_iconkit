@@ -40,7 +40,7 @@ DART_OUT = ROOT / "lib" / "src" / "solar_iconkit_data.g.dart"
 
 _USER_AGENT = (
     "solar_iconkit-fetcher/0.1 "
-    "(+https://github.com/sovankentech/solar_iconkit; regeneration script)"
+    "(+https://github.com/sovanken/solar_iconkit; regeneration script)"
 )
 
 

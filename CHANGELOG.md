@@ -4,6 +4,22 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] — 2026-08-02
+
+### Fixed
+
+- **Corrected GitHub organization references.** Several links across the
+  package incorrectly pointed to `sovankentech` instead of the correct
+  `sovanken` GitHub account/organization — including the CI badge, codecov
+  badge, issue tracker links, the git dependency example, and the
+  `repository`/`issue_tracker` fields in `pubspec.yaml`. All references now
+  correctly resolve to `github.com/sovanken/solar_iconkit`.
+
+### Notes
+
+- No API changes, no behavioural changes. Purely a metadata/documentation
+  correction — safe to upgrade with zero migration effort.
+  
 ## [1.0.2] — 2026-07-29
 
 ### Added

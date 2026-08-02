@@ -1,17 +1,17 @@
 # solar_iconkit
 
-[![CI](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml/badge.svg)](https://github.com/sovankentech/solar_iconkit/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/sovankentech/solar_iconkit/branch/main/graph/badge.svg)](https://codecov.io/gh/sovankentech/solar_iconkit)
+[![CI](https://github.com/sovanken/solar_iconkit/actions/workflows/ci.yml/badge.svg)](https://github.com/sovanken/solar_iconkit/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/sovanken/solar_iconkit/branch/main/graph/badge.svg)](https://codecov.io/gh/sovanken/solar_iconkit)
 [![Flutter](https://img.shields.io/badge/Flutter-%E2%89%A53.27-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![pub points](https://img.shields.io/pub/points/solar_iconkit?logo=dart&color=0175C2)](https://pub.dev/packages/solar_iconkit/score)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovankentech/solar_iconkit/blob/main/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovanken/solar_iconkit/blob/main/LICENSE)
 [![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
 A Flutter package that bundles the entire Solar icon set — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
 - **Browse icons**: <https://solar-icons-web.vercel.app>
 - **pub.dev**: <https://pub.dev/packages/solar_iconkit>
-- **Issues**: <https://github.com/sovankentech/solar_iconkit/issues>
+- **Issues**: <https://github.com/sovanken/solar_iconkit/issues>
 - **Support**: <https://ko-fi.com/sovanken>
 
 **What you get**
@@ -77,10 +77,10 @@ A Flutter package that bundles the entire Solar icon set — **1,231 icons acros
 
 ## Requirements
 
-| Requirement | Minimum |
-|---|---|
-| Flutter | 3.27.0 |
-| Dart | 3.6.0 |
+| Requirement | Minimum             |
+| ----------- | ------------------- |
+| Flutter     | 3.27.0              |
+| Dart        | 3.6.0               |
 | flutter_svg | 2.0.10 (transitive) |
 
 The package targets all Flutter platforms supported by `flutter_svg`: Android, iOS, macOS, Windows, Linux, and Web.
@@ -132,7 +132,7 @@ Best when the package lives in its own repo and consumers pull it from Git:
 dependencies:
   solar_iconkit:
     git:
-      url: git@github.com:sovankentech/solar_iconkit.git
+      url: git@github.com:sovanken/solar_iconkit.git
       ref: v1.0.0                 # a tag, branch, or commit SHA
 ```
 
@@ -218,19 +218,19 @@ const SolarIcon(
 })
 ```
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `name` (positional) | `String` | required | Base icon name, for example `'home-2'`. Use [`SolarIcons`](#solaricons-constants) constants for autocomplete. Any string is accepted, but if the SVG does not exist a blank space is rendered at build time (see [Troubleshooting](#troubleshooting)). |
-| `style` | `SolarIconStyle` | `SolarIconStyle.linear` | Which of the six visual styles to render. |
-| `size` | `double?` | `null` (inherits from `IconTheme`, then 24) | Width and height in logical pixels. The SVG scales uniformly, so any positive value stays crisp. |
-| `color` | `Color?` | `null` (inherits from `IconTheme`, then `Color(0xDD000000)`) | Fill/stroke color, applied via `ColorFilter.mode(..., BlendMode.srcIn)`. |
-| `opacity` | `double` | `1.0` | Multiplier on top of `color`'s alpha. Combined with `IconTheme.opacity`. Asserted to be in `[0.0, 1.0]`. |
-| `semanticLabel` | `String?` | `null` | Read by screen readers. When null, the icon is wrapped in `ExcludeSemantics` so decorative usages are silent. |
-| `matchTextDirection` | `bool` | `false` | Mirror the icon horizontally under RTL. Set true for directional icons like arrows. |
-| `textDirection` | `TextDirection?` | `null` | Explicit direction override; falls back to `Directionality.of(context)`. |
-| `fit` | `BoxFit` | `BoxFit.contain` | How the SVG is inscribed in its size box. |
-| `alignment` | `AlignmentGeometry` | `Alignment.center` | Alignment within the size box. |
-| `key` | `Key?` | `null` | Standard Flutter widget key. |
+| Parameter            | Type                | Default                                                      | Description                                                                                                                                                                                                                                            |
+| -------------------- | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name` (positional)  | `String`            | required                                                     | Base icon name, for example `'home-2'`. Use [`SolarIcons`](#solaricons-constants) constants for autocomplete. Any string is accepted, but if the SVG does not exist a blank space is rendered at build time (see [Troubleshooting](#troubleshooting)). |
+| `style`              | `SolarIconStyle`    | `SolarIconStyle.linear`                                      | Which of the six visual styles to render.                                                                                                                                                                                                              |
+| `size`               | `double?`           | `null` (inherits from `IconTheme`, then 24)                  | Width and height in logical pixels. The SVG scales uniformly, so any positive value stays crisp.                                                                                                                                                       |
+| `color`              | `Color?`            | `null` (inherits from `IconTheme`, then `Color(0xDD000000)`) | Fill/stroke color, applied via `ColorFilter.mode(..., BlendMode.srcIn)`.                                                                                                                                                                               |
+| `opacity`            | `double`            | `1.0`                                                        | Multiplier on top of `color`'s alpha. Combined with `IconTheme.opacity`. Asserted to be in `[0.0, 1.0]`.                                                                                                                                               |
+| `semanticLabel`      | `String?`           | `null`                                                       | Read by screen readers. When null, the icon is wrapped in `ExcludeSemantics` so decorative usages are silent.                                                                                                                                          |
+| `matchTextDirection` | `bool`              | `false`                                                      | Mirror the icon horizontally under RTL. Set true for directional icons like arrows.                                                                                                                                                                    |
+| `textDirection`      | `TextDirection?`    | `null`                                                       | Explicit direction override; falls back to `Directionality.of(context)`.                                                                                                                                                                               |
+| `fit`                | `BoxFit`            | `BoxFit.contain`                                             | How the SVG is inscribed in its size box.                                                                                                                                                                                                              |
+| `alignment`          | `AlignmentGeometry` | `Alignment.center`                                           | Alignment within the size box.                                                                                                                                                                                                                         |
+| `key`                | `Key?`              | `null`                                                       | Standard Flutter widget key.                                                                                                                                                                                                                           |
 
 **How coloring works internally.** The widget applies `ColorFilter.mode(color, BlendMode.srcIn)` to the rendered SVG. `srcIn` keeps the source alpha (so opacity is preserved) and replaces the source color with the chosen color. This is why duotone styles — which use `opacity="0.5"` on their secondary path — retain their two-tone effect while adopting your chosen base color.
 
@@ -297,14 +297,14 @@ class SolarIcons {
 
 **Naming rules applied by the generator:**
 
-| Input | Output identifier | Rule |
-|---|---|---|
-| `home` | `home` | plain identifier |
-| `home-2` | `home2` | kebab-case to camelCase |
-| `alt-arrow-down` | `altArrowDown` | multi-word camelCase |
-| `4k` | `i4k` | leading digit prefixed with `i` |
-| `case` | `caseIcon` | Dart reserved word suffixed with `Icon` |
-| `duplicate` (colliding) | `duplicate2` | collision resolved with numeric suffix |
+| Input                   | Output identifier | Rule                                    |
+| ----------------------- | ----------------- | --------------------------------------- |
+| `home`                  | `home`            | plain identifier                        |
+| `home-2`                | `home2`           | kebab-case to camelCase                 |
+| `alt-arrow-down`        | `altArrowDown`    | multi-word camelCase                    |
+| `4k`                    | `i4k`             | leading digit prefixed with `i`         |
+| `case`                  | `caseIcon`        | Dart reserved word suffixed with `Icon` |
+| `duplicate` (colliding) | `duplicate2`      | collision resolved with numeric suffix  |
 
 Reserved words that get the `Icon` suffix include (but are not limited to): `case`, `catch`, `class`, `const`, `continue`, `default`, `do`, `else`, `enum`, `extends`, `false`, `final`, `finally`, `for`, `if`, `in`, `is`, `new`, `null`, `rethrow`, `return`, `super`, `switch`, `this`, `throw`, `true`, `try`, `var`, `void`, `while`, `with`, plus Dart built-in identifiers and contextual keywords.
 
@@ -785,7 +785,7 @@ flutter:
 
 Then delete the unused style folders under `assets/icons/`. The build will only include the assets you declare. Cutting from 6 styles to 2 removes roughly two-thirds of the bundle.
 
-> **Roadmap.** Per-icon tree-shaking (via a `build_runner` step that scans consumer code for `SolarIcons.xxx` references and emits an asset subset) is on the plan for `v1.0`. Track progress at <https://github.com/sovankentech/solar_iconkit/issues>.
+> **Roadmap.** Per-icon tree-shaking (via a `build_runner` step that scans consumer code for `SolarIcons.xxx` references and emits an asset subset) is on the plan for `v1.0`. Track progress at <https://github.com/sovanken/solar_iconkit/issues>.
 
 ### Wrapping SolarIcon in a project-level widget
 
@@ -971,10 +971,10 @@ solar_iconkit/
 
 The package follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html):
 
-| Change | Version bump |
-|---|---|
-| Asset-only refresh (upstream tweaks with no name changes) | Patch (`0.1.0 -> 0.1.1`) |
-| New icons added, existing behavior unchanged | Minor (`0.1.0 -> 0.2.0`) |
+| Change                                                                 | Version bump             |
+| ---------------------------------------------------------------------- | ------------------------ |
+| Asset-only refresh (upstream tweaks with no name changes)              | Patch (`0.1.0 -> 0.1.1`) |
+| New icons added, existing behavior unchanged                           | Minor (`0.1.0 -> 0.2.0`) |
 | Renamed / removed constants, changed widget API, changed default style | Major (`0.1.0 -> 1.0.0`) |
 
 Breaking changes require coordinated upgrades across every consumer. Prefer additive changes where possible; when a break is unavoidable, document the migration path in `CHANGELOG.md`.

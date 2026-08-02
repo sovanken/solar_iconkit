@@ -8,7 +8,7 @@ Thanks for your interest in improving `solar_iconkit`. This document covers how 
 - **Suggest features** — open an issue tagged `enhancement` describing the use case, not just the API you'd like.
 - **Improve the docs** — README typos, unclear sections, missing examples. PRs to `README.md` are always welcome.
 - **Fix a bug** — comment on the issue you'd like to tackle so nobody duplicates work, then open a PR.
-- **Add tests** — coverage gaps are called out in the [audit report](https://github.com/sovankentech/solar_iconkit/issues); pick one and send a PR.
+- **Add tests** — coverage gaps are called out in the [audit report](https://github.com/sovanken/solar_iconkit/issues); pick one and send a PR.
 
 ## Before you file an issue
 
@@ -17,7 +17,7 @@ Search existing issues first — the bug or request may already be tracked. If n
 ## Development setup
 
 ```bash
-git clone https://github.com/sovankentech/solar_iconkit.git
+git clone https://github.com/sovanken/solar_iconkit.git
 cd solar_iconkit
 flutter pub get
 flutter test              # run all tests (should all pass)
@@ -83,6 +83,6 @@ By participating, you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Questions?
 
-Open a [Discussion](https://github.com/sovankentech/solar_iconkit/discussions) or reach the maintainer at [sovanken.tech@gmail.com](mailto:sovanken.tech@gmail.com).
+Open a [Discussion](https://github.com/sovanken/solar_iconkit/discussions) or reach the maintainer at [sovanken.tech@gmail.com](mailto:sovanken.tech@gmail.com).
 
 Thanks for helping make `solar_iconkit` better.
