@@ -8,4 +8,4 @@ contact_links:
     about: See documentation, versions, and API reference.
   - name: Interactive icon browser
     url: https://solar-icons-web.vercel.app
-    about: Preview all 1,231 icons and copy Flutter widget code.
+    about: Preview every icon and copy Flutter widget code.
