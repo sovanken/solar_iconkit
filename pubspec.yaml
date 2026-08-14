@@ -47,8 +47,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # flutter_lints 6.x requires Dart 3.8+; we pin to 5.x so contributors on
-  # our declared minimum (Flutter 3.27 / Dart 3.6) can still run `pub get`.
+  # Deliberately spans both majors rather than pinning. flutter_lints 6.x
+  # requires Dart 3.8+, so contributors on our declared minimum (Flutter 3.27
+  # / Dart 3.6) resolve 5.x and can still run `pub get`, while newer SDKs get
+  # 6.x. CI analyzes on both — the pinned 3.27 job covers 5.x and the stable
+  # matrix covers 6.x — so neither side goes unchecked.
+  #
+  # Do not narrow this to `^6.0.0`: that breaks `pub get` on the declared
+  # minimum, which is why an earlier bump had to be reverted (see 5ddbd67).
   flutter_lints: ">=5.0.0 <7.0.0"
 
 flutter:
