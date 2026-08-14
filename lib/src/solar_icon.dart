@@ -158,8 +158,19 @@ class SolarIcon extends StatelessWidget {
   ///
   /// Useful for advanced cases where you need the raw path — for example when
   /// preloading with [precachePicture] or embedding the SVG in a custom widget.
+  ///
+  /// Retired names are resolved through [SolarIcons.legacyAliases] first, so
+  /// `assetPath('magnifer', ...)` returns the path to `magnifier.svg`.
   static String assetPath(String name, SolarIconStyle style) =>
-      'assets/icons/${style.folderName}/$name.svg';
+      'assets/icons/${style.folderName}/${resolveName(name)}.svg';
+
+  /// Maps a possibly-retired icon name to the name actually shipped as an
+  /// asset. Returns [name] unchanged when it is already current.
+  ///
+  /// Solar renames icons upstream from time to time. This package keeps the
+  /// old names working — see [SolarIcons.legacyAliases] for the full table.
+  static String resolveName(String name) =>
+      SolarIcons.legacyAliases[name] ?? name;
 
   /// The package name used when loading assets. Consumers rarely need this;
   /// exposed for advanced integrations.
@@ -279,6 +290,7 @@ class SolarIcon extends StatelessWidget {
 /// consumers a stack trace that points to the offending call site.
 bool _debugAssertKnownIcon(String name) {
   if (_iconNameLookup.contains(name)) return true;
+  if (SolarIcons.legacyAliases.containsKey(name)) return true;
   throw FlutterError.fromParts(<DiagnosticsNode>[
     ErrorSummary('SolarIcon received an unknown icon name: "$name".'),
     ErrorDescription(

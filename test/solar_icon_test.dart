@@ -366,13 +366,61 @@ void main() {
     });
 
     test('digit-prefixed icons rename with an `i` prefix', () {
-      expect(SolarIcons.i4k, '4k');
+      // Solar renamed `4k` to `four-k`, so the identifier survives only as a
+      // retired constant — but the `i` prefix rule is what keeps it legal.
+      // ignore: deprecated_member_use_from_same_package
+      expect(SolarIcons.i4k, 'four-k');
+      expect(SolarIcons.legacyAliases['4k'], 'four-k');
     });
 
     test('common icons are reachable via camelCase identifiers', () {
       expect(SolarIcons.home2, 'home-2');
       expect(SolarIcons.altArrowDown, 'alt-arrow-down');
       expect(SolarIcons.heart, 'heart');
+    });
+  });
+
+  group('retired icon names', () {
+    test('every retired name maps to a name that actually ships', () {
+      for (final entry in SolarIcons.legacyAliases.entries) {
+        expect(SolarIcons.all, contains(entry.value),
+            reason: '${entry.key} points at missing icon ${entry.value}');
+      }
+    });
+
+    test('retired names are excluded from all', () {
+      for (final old in SolarIcons.legacyAliases.keys) {
+        expect(SolarIcons.all, isNot(contains(old)));
+      }
+    });
+
+    test('deprecated constants resolve to their replacement value', () {
+      // ignore: deprecated_member_use_from_same_package
+      expect(SolarIcons.magnifer, 'magnifier');
+      // ignore: deprecated_member_use_from_same_package
+      expect(SolarIcons.iphone, 'i-phone');
+      // ignore: deprecated_member_use_from_same_package
+      expect(SolarIcons.heartBroken, 'heart-crack');
+    });
+
+    test('resolveName maps retired names and passes current ones through', () {
+      expect(SolarIcon.resolveName('magnifer'), 'magnifier');
+      expect(SolarIcon.resolveName('magnifier'), 'magnifier');
+      expect(SolarIcon.resolveName('home-2'), 'home-2');
+    });
+
+    test('assetPath redirects a retired raw string to the shipped asset', () {
+      expect(
+        SolarIcon.assetPath('magnifer', SolarIconStyle.linear),
+        'assets/icons/linear/magnifier.svg',
+      );
+    });
+
+    testWidgets('a retired raw string still renders without throwing',
+        (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: SolarIcon('magnifer')));
+      expect(tester.takeException(), isNull);
+      expect(find.byType(SolarIcon), findsOneWidget);
     });
   });
 
