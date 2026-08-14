@@ -294,10 +294,10 @@ class _ControlsPanel extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor: scheme.surfaceContainerHighest,
-              hintText: 'Search 1,231 icons...',
+              hintText: 'Search 1,247 icons...',
               prefixIcon: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14),
-                child: SolarIcon(SolarIcons.magnifer, size: 18),
+                child: SolarIcon(SolarIcons.magnifier, size: 18),
               ),
               prefixIconConstraints:
                   const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -573,7 +573,7 @@ class _EmptyState extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SolarIcon(
-            SolarIcons.magniferBug,
+            SolarIcons.magnifierBug,
             style: SolarIconStyle.boldDuotone,
             size: 48,
             color: scheme.onSurfaceVariant,

@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovanken/solar_iconkit/blob/main/LICENSE)
 [![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
-A Flutter package that bundles the entire Solar icon set — **1,231 icons across 6 native styles** (7,386 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
+A Flutter package that bundles the entire Solar icon set — **1,247 icons across 6 native styles** (7,482 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
 - **Browse icons**: <https://solar-icons-web.vercel.app>
 - **pub.dev**: <https://pub.dev/packages/solar_iconkit>
@@ -18,7 +18,7 @@ A Flutter package that bundles the entire Solar icon set — **1,231 icons acros
 
 - Six native Solar styles: `linear`, `outline`, `broken`, `bold`, `lineDuotone`, `boldDuotone`.
 - One widget: `SolarIcon(name, style: ..., size: ..., color: ...)`.
-- ~1,231 generated `SolarIcons.<name>` constants for autocomplete-safe references.
+- ~1,247 generated `SolarIcons.<name>` constants for autocomplete-safe references.
 - Bundled SVG assets in `assets/icons/`. No network access at runtime, works fully offline.
 - Full `IconTheme` integration — size, color, and opacity resolve from the ambient theme when unset on the widget.
 - Deterministic asset resolution — `packages/solar_iconkit/assets/icons/{style}/{name}.svg`.
@@ -42,6 +42,7 @@ A Flutter package that bundles the entire Solar icon set — **1,231 icons acros
     - [Option C: Git dependency](#option-c-git-dependency)
     - [Option D: Version pin with dependency\_overrides](#option-d-version-pin-with-dependency_overrides)
     - [After installing](#after-installing)
+  - [Upgrading from 1.0.x](#upgrading-from-10x)
   - [Quick start](#quick-start)
   - [API reference](#api-reference)
     - [SolarIcon widget](#solaricon-widget)
@@ -167,11 +168,42 @@ Verify the install:
 import 'package:solar_iconkit/solar_iconkit.dart';
 
 void main() {
-  print(SolarIcons.all.length);      // 1231
+  print(SolarIcons.all.length);      // 1247
   print(SolarIcons.home2);           // 'home-2'
   print(SolarIconStyle.values.length); // 6
 }
 ```
+
+---
+
+## Upgrading from 1.0.x
+
+Release 1.1.0 resynced the catalog with upstream Solar. Nothing was removed and no code changes are required to compile — but **eleven icons now render a different drawing under the same name**, because Solar redrew them upstream.
+
+Six of them had their original drawing moved to a new name. If you want to keep exactly what 1.0.x rendered, switch to the name on the right:
+
+| If you used | 1.0.x drawing now lives at |
+| --- | --- |
+| `SolarIcons.home` | `SolarIcons.house` |
+| `SolarIcons.reorder` | `SolarIcons.reorder2` |
+| `SolarIcons.stars` | `SolarIcons.stars2` |
+| `SolarIcons.cup` | `SolarIcons.mug` |
+| `SolarIcons.bill` | `SolarIcons.bill2` |
+| `SolarIcons.scale` | `SolarIcons.scaling` |
+
+Five more were redrawn with no replacement name — `phone`, `smartphone-2`, `volume-knob`, `keyboard`, and `cloud-snowfall-minimalistic`. To keep the old artwork for these, pin `solar_iconkit: 1.0.3`.
+
+The remaining 1,236 icons are visually unchanged.
+
+**Renamed constants.** Solar also corrected 56 misspelled names (`magnifer` → `magnifier`, `spedometer-*` → `speedometer-*`, `condicioner` → `conditioner`, and so on). Every old constant still exists and still renders the same glyph — it is marked `@Deprecated` and resolves to the new name, so the analyzer will point you at the replacement:
+
+```dart
+SolarIcon(SolarIcons.magnifer)   // still works, deprecation hint in the IDE
+SolarIcon(SolarIcons.magnifier)  // preferred
+SolarIcon('magnifer')            // raw strings are redirected too
+```
+
+See [`SolarIcons.legacyAliases`](#solaricons-constants) for the full old-to-new table.
 
 ---
 
@@ -279,7 +311,7 @@ for (final style in SolarIconStyle.values) {
 
 ### SolarIcons constants
 
-Generated file: `lib/src/solar_iconkit_data.g.dart`. Exposes every base icon name as a `static const String` on the `SolarIcons` class, plus an `all` list of every name sorted alphabetically.
+Generated file: `lib/src/solar_iconkit_data.g.dart`. Exposes every base icon name as a `static const String` on the `SolarIcons` class, plus an `all` list of every name sorted alphabetically and a `legacyAliases` map of retired names.
 
 ```dart
 class SolarIcons {
@@ -288,11 +320,26 @@ class SolarIcons {
   static const String heart = 'heart';
   static const String rocket = 'rocket';
   static const String caseIcon = 'case';       // reserved-word rename
-  static const String i4k = '4k';              // digit prefix rename
-  // ... 1,231 total constants
+  static const String fourK = 'four-k';        // was `4k` before Solar renamed it
+  // ... 1,247 total constants
 
   static const List<String> all = <String>[/* every icon */];
+
+  /// Retired name -> current name, for the 56 icons Solar has renamed.
+  static const Map<String, String> legacyAliases = <String, String>{
+    'magnifer': 'magnifier',
+    '4k': 'four-k',
+    // ...
+  };
 }
+```
+
+Retired names also survive as `@Deprecated` constants whose value is the
+replacement, so old code keeps compiling and rendering the same glyph:
+
+```dart
+SolarIcons.magnifer   // == 'magnifier', flagged by the analyzer
+SolarIcon('magnifer') // raw strings are redirected via legacyAliases
 ```
 
 **Naming rules applied by the generator:**
@@ -769,7 +816,7 @@ Call from an `initState` or a route enter callback for icons visible in the firs
 
 ### Reducing bundle size
 
-The full asset bundle is about **6.1 MB of actual SVG bytes** (7,386 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
+The full asset bundle is about **5.7 MB of actual SVG bytes** (7,482 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
 
 Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
 
@@ -951,7 +998,7 @@ solar_iconkit/
 │       └── solar_iconkit_data.g.dart         Generated icon name constants.
 ├── assets/
 │   └── icons/
-│       ├── linear/                         Linear-style SVGs (1,231 files).
+│       ├── linear/                         Linear-style SVGs (1,247 files).
 │       ├── outline/                        Outline-style SVGs.
 │       ├── broken/                         Broken-style SVGs.
 │       ├── bold/                           Bold-style SVGs.
