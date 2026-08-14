@@ -4,6 +4,72 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-08-14
+
+Resync with upstream Solar. The catalog grows from 1,231 to **1,247 icons**
+(7,482 SVG variants). No constant was removed, and no consumer code needs to
+change to keep compiling — but eleven icons now render a different drawing,
+so read the visual-changes section before upgrading.
+
+### Added
+
+- **11 brand-new icons**: `cart-4`, `document-2`, `forward-right`,
+  `list-vertical`, `logout`, `logout-2`, `mirror-2`, `notebook-2`,
+  `record-audio-circle`, `star-2`, `vanity`.
+- **`SolarIcons.legacyAliases`** — a 56-entry map from every retired icon name
+  to its current replacement.
+- **`SolarIcon.resolveName`** — resolves a possibly-retired name to the name
+  actually shipped as an asset. `SolarIcon.assetPath` now applies it, so raw
+  strings such as `SolarIcon('magnifer')` keep working after the rename.
+
+### Changed
+
+- **11 icons changed appearance under the same name.** Solar redrew them
+  upstream. Six had their original drawing moved to a new name:
+
+  | Constant | 1.0.x drawing now lives at |
+  | --- | --- |
+  | `home` | `house` |
+  | `reorder` | `reorder2` |
+  | `stars` | `stars2` |
+  | `cup` | `mug` |
+  | `bill` | `bill2` |
+  | `scale` | `scaling` |
+
+  Five more were redrawn with no replacement name: `phone`, `smartphone-2`,
+  `volume-knob`, `keyboard`, `cloud-snowfall-minimalistic`. Pin `1.0.3` to keep
+  the old artwork for those. The other 1,236 icons are visually unchanged —
+  verified by rendering every icon at both versions and diffing the pixels.
+
+- **56 misspelled names corrected upstream**, including `magnifer` →
+  `magnifier`, `spedometer-*` → `speedometer-*`, `condicioner` →
+  `conditioner`, `siderbar` → `sidebar`, `recive-*` → `receive-*`,
+  `*-favourite` → `*-favorite`, `plain` → `plane`, `4k` → `four-k`, and
+  `winrar` → `win-rar`.
+
+- **Asset bundle shrank to ~5.7 MB** (from ~6.1 MB) despite carrying 16 more
+  icons, thanks to a fresh SVGO 4 pass. Rendering is unaffected: a sampled
+  pre/post raster comparison showed a maximum difference of 2.2 %, entirely
+  anti-aliasing.
+
+- **Golden reference images regenerated.** The `home-2` goldens drifted by 23
+  pixels out of 480,000 (max channel delta 5/255) after the SVGO pass.
+
+### Deprecated
+
+- The 56 retired names remain available as `@Deprecated` constants whose value
+  is the replacement name, so existing code keeps rendering the same glyph
+  while the analyzer points at the new spelling. They are excluded from
+  `SolarIcons.all`.
+
+### Notes
+
+- `tool/fetch_icons.py` no longer regenerates the catalog purely from Iconify's
+  browsable listing. That listing omits renamed and hidden entries, so a naive
+  refresh would have silently deleted 56 shipped constants. The script now
+  diffs against the committed catalog, maps each retired name to its
+  replacement, and aborts rather than dropping any name a release has shipped.
+
 ## [1.0.3] — 2026-08-02
 
 ### Fixed
