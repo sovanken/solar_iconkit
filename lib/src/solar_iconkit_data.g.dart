@@ -15,6 +15,9 @@ class SolarIcons {
   /// Solar icon `accessibility`.
   static const String accessibility = 'accessibility';
 
+  /// Solar icon `add`.
+  static const String add = 'add';
+
   /// Solar icon `add-circle`.
   static const String addCircle = 'add-circle';
 
@@ -249,6 +252,12 @@ class SolarIcons {
   /// Solar icon `bar-chair`.
   static const String barChair = 'bar-chair';
 
+  /// Solar icon `barcode`.
+  static const String barcode = 'barcode';
+
+  /// Solar icon `barcode-scan`.
+  static const String barcodeScan = 'barcode-scan';
+
   /// Solar icon `basketball`.
   static const String basketball = 'basketball';
 
@@ -326,6 +335,9 @@ class SolarIcons {
 
   /// Solar icon `bill-list`.
   static const String billList = 'bill-list';
+
+  /// Solar icon `binoculars`.
+  static const String binoculars = 'binoculars';
 
   /// Solar icon `black-hole`.
   static const String blackHole = 'black-hole';
@@ -421,6 +433,9 @@ class SolarIcons {
   /// Solar icon `boombox`.
   static const String boombox = 'boombox';
 
+  /// Solar icon `bot`.
+  static const String bot = 'bot';
+
   /// Solar icon `bottle`.
   static const String bottle = 'bottle';
 
@@ -432,6 +447,9 @@ class SolarIcons {
 
   /// Solar icon `box-minimalistic`.
   static const String boxMinimalistic = 'box-minimalistic';
+
+  /// Solar icon `brain`.
+  static const String brain = 'brain';
 
   /// Solar icon `branching-paths-down`.
   static const String branchingPathsDown = 'branching-paths-down';
@@ -768,6 +786,9 @@ class SolarIcons {
 
   /// Solar icon `clock-square`.
   static const String clockSquare = 'clock-square';
+
+  /// Solar icon `close`.
+  static const String close = 'close';
 
   /// Solar icon `close-circle`.
   static const String closeCircle = 'close-circle';
@@ -1134,6 +1155,9 @@ class SolarIcons {
 
   /// Solar icon `euro`.
   static const String euro = 'euro';
+
+  /// Solar icon `exclamation-mark`.
+  static const String exclamationMark = 'exclamation-mark';
 
   /// Solar icon `exit`.
   static const String exit = 'exit';
@@ -2014,6 +2038,9 @@ class SolarIcons {
   static const String minimizeSquareMinimalistic =
       'minimize-square-minimalistic';
 
+  /// Solar icon `minus`.
+  static const String minus = 'minus';
+
   /// Solar icon `minus-circle`.
   static const String minusCircle = 'minus-circle';
 
@@ -2157,6 +2184,9 @@ class SolarIcons {
 
   /// Solar icon `oven-mitts-minimalistic`.
   static const String ovenMittsMinimalistic = 'oven-mitts-minimalistic';
+
+  /// Solar icon `paint-brush`.
+  static const String paintBrush = 'paint-brush';
 
   /// Solar icon `paint-roller`.
   static const String paintRoller = 'paint-roller';
@@ -2388,6 +2418,9 @@ class SolarIcons {
 
   /// Solar icon `question-circle`.
   static const String questionCircle = 'question-circle';
+
+  /// Solar icon `question-mark`.
+  static const String questionMark = 'question-mark';
 
   /// Solar icon `question-square`.
   static const String questionSquare = 'question-square';
@@ -3345,17 +3378,20 @@ class SolarIcons {
   /// Solar icon `three-squares`.
   static const String threeSquares = 'three-squares';
 
-  /// Solar icon `ticker-star`.
-  static const String tickerStar = 'ticker-star';
-
   /// Solar icon `ticket`.
   static const String ticket = 'ticket';
 
   /// Solar icon `ticket-sale`.
   static const String ticketSale = 'ticket-sale';
 
+  /// Solar icon `ticket-star`.
+  static const String ticketStar = 'ticket-star';
+
   /// Solar icon `to-pip`.
   static const String toPip = 'to-pip';
+
+  /// Solar icon `toolbox`.
+  static const String toolbox = 'toolbox';
 
   /// Solar icon `tornado`.
   static const String tornado = 'tornado';
@@ -3618,6 +3654,9 @@ class SolarIcons {
   /// Solar icon `videocamera-add`.
   static const String videocameraAdd = 'videocamera-add';
 
+  /// Solar icon `videocamera-off`.
+  static const String videocameraOff = 'videocamera-off';
+
   /// Solar icon `videocamera-record`.
   static const String videocameraRecord = 'videocamera-record';
 
@@ -3701,6 +3740,12 @@ class SolarIcons {
   /// Solar icon `waterdrops`.
   static const String waterdrops = 'waterdrops';
 
+  /// Solar icon `webcam`.
+  static const String webcam = 'webcam';
+
+  /// Solar icon `webcam-off`.
+  static const String webcamOff = 'webcam-off';
+
   /// Solar icon `wheel`.
   static const String wheel = 'wheel';
 
@@ -3709,6 +3754,27 @@ class SolarIcons {
 
   /// Solar icon `whisk`.
   static const String whisk = 'whisk';
+
+  /// Solar icon `wi-fi`.
+  static const String wiFi = 'wi-fi';
+
+  /// Solar icon `wi-fi-cog`.
+  static const String wiFiCog = 'wi-fi-cog';
+
+  /// Solar icon `wi-fi-cross`.
+  static const String wiFiCross = 'wi-fi-cross';
+
+  /// Solar icon `wi-fi-high`.
+  static const String wiFiHigh = 'wi-fi-high';
+
+  /// Solar icon `wi-fi-low`.
+  static const String wiFiLow = 'wi-fi-low';
+
+  /// Solar icon `wi-fi-none`.
+  static const String wiFiNone = 'wi-fi-none';
+
+  /// Solar icon `wi-fi-off`.
+  static const String wiFiOff = 'wi-fi-off';
 
   /// Solar icon `wi-fi-router`.
   static const String wiFiRouter = 'wi-fi-router';
@@ -4059,6 +4125,11 @@ class SolarIcons {
       "Use SolarIcons.textFormat instead.")
   static const String text = 'text-format';
 
+  /// Solar icon `ticker-star`, renamed to `ticket-star`.
+  @Deprecated("'ticker-star' was renamed to 'ticket-star' upstream. "
+      "Use SolarIcons.ticketStar instead.")
+  static const String tickerStar = 'ticket-star';
+
   /// Solar icon `wad-of-money`, renamed to `money-roll`.
   @Deprecated("'wad-of-money' was renamed to 'money-roll' upstream. "
       "Use SolarIcons.moneyRoll instead.")
@@ -4074,11 +4145,12 @@ class SolarIcons {
       "Use SolarIcons.winRar instead.")
   static const String winrar = 'win-rar';
 
-  /// Every icon in the set, sorted alphabetically (1,247 entries).
+  /// Every icon in the set, sorted alphabetically (1,269 entries).
   ///
   /// Retired names are excluded — see [legacyAliases].
   static const List<String> all = <String>[
     'accessibility',
+    'add',
     'add-circle',
     'add-folder',
     'add-square',
@@ -4157,6 +4229,8 @@ class SolarIcons {
     'banknote',
     'banknote-2',
     'bar-chair',
+    'barcode',
+    'barcode-scan',
     'basketball',
     'bath',
     'battery-charge',
@@ -4183,6 +4257,7 @@ class SolarIcons {
     'bill-check',
     'bill-cross',
     'bill-list',
+    'binoculars',
     'black-hole',
     'black-hole-2',
     'black-hole-3',
@@ -4214,10 +4289,12 @@ class SolarIcons {
     'bookmark-square',
     'bookmark-square-minimalistic',
     'boombox',
+    'bot',
     'bottle',
     'bowling',
     'box',
     'box-minimalistic',
+    'brain',
     'branching-paths-down',
     'branching-paths-up',
     'broom',
@@ -4330,6 +4407,7 @@ class SolarIcons {
     'clipboard-text',
     'clock-circle',
     'clock-square',
+    'close',
     'close-circle',
     'close-square',
     'closet',
@@ -4452,6 +4530,7 @@ class SolarIcons {
     'eraser-circle',
     'eraser-square',
     'euro',
+    'exclamation-mark',
     'exit',
     'explicit',
     'export',
@@ -4743,6 +4822,7 @@ class SolarIcons {
     'minimize-square-2',
     'minimize-square-3',
     'minimize-square-minimalistic',
+    'minus',
     'minus-circle',
     'minus-square',
     'mirror',
@@ -4791,6 +4871,7 @@ class SolarIcons {
     'outgoing-call-rounded',
     'oven-mitts',
     'oven-mitts-minimalistic',
+    'paint-brush',
     'paint-roller',
     'palette',
     'palette-2',
@@ -4868,6 +4949,7 @@ class SolarIcons {
     'pulse-2',
     'qr-code',
     'question-circle',
+    'question-mark',
     'question-square',
     'quit-full-screen',
     'quit-full-screen-circle',
@@ -5185,10 +5267,11 @@ class SolarIcons {
     'text-underline-cross',
     'thermometer',
     'three-squares',
-    'ticker-star',
     'ticket',
     'ticket-sale',
+    'ticket-star',
     'to-pip',
+    'toolbox',
     'tornado',
     'tornado-small',
     'traffic',
@@ -5276,6 +5359,7 @@ class SolarIcons {
     'video-library',
     'videocamera',
     'videocamera-add',
+    'videocamera-off',
     'videocamera-record',
     'vinyl',
     'vinyl-record',
@@ -5303,9 +5387,18 @@ class SolarIcons {
     'water-sun',
     'waterdrop',
     'waterdrops',
+    'webcam',
+    'webcam-off',
     'wheel',
     'wheel-angle',
     'whisk',
+    'wi-fi',
+    'wi-fi-cog',
+    'wi-fi-cross',
+    'wi-fi-high',
+    'wi-fi-low',
+    'wi-fi-none',
+    'wi-fi-off',
     'wi-fi-router',
     'wi-fi-router-minimalistic',
     'wi-fi-router-round',
@@ -5331,7 +5424,7 @@ class SolarIcons {
   ///
   /// [SolarIcon] consults this map so raw strings such as
   /// `SolarIcon('magnifer')` keep resolving after the rename.
-  /// (56 entries.)
+  /// (57 entries.)
   static const Map<String, String> legacyAliases = <String, String>{
     '4k': 'four-k',
     'accumulator': 'car-battery',
@@ -5386,6 +5479,7 @@ class SolarIcons {
     'spedometer-max': 'speedometer-max',
     'spedometer-middle': 'speedometer-middle',
     'text': 'text-format',
+    'ticker-star': 'ticket-star',
     'wad-of-money': 'money-roll',
     'weigher': 'scale',
     'winrar': 'win-rar',

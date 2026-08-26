@@ -126,32 +126,54 @@ def canonical_names(data: dict) -> list[str]:
     return result
 
 
-def previously_shipped() -> list[str]:
-    """Names in the committed catalog, i.e. what the last release exposed."""
+def previously_shipped() -> tuple[list[str], dict[str, str]]:
+    """Everything the committed catalog exposes as a constant.
+
+    Returns (current names, retired name -> replacement). Both matter: the
+    retired names are constants consumers may still import, and they live
+    only in `legacyAliases` because `all` deliberately excludes them. Reading
+    just `all` would let each release quietly drop the previous release's
+    deprecated constants.
+    """
     if not DART_OUT.exists():
-        return []
+        return [], {}
     text = DART_OUT.read_text(encoding="utf-8")
+
+    current: list[str] = []
     match = re.search(
         r"static const List<String> all = <String>\[(.*?)\];", text, re.S)
-    if not match:
-        return []
-    return re.findall(r"'([^']+)'", match.group(1))
+    if match:
+        current = re.findall(r"'([^']+)'", match.group(1))
+
+    legacy: dict[str, str] = {}
+    match = re.search(
+        r"static const Map<String, String> legacyAliases = "
+        r"<String, String>\{(.*?)\};", text, re.S)
+    if match:
+        legacy = dict(re.findall(r"'([^']+)':\s*'([^']+)'", match.group(1)))
+
+    return current, legacy
 
 
 def resolve_legacy(
-    data: dict, canonical: set[str], previous: list[str]
+    data: dict,
+    canonical: set[str],
+    previous: list[str],
+    previous_legacy: dict[str, str],
 ) -> tuple[dict[str, str], list[str]]:
-    """Map each retired name to its canonical replacement.
+    """Map every retired name to its current canonical replacement.
 
-    Returns (mapping, unresolved) where `unresolved` names must keep shipping
-    their own SVG assets because no replacement could be determined.
+    Covers two groups: names retired by *this* sync, and names retired by an
+    earlier one. The latter must be carried forward or their constants vanish
+    from the next release — and their target may itself have been renamed
+    since, so each is re-resolved rather than trusted.
+
+    Returns (mapping, unresolved); `unresolved` names keep shipping their own
+    SVG assets because no replacement could be determined.
     """
     aliases = data.get("aliases", {})
-    mapping: dict[str, str] = {}
-    unresolved: list[str] = []
-    for name in previous:
-        if name in canonical:
-            continue
+
+    def replacement_for(name: str) -> str | None:
         target = ALIAS_OVERRIDES.get(name) or HIDDEN_RENAMES.get(name)
         if target is None:
             # `/collection` records an alias as a bare parent name; the icon
@@ -163,11 +185,39 @@ def resolve_legacy(
                 candidate = strip_style(entry)
                 if candidate != name and candidate in canonical:
                     target = candidate
-        if target in canonical:
+        return target if target in canonical else None
+
+    mapping: dict[str, str] = {}
+    unresolved: list[str] = []
+    carried = 0
+
+    # Previously retired names first, re-pointing any whose replacement has
+    # itself since been renamed.
+    for name, old_target in sorted(previous_legacy.items()):
+        if name in canonical:
+            continue  # upstream reinstated the name
+        target = old_target if old_target in canonical else None
+        if target is None:
+            target = replacement_for(old_target) or replacement_for(name)
+        if target:
+            mapping[name] = target
+            carried += 1
+        else:
+            unresolved.append(name)
+
+    # Names retired by this sync.
+    for name in previous:
+        if name in canonical or name in mapping:
+            continue
+        target = replacement_for(name)
+        if target:
             mapping[name] = target
         else:
             unresolved.append(name)
-    print(f"  {len(mapping):,} retired names mapped to replacements")
+
+    newly = len(mapping) - carried
+    print(f"  {len(mapping):,} retired names mapped to replacements "
+          f"({carried:,} carried forward, {newly:,} new)")
     if unresolved:
         print(f"  {len(unresolved)} kept as standalone assets: "
               f"{', '.join(unresolved)}")
@@ -354,14 +404,18 @@ def main() -> int:
         print("No icons found — aborting.", file=sys.stderr)
         return 1
 
-    previous = previously_shipped()
-    legacy, unresolved = resolve_legacy(data, set(canonical), previous)
+    previous, previous_legacy = previously_shipped()
+    legacy, unresolved = resolve_legacy(
+        data, set(canonical), previous, previous_legacy)
 
     # Names that lost their upstream listing but have no replacement still need
     # their own assets, otherwise upgrading would break existing callers.
     to_download = sorted(set(canonical) | set(unresolved))
 
-    dropped = sorted(set(previous) - set(to_download) - set(legacy))
+    # Every constant a previous release exposed must survive, whether it
+    # was current or already deprecated.
+    exposed = set(previous) | set(previous_legacy)
+    dropped = sorted(exposed - set(to_download) - set(legacy))
     if dropped:
         print(f"\nREFUSING TO DROP {len(dropped)} shipped names: "
               f"{', '.join(dropped)}", file=sys.stderr)

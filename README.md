@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovanken/solar_iconkit/blob/main/LICENSE)
 [![Ko-fi](https://img.shields.io/badge/Support-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/sovanken)
 
-A Flutter package that bundles the entire Solar icon set — **1,247 icons across 6 native styles** (7,482 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
+A Flutter package that bundles the entire Solar icon set — **1,269 icons across 6 native styles** (7,614 SVG variants total) — behind a single, type-safe widget API. Zero setup, works offline, integrates with Flutter's `IconTheme` conventions.
 
 - **Browse icons**: <https://solar-icons-web.vercel.app>
 - **pub.dev**: <https://pub.dev/packages/solar_iconkit>
@@ -18,7 +18,7 @@ A Flutter package that bundles the entire Solar icon set — **1,247 icons acros
 
 - Six native Solar styles: `linear`, `outline`, `broken`, `bold`, `lineDuotone`, `boldDuotone`.
 - One widget: `SolarIcon(name, style: ..., size: ..., color: ...)`.
-- ~1,247 generated `SolarIcons.<name>` constants for autocomplete-safe references.
+- ~1,269 generated `SolarIcons.<name>` constants for autocomplete-safe references.
 - Bundled SVG assets in `assets/icons/`. No network access at runtime, works fully offline.
 - Full `IconTheme` integration — size, color, and opacity resolve from the ambient theme when unset on the widget.
 - Deterministic asset resolution — `packages/solar_iconkit/assets/icons/{style}/{name}.svg`.
@@ -168,7 +168,7 @@ Verify the install:
 import 'package:solar_iconkit/solar_iconkit.dart';
 
 void main() {
-  print(SolarIcons.all.length);      // 1247
+  print(SolarIcons.all.length);      // 1269
   print(SolarIcons.home2);           // 'home-2'
   print(SolarIconStyle.values.length); // 6
 }
@@ -321,7 +321,7 @@ class SolarIcons {
   static const String rocket = 'rocket';
   static const String caseIcon = 'case';       // reserved-word rename
   static const String fourK = 'four-k';        // was `4k` before Solar renamed it
-  // ... 1,247 total constants
+  // ... 1,269 total constants
 
   static const List<String> all = <String>[/* every icon */];
 
@@ -816,7 +816,7 @@ Call from an `initState` or a route enter callback for icons visible in the firs
 
 ### Reducing bundle size
 
-The full asset bundle is about **5.7 MB of actual SVG bytes** (7,482 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
+The full asset bundle is about **5.8 MB of actual SVG bytes** (7,614 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
 
 Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
 
@@ -998,7 +998,7 @@ solar_iconkit/
 │       └── solar_iconkit_data.g.dart         Generated icon name constants.
 ├── assets/
 │   └── icons/
-│       ├── linear/                         Linear-style SVGs (1,247 files).
+│       ├── linear/                         Linear-style SVGs (1,269 files).
 │       ├── outline/                        Outline-style SVGs.
 │       ├── broken/                         Broken-style SVGs.
 │       ├── bold/                           Bold-style SVGs.

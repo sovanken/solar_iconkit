@@ -1,6 +1,6 @@
 /// Solar icon kit for Flutter.
 ///
-/// 1,247 icons across 6 native styles: linear, outline, broken, bold,
+/// 1,269 icons across 6 native styles: linear, outline, broken, bold,
 /// line-duotone, bold-duotone. Sourced from the Solar icon set (MIT licensed).
 ///
 /// ## Quick start
