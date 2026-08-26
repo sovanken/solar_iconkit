@@ -4,6 +4,58 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] — 2026-08-26
+
+Catalog resync with upstream Solar: **1,247 → 1,269 icons** (7,614 SVG
+variants). Effectively additive: no constant was removed, and the only glyph
+that changes appearance is `bold/logout`, which 1.1.0 shipped malformed and
+Solar has since fixed. Upgrading is a drop-in.
+
+### Added
+
+- **22 new icons.**
+  - Wi-Fi family: `wi-fi`, `wi-fi-high`, `wi-fi-low`, `wi-fi-none`,
+    `wi-fi-off`, `wi-fi-cog`, `wi-fi-cross`
+  - Bare UI primitives: `add`, `close`, `minus`, `question-mark`,
+    `exclamation-mark`
+  - Camera and video: `webcam`, `webcam-off`, `videocamera-off`
+  - Scanning: `barcode`, `barcode-scan`, `binoculars`
+  - Other: `bot`, `brain`, `paint-brush`, `toolbox`
+
+### Changed
+
+- **`ticker-star` was renamed to `ticket-star` upstream** (a typo fix). The
+  old name remains as a `@Deprecated` constant resolving to the new one, so
+  existing code compiles and renders identically. `legacyAliases` now holds
+  57 entries.
+- **`logout` in the `bold` style is fixed.** 1.1.0 shipped it malformed —
+  the door rendered as a clipped crescent instead of a closed shape. Solar
+  corrected it upstream and the fix is picked up here. This is the only
+  glyph in the package whose appearance changes, and it changes from wrong
+  to right, so there is nothing to migrate.
+- **Nothing else changed appearance.** All 1,247 icons from 1.1.0 were
+  rendered at both versions and pixel-diffed in the `linear` style, and
+  every asset whose bytes differ after regeneration was diffed in its own
+  style — 26 files across all six. Because SVGO output is deterministic, a
+  changed glyph necessarily changes bytes, so that byte-level set is a
+  superset of the visual changes and coverage is complete across styles.
+  Apart from `bold/logout` at 39.7 %, the worst difference was 0.29 % —
+  anti-aliasing.
+- Asset bundle is ~5.8 MB after the SVGO pass, up from ~5.7 MB for the 132
+  additional SVGs.
+
+### Fixed
+
+- **The generator would have deleted every deprecated constant from the
+  previous release.** `previously_shipped()` read only the `all` list, but
+  retired names live in `legacyAliases` precisely because `all` excludes
+  them. A regeneration therefore saw 1.1.0's 56 renamed constants as
+  nonexistent and dropped them — `SolarIcons.magnifer` and 55 others would
+  have vanished, breaking 1.1.0 consumers on upgrade. The script now reads
+  both, carries every previously retired name forward, re-resolves any whose
+  replacement has itself since been renamed, and treats the union of current
+  and retired names as the set it may never drop.
+
 ## [1.1.0] — 2026-08-14
 
 Resync with upstream Solar. The catalog grows from 1,231 to **1,247 icons**
