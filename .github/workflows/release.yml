@@ -1,0 +1,112 @@
+name: Release
+
+# Publishing is driven entirely by the tag. Pushing v1.2.3 verifies the
+# repo agrees with that version, runs the full gate, publishes to pub.dev
+# using a short-lived OIDC token, and files the GitHub Release from the
+# changelog. Nothing is published from a developer machine and no
+# credential is stored anywhere.
+#
+# One-time setup on pub.dev (Admin -> Automated publishing):
+#   repository:   sovanken/solar_iconkit
+#   tag pattern:  v{{version}}
+# If "Require GitHub Actions environment" is enabled there, add
+# `environment: pub.dev` to the publish job below to match.
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-*"
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify, publish, announce
+    runs-on: ubuntu-latest
+    permissions:
+      # Creating the GitHub Release.
+      contents: write
+      # Exchanged for a short-lived pub.dev publishing token. This is what
+      # replaces the long-lived refresh token in a developer's home dir.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Flutter 3.27.0
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.27.0"
+          channel: stable
+          cache: true
+
+      # A tag that disagrees with pubspec.yaml would publish the wrong
+      # version under the right name, which cannot be undone on pub.dev.
+      - name: Verify tag matches pubspec version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PUBSPEC=$(grep -m1 '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//')
+          echo "tag=$TAG pubspec=$PUBSPEC"
+          if [ "$TAG" != "$PUBSPEC" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match pubspec version $PUBSPEC"
+            exit 1
+          fi
+
+      # Release notes come from the changelog, so a missing entry should
+      # stop the release rather than produce an empty Release body.
+      - name: Extract release notes
+        run: |
+          python tool/changelog_section.py "${GITHUB_REF_NAME#v}" -o release-notes.md
+          echo "--- notes ---"
+          head -20 release-notes.md
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib test example/lib
+
+      - name: Static analysis
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Validate package
+        run: flutter pub publish --dry-run
+
+      # pana needs the webp tools to process the `screenshots:` declared in
+      # pubspec.yaml; without them it logs SEVERE and can lose points that
+      # pub.dev's own analysis would grant.
+      - name: Install pana prerequisites
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      # Asserted from pana's JSON rather than its exit code: a crashed
+      # analysis can still exit 0, which would make this gate silently
+      # useless. The package scores 160/160 on pub.dev, so any shortfall is
+      # a regression, and the failing section is named in the log.
+      - name: Score with pana
+        run: |
+          flutter pub global activate pana
+          flutter pub global run pana --no-warning --json . > pana.json
+          python3 tool/assert_pana_score.py pana.json
+
+      - name: Publish to pub.dev
+        run: flutter pub publish --force
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file release-notes.md \
+            --verify-tag
