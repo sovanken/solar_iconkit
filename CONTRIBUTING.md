@@ -60,6 +60,40 @@ The Solar icon set is upstream — new icons come from the Iconify collection, n
 
 Please do NOT hand-add SVGs to `assets/icons/` — they'll be overwritten on the next regeneration.
 
+### How the maintainer syncs the catalog
+
+A weekly workflow (`.github/workflows/upstream-check.yml`) compares the
+committed catalog against the live Iconify collection and opens a single
+`upstream-sync` issue when Solar has added or renamed icons. It closes that
+issue once a sync lands. Run the same check locally at any time:
+
+```bash
+python tool/check_upstream.py
+```
+
+Syncing is then:
+
+```bash
+python tool/fetch_icons.py     # downloads assets, regenerates the catalog
+npx svgo -r -f assets/icons --config tool/svgo.config.mjs
+flutter analyze && flutter test
+```
+
+Two things the generator deliberately protects, both learned the hard way:
+
+- **It never drops a name a release has shipped.** Iconify hides renamed
+  icons from its browsable listing, so a naive refresh would delete the
+  `@Deprecated` constants from the previous release. `previously_shipped()`
+  reads both `all` and `legacyAliases` and the script aborts rather than
+  drop anything.
+- **Renames are not the only kind of change.** Upstream sometimes redraws a
+  glyph without renaming it — 1.1.0 shipped eleven of those, and 1.2.0
+  picked up a fix for a malformed `bold/logout`. Only a pixel diff finds
+  them, so before releasing, render every icon at the old and new revisions
+  and compare. Note that a per-style sweep is not enough on its own: check
+  every asset whose *bytes* changed, since the SVGO pass is deterministic
+  and so a changed glyph always changes bytes.
+
 ## Style guide
 
 - Public API names use `camelCase` (Dart convention)
