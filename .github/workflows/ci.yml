@@ -88,3 +88,40 @@ jobs:
       - name: Run tests (Windows/macOS — skip goldens)
         if: matrix.os != 'ubuntu-latest'
         run: flutter test --exclude-tags golden
+
+  # Packaging and pub.dev scoring, so a problem surfaces on the PR rather
+  # than at tag time when the version is already public. The release
+  # workflow runs the same two checks as a final gate.
+  package:
+    name: Package & pub.dev score
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Validate package
+        run: flutter pub publish --dry-run
+
+      # pana needs the webp tools to process the `screenshots:` declared in
+      # pubspec.yaml; without them it logs SEVERE and can lose points that
+      # pub.dev's own analysis would grant.
+      - name: Install pana prerequisites
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      # Asserted from pana's JSON rather than its exit code: a crashed
+      # analysis can still exit 0, which would make this gate silently
+      # useless. The package scores 160/160 on pub.dev, so any shortfall is
+      # a regression, and the failing section is named in the log.
+      - name: Score with pana
+        run: |
+          flutter pub global activate pana
+          flutter pub global run pana --no-warning --json . > pana.json
+          python3 tool/assert_pana_score.py pana.json

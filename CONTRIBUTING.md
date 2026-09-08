@@ -109,7 +109,38 @@ Two things the generator deliberately protects, both learned the hard way:
 
 ## Release process
 
-Releases follow [Semantic Versioning](https://semver.org). The maintainer handles all publishes to pub.dev — contributors don't need to worry about the release step.
+Releases follow [Semantic Versioning](https://semver.org). Contributors don't
+need to do anything for a release; the maintainer tags it.
+
+Publishing is driven entirely by the tag. There is no manual `pub publish`
+step and no credential on anyone's machine:
+
+```bash
+# 1. bump `version:` in pubspec.yaml and add the CHANGELOG section
+# 2. merge that through a PR as usual
+# 3. tag the merged commit
+git tag -a v1.3.0 -m "1.3.0 - <summary>"
+git push origin v1.3.0
+```
+
+`.github/workflows/release.yml` then, in order:
+
+1. verifies the tag matches `pubspec.yaml` — a mismatch would publish the
+   wrong version under the right name, which pub.dev cannot undo;
+2. verifies `CHANGELOG.md` has a section for it, so the release notes are
+   the changelog rather than a second copy that drifts;
+3. runs format, analyze, tests, `pub publish --dry-run`, and `pana`;
+4. publishes to pub.dev with a short-lived OIDC token;
+5. creates the GitHub Release from the changelog section.
+
+The `pana` gate is set to `--exit-code-threshold 0` because the package
+scores 160/160 on pub.dev — any lost point is a regression. Raise it only
+with a reason in the commit message.
+
+Publishing requires a one-time pub.dev setting (Admin → Automated
+publishing) naming the repository and a `v{{version}}` tag pattern.
+Nothing else is needed; the workflow holds no secrets beyond the
+repository's own `GITHUB_TOKEN`.
 
 ## Code of conduct
 
