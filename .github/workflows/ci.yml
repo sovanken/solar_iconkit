@@ -107,14 +107,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # TEMPORARY: identify why a fresh checkout reports a dirty tree.
-      - name: Diagnose dirty tree
-        run: |
-          echo "--- porcelain ---"
-          git status --porcelain
-          echo "--- diff (analysis options) ---"
-          git diff -- analysis_options.yaml example/analysis_options.yaml | cat -A | head -40
-
       - name: Validate package
         run: flutter pub publish --dry-run
 
