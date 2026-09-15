@@ -11,7 +11,9 @@ void main() {
       expect(find.byType(SolarIcon), findsOneWidget);
       final widget = tester.widget<SolarIcon>(find.byType(SolarIcon));
       expect(widget.name, 'home-2');
-      expect(widget.style, SolarIconStyle.linear);
+      // Unset rather than linear: null is what lets an enclosing
+      // SolarIconTheme supply the style. It still *renders* linear.
+      expect(widget.style, isNull);
       expect(widget.size, isNull);
       expect(widget.color, isNull);
       expect(widget.opacity, 1.0);
@@ -431,6 +433,130 @@ void main() {
         expect(p, startsWith('assets/icons/${s.folderName}/'));
         expect(p, endsWith('.svg'));
       }
+    });
+  });
+
+  group('SolarIconTheme', () {
+    testWidgets('supplies the style when the widget does not', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIconTheme(
+            style: SolarIconStyle.boldDuotone,
+            child: SolarIcon(SolarIcons.home2),
+          ),
+        ),
+      );
+      final BuildContext context = tester.element(find.byType(SolarIcon));
+      expect(SolarIconTheme.of(context), SolarIconStyle.boldDuotone);
+      // The widget left style unset, so the theme is what it renders with.
+      final SolarIcon widget = tester.widget(find.byType(SolarIcon));
+      expect(widget.style, isNull);
+    });
+
+    testWidgets('an explicit style beats the theme', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIconTheme(
+            style: SolarIconStyle.boldDuotone,
+            child: SolarIcon(SolarIcons.home2, style: SolarIconStyle.broken),
+          ),
+        ),
+      );
+      final SolarIcon widget = tester.widget(find.byType(SolarIcon));
+      expect(widget.style, SolarIconStyle.broken);
+    });
+
+    testWidgets('the nearest theme wins when nested', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SolarIconTheme(
+            style: SolarIconStyle.linear,
+            child: SolarIconTheme(
+              style: SolarIconStyle.bold,
+              child: SolarIcon(SolarIcons.home2),
+            ),
+          ),
+        ),
+      );
+      final BuildContext context = tester.element(find.byType(SolarIcon));
+      expect(SolarIconTheme.of(context), SolarIconStyle.bold);
+    });
+
+    testWidgets('falls back to linear with no theme', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: SolarIcon(SolarIcons.home2)),
+      );
+      final BuildContext context = tester.element(find.byType(SolarIcon));
+      expect(SolarIconTheme.of(context), SolarIconStyle.linear);
+      expect(SolarIconTheme.maybeOf(context), isNull);
+    });
+
+    test('updateShouldNotify only fires on a style change', () {
+      const a =
+          SolarIconTheme(style: SolarIconStyle.bold, child: SizedBox.shrink());
+      const b = SolarIconTheme(
+          style: SolarIconStyle.broken, child: SizedBox.shrink());
+      const c =
+          SolarIconTheme(style: SolarIconStyle.bold, child: SizedBox.shrink());
+      expect(a.updateShouldNotify(b), isTrue);
+      expect(a.updateShouldNotify(c), isFalse);
+    });
+  });
+
+  group('SolarIcons.categories', () {
+    test('is non-empty and every name is a real icon', () {
+      expect(SolarIcons.categories, isNotEmpty);
+      for (final MapEntry<String, List<String>> entry
+          in SolarIcons.categories.entries) {
+        expect(entry.value, isNotEmpty, reason: '${entry.key} is empty');
+        for (final String name in entry.value) {
+          expect(SolarIcons.all, contains(name),
+              reason: '$name in ${entry.key} is not in all');
+        }
+      }
+    });
+
+    test('no icon appears in two categories', () {
+      final Set<String> seen = <String>{};
+      for (final List<String> names in SolarIcons.categories.values) {
+        for (final String name in names) {
+          expect(seen.add(name), isTrue, reason: '$name is duplicated');
+        }
+      }
+    });
+
+    test('categoryOf resolves current and retired names alike', () {
+      expect(SolarIcons.categoryOf('home-2'), isNotNull);
+      // A retired name resolves through legacyAliases first.
+      expect(SolarIcons.categoryOf('magnifer'),
+          SolarIcons.categoryOf('magnifier'));
+      expect(SolarIcons.categoryOf('definitely-not-an-icon'), isNull);
+    });
+  });
+
+  group('asset source overrides', () {
+    tearDown(SolarIcon.useBundledAssets);
+
+    test('default path points at this package', () {
+      expect(SolarIcon.assetBasePath, 'assets/icons');
+      expect(SolarIcon.assetPackage, SolarIcon.packageName);
+      expect(SolarIcon.assetPath('home-2', SolarIconStyle.linear),
+          'assets/icons/linear/home-2.svg');
+    });
+
+    test('a subset directory redirects the path', () {
+      SolarIcon.assetBasePath = 'assets/solar';
+      SolarIcon.assetPackage = null;
+      expect(SolarIcon.assetPath('home-2', SolarIconStyle.bold),
+          'assets/solar/bold/home-2.svg');
+    });
+
+    test('useBundledAssets restores the defaults', () {
+      SolarIcon.assetBasePath = 'somewhere/else';
+      SolarIcon.assetPackage = null;
+      SolarIcon.useBundledAssets();
+      expect(SolarIcon.assetBasePath, 'assets/icons');
+      expect(SolarIcon.assetPackage, SolarIcon.packageName);
     });
   });
 }
