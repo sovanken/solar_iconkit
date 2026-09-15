@@ -21,4 +21,5 @@ library;
 
 export 'src/solar_icon.dart';
 export 'src/solar_icon_style.dart';
+export 'src/solar_icon_theme.dart';
 export 'src/solar_iconkit_data.g.dart';

@@ -126,6 +126,27 @@ def canonical_names(data: dict) -> list[str]:
     return result
 
 
+def categories_of(data: dict) -> dict[str, list[str]]:
+    """Category name -> sorted base names, from Solar's own grouping.
+
+    Solar ships 37 categories and the browser uses them, but until now the
+    generator read them only to collect names and then threw the grouping
+    away — leaving consumers building an icon picker with a flat list of
+    1,200+ names and no way to section it.
+    """
+    out: dict[str, list[str]] = {}
+    for category, names in data.get("categories", {}).items():
+        bases = sorted(
+            n[: -len(BASE_STYLE_SUFFIX)]
+            for n in names
+            if n.endswith(BASE_STYLE_SUFFIX)
+        )
+        if bases:
+            out[category] = bases
+    print(f"  found {len(out)} categories")
+    return dict(sorted(out.items()))
+
+
 def previously_shipped() -> tuple[list[str], dict[str, str]]:
     """Everything the committed catalog exposes as a constant.
 
@@ -305,7 +326,8 @@ def to_camel_case(name: str) -> str:
     return ident
 
 
-def generate_dart(canonical: list[str], legacy: dict[str, str]) -> None:
+def generate_dart(canonical: list[str], legacy: dict[str, str],
+                  categories: dict[str, list[str]]) -> None:
     print(f"\nGenerating {DART_OUT.relative_to(ROOT)}...")
     lines: list[str] = []
     lines.append("// GENERATED FILE. Do not edit by hand.")
@@ -378,6 +400,31 @@ def generate_dart(canonical: list[str], legacy: dict[str, str]) -> None:
     for name in sorted(legacy):
         lines.append(f"    '{name}': '{legacy[name]}',")
     lines.append("  };")
+    lines.append("")
+    lines.append("  /// Solar's own grouping, category name -> icon names.")
+    lines.append("  ///")
+    lines.append("  /// Useful for building a sectioned icon picker. Only")
+    lines.append("  /// current names appear; retired names are excluded, the")
+    lines.append(f"  /// same as [all]. ({len(categories)} categories.)")
+    lines.append("  static const Map<String, List<String>> categories =")
+    lines.append("      <String, List<String>>{")
+    for category in categories:
+        escaped = category.replace("\\", "\\\\").replace("'", "\'")
+        lines.append(f"    '{escaped}': <String>[")
+        for name in categories[category]:
+            lines.append(f"      '{name}',")
+        lines.append("    ],")
+    lines.append("  };")
+    lines.append("")
+    lines.append("  /// The category [name] belongs to, or null if it has none.")
+    lines.append("  static String? categoryOf(String name) {")
+    lines.append("    final String resolved = legacyAliases[name] ?? name;")
+    lines.append("    for (final MapEntry<String, List<String>> entry")
+    lines.append("        in categories.entries) {")
+    lines.append("      if (entry.value.contains(resolved)) return entry.key;")
+    lines.append("    }")
+    lines.append("    return null;")
+    lines.append("  }")
     lines.append("}")
     lines.append("")
 
@@ -398,8 +445,11 @@ def generate_dart(canonical: list[str], legacy: dict[str, str]) -> None:
 
 
 def main() -> int:
+    skip_assets = "--skip-assets" in sys.argv
+
     data = fetch_collection()
     canonical = canonical_names(data)
+    categories = categories_of(data)
     if not canonical:
         print("No icons found — aborting.", file=sys.stderr)
         return 1
@@ -422,11 +472,18 @@ def main() -> int:
         return 1
 
     total = 0
-    for api_suffix, folder in STYLES:
-        total += fetch_style(to_download, api_suffix, folder)
-    generate_dart(to_download, legacy)
+    if skip_assets:
+        # --skip-assets regenerates only the catalog. A metadata-only
+        # change leaves every SVG identical, so re-downloading 7,600
+        # files to rewrite one Dart file wastes minutes and API calls.
+        print("\n--skip-assets: leaving SVGs untouched")
+    else:
+        for api_suffix, folder in STYLES:
+            total += fetch_style(to_download, api_suffix, folder)
+    generate_dart(to_download, legacy, categories)
     print(f"\nDone. {total:,} SVGs, {len(to_download):,} Dart constants, "
-          f"{len(legacy):,} deprecated aliases.")
+          f"{len(legacy):,} deprecated aliases, "
+          f"{len(categories)} categories.")
     return 0
 
 
