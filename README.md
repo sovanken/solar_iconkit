@@ -14,6 +14,35 @@ A Flutter package that bundles the entire Solar icon set — **1,269 icons acros
 - **Issues**: <https://github.com/sovanken/solar_iconkit/issues>
 - **Support**: <https://ko-fi.com/sovanken>
 
+<img src="https://raw.githubusercontent.com/sovanken/solar_iconkit/main/screenshots/browser-grid.png" alt="The Solar icon set browsed by category, with a live search box and size control" width="100%">
+
+## Install and use it in 60 seconds
+
+```bash
+flutter pub add solar_iconkit
+```
+
+```dart
+import 'package:solar_iconkit/solar_iconkit.dart';
+
+SolarIcon(SolarIcons.home2)                              // 24 px, theme colour
+SolarIcon(SolarIcons.heart, style: SolarIconStyle.bold)  // pick a style
+SolarIcon(SolarIcons.rocket, size: 32, color: Colors.indigo)
+```
+
+Set a house style once, and every icon below follows it:
+
+```dart
+SolarIconTheme(
+  style: SolarIconStyle.boldDuotone,
+  child: MyApp(),
+)
+```
+
+That is the whole API for most apps. Everything below is detail.
+
+<img src="https://raw.githubusercontent.com/sovanken/solar_iconkit/main/screenshots/style-comparison.png" alt="The same icon rendered in all six Solar styles side by side" width="100%">
+
 **What you get**
 
 - Six native Solar styles: `linear`, `outline`, `broken`, `bold`, `lineDuotone`, `boldDuotone`.
@@ -21,6 +50,9 @@ A Flutter package that bundles the entire Solar icon set — **1,269 icons acros
 - ~1,269 generated `SolarIcons.<name>` constants for autocomplete-safe references.
 - Bundled SVG assets in `assets/icons/`. No network access at runtime, works fully offline.
 - Full `IconTheme` integration — size, color, and opacity resolve from the ambient theme when unset on the widget.
+- `SolarIconTheme` for a subtree-wide default style, so a house style is set once rather than at every call site.
+- `SolarIcons.categories` — Solar's own 37 categories, ready for a sectioned icon picker.
+- `dart run solar_iconkit:subset` — ship only the icons and styles your app uses.
 - Deterministic asset resolution — `packages/solar_iconkit/assets/icons/{style}/{name}.svg`.
 - Example browser app under `example/` demonstrating every usage pattern.
 - Runs on Android, iOS, macOS, Windows, Linux, and Web.
@@ -34,6 +66,7 @@ A Flutter package that bundles the entire Solar icon set — **1,269 icons acros
 ## Table of contents
 
 - [solar\_iconkit](#solar_iconkit)
+  - [Install and use it in 60 seconds](#install-and-use-it-in-60-seconds)
   - [Table of contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Installation](#installation)
@@ -42,11 +75,13 @@ A Flutter package that bundles the entire Solar icon set — **1,269 icons acros
     - [Option C: Git dependency](#option-c-git-dependency)
     - [Option D: Version pin with dependency\_overrides](#option-d-version-pin-with-dependency_overrides)
     - [After installing](#after-installing)
+  - [Upgrading to 2.0](#upgrading-to-20)
   - [Upgrading from 1.0.x](#upgrading-from-10x)
   - [Quick start](#quick-start)
   - [API reference](#api-reference)
     - [SolarIcon widget](#solaricon-widget)
     - [SolarIconStyle enum](#solariconstyle-enum)
+    - [SolarIconTheme](#solaricontheme)
     - [SolarIcons constants](#solaricons-constants)
   - [Style guide](#style-guide)
   - [Usage recipes](#usage-recipes)
@@ -65,7 +100,7 @@ A Flutter package that bundles the entire Solar icon set — **1,269 icons acros
     - [Building an icon picker](#building-an-icon-picker)
     - [Precaching for smooth scrolling](#precaching-for-smooth-scrolling)
     - [Reducing bundle size](#reducing-bundle-size)
-    - [Wrapping SolarIcon in a project-level widget](#wrapping-solaricon-in-a-project-level-widget)
+    - [Setting a default style for a subtree](#setting-a-default-style-for-a-subtree)
   - [Performance notes](#performance-notes)
   - [Testing](#testing)
   - [Troubleshooting](#troubleshooting)
@@ -98,7 +133,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  solar_iconkit: ^1.0.0
+  solar_iconkit: ^2.0.0
 ```
 
 Or run:
@@ -134,7 +169,7 @@ dependencies:
   solar_iconkit:
     git:
       url: git@github.com:sovanken/solar_iconkit.git
-      ref: v1.0.0                 # a tag, branch, or commit SHA
+      ref: v2.0.0                 # a tag, branch, or commit SHA
 ```
 
 **When to use:** package has its own repo, multiple consumers on different machines.
@@ -147,7 +182,7 @@ Best when you want to publish semver-like versions but override to local during 
 
 ```yaml
 dependencies:
-  solar_iconkit: ^1.0.0
+  solar_iconkit: ^2.0.0
 
 dependency_overrides:
   solar_iconkit:
@@ -173,6 +208,27 @@ void main() {
   print(SolarIconStyle.values.length); // 6
 }
 ```
+
+---
+
+## Upgrading to 2.0
+
+One breaking change, and most apps need no edit at all.
+
+`SolarIcon.style` is now `SolarIconStyle?` rather than `SolarIconStyle`. It had to become nullable so the widget can tell "no style given" from "explicitly linear" — which is what lets `SolarIconTheme` supply one.
+
+**Constructing icons is unchanged.** `SolarIcon(name)` and `SolarIcon(name, style: ...)` both compile exactly as before, and an icon with no style still renders linear.
+
+Only code that *reads* the field needs a change:
+
+```dart
+// before
+SolarIconStyle s = icon.style;
+// after
+SolarIconStyle s = icon.style ?? SolarIconStyle.linear;
+```
+
+Everything else in 2.0 is additive: `SolarIconTheme`, `SolarIcons.categories`, and the `subset` tool.
 
 ---
 
@@ -309,6 +365,25 @@ for (final style in SolarIconStyle.values) {
 }
 ```
 
+### SolarIconTheme
+
+Supplies the default style for a subtree, the way `IconTheme` supplies size and colour.
+
+| Member | Type | Meaning |
+| --- | --- | --- |
+| `style` | `SolarIconStyle` | The style descendants use when they do not set one. |
+| `SolarIconTheme.of(context)` | `SolarIconStyle` | Nearest theme's style, or `linear` if there is none. |
+| `SolarIconTheme.maybeOf(context)` | `SolarIconStyle?` | Nearest theme's style, or null if there is none. |
+
+```dart
+SolarIconTheme(
+  style: SolarIconStyle.boldDuotone,
+  child: MyApp(),
+)
+```
+
+Resolution order for a `SolarIcon`: the widget's own `style:`, then the nearest `SolarIconTheme`, then `SolarIconStyle.linear`.
+
 ### SolarIcons constants
 
 Generated file: `lib/src/solar_iconkit_data.g.dart`. Exposes every base icon name as a `static const String` on the `SolarIcons` class, plus an `all` list of every name sorted alphabetically and a `legacyAliases` map of retired names.
@@ -341,6 +416,22 @@ replacement, so old code keeps compiling and rendering the same glyph:
 SolarIcons.magnifer   // == 'magnifier', flagged by the analyzer
 SolarIcon('magnifer') // raw strings are redirected via legacyAliases
 ```
+
+**Categories**
+
+Solar groups its icons into 37 categories, exposed as a const map — useful for a sectioned picker:
+
+```dart
+SolarIcons.categories['Arrows']!.length;   // 67
+SolarIcons.categories.keys.length;         // 37
+
+SolarIcons.categoryOf('home-2');            // 'UI'
+SolarIcons.categoryOf('magnifier');         // 'Search'
+SolarIcons.categoryOf('magnifer');          // 'Search' — retired names resolve too
+SolarIcons.categoryOf('not-an-icon');       // null
+```
+
+Every name in `categories` is also in `all`. The reverse is not quite true: one icon (`trellis`) is retained for backwards compatibility after upstream hid it, so it belongs to no category.
 
 **Naming rules applied by the generator:**
 
@@ -816,54 +907,88 @@ Call from an `initState` or a route enter callback for icons visible in the firs
 
 ### Reducing bundle size
 
-The full asset bundle is about **5.8 MB of actual SVG bytes** (7,614 SVGs across six styles, individually minified). Earlier releases quoted 23 MB — that number came from `du -sh` reporting filesystem block-allocation slack (each ~500-byte SVG rounds up to a 4 KB disk block); the actual on-wire content is much smaller. Compressed on the pub.dev archive: ~18 MB (which includes example app, tests, and screenshots).
+The full asset bundle is about **5.8 MB of actual SVG bytes** (7,614 SVGs across six styles, individually minified). Flutter's tree-shaker cannot remove any of it, because `SolarIcon` resolves asset paths at runtime — so by default the whole set ships whether you use 20 icons or 1,200.
 
-Flutter's tree-shaker does not remove unreferenced assets because `SolarIcon` resolves paths at runtime — so the whole set ships by default.
+Generate a trimmed set instead:
 
-If bundle size matters, drop the styles you don't use. Fork the package (or use a `dependency_overrides` path to a local copy) and trim `pubspec.yaml`:
-
-```yaml
-flutter:
-  assets:
-    - assets/icons/linear/
-    - assets/icons/bold/
-    # remove the styles you do not use
+```bash
+dart run solar_iconkit:subset --styles linear,bold
 ```
 
-Then delete the unused style folders under `assets/icons/`. The build will only include the assets you declare. Cutting from 6 styles to 2 removes roughly two-thirds of the bundle.
+It scans your Dart sources for `SolarIcons.<name>` and `SolarIcon('<name>')`, copies just those SVGs into your app, and prints the two lines of setup:
 
-> **Roadmap.** Per-icon tree-shaking (via a `build_runner` step that scans consumer code for `SolarIcons.xxx` references and emits an asset subset) is on the plan for `v1.0`. Track progress at <https://github.com/sovanken/solar_iconkit/issues>.
+```dart
+void main() {
+  SolarIcon.assetBasePath = 'assets/solar';
+  SolarIcon.assetPackage = null;   // load from the app, not the package
+  runApp(const MyApp());
+}
+```
 
-### Wrapping SolarIcon in a project-level widget
+An app using 20 icons in two styles ships roughly **40 KB instead of 5.8 MB**.
 
-For consistency across screens, define your own primitive:
+| Flag | Meaning |
+| --- | --- |
+| `--styles <list>` | Styles to include. Default: all six. |
+| `--scan <dirs>` | Directories to scan. Default: `lib` |
+| `--out <dir>` | Where to write. Default: `assets/solar` |
+| `--all` | Skip scanning, include every icon (still drops unused styles). |
+
+**It refuses to run if your app builds icon names at runtime.** Code that renders `SolarIcons.all` or `SolarIcons.categories` needs the whole set, and no source scan can tell which icons that is — a subset there would ship blank squares. Use `--all` in that case, which still removes the styles you do not use (six styles down to two is a two-thirds cut on its own).
+
+Re-run it whenever you add icons. It rewrites the output folder from scratch, so removed icons do not linger.
+
+### Setting a default style for a subtree
+
+`SolarIcon` reads its size, colour and opacity from the ambient `IconTheme`. Style works the same way through `SolarIconTheme`:
+
+```dart
+SolarIconTheme(
+  style: SolarIconStyle.boldDuotone,
+  child: MyApp(),
+)
+```
+
+Every `SolarIcon` below renders bold-duotone without repeating `style:`. The rules match `IconTheme`:
+
+```dart
+SolarIconTheme(
+  style: SolarIconStyle.linear,
+  child: Column(
+    children: [
+      SolarIcon(SolarIcons.home2),                              // linear, from the theme
+      SolarIcon(SolarIcons.home2, style: SolarIconStyle.bold),  // bold, explicit wins
+      SolarIconTheme(
+        style: SolarIconStyle.broken,
+        child: SolarIcon(SolarIcons.home2),                     // broken, nearest wins
+      ),
+    ],
+  ),
+)
+```
+
+With no enclosing theme the default is `SolarIconStyle.linear`, so adding one is never required.
+
+Read the resolved style yourself with `SolarIconTheme.of(context)`, or `SolarIconTheme.maybeOf(context)` when you need to tell "no theme" from "a theme that happens to be linear".
+
+For a project-wide primitive that also fixes size and colour, wrap it once:
 
 ```dart
 class AppIcon extends StatelessWidget {
-  const AppIcon(this.name, {this.emphasis = AppIconEmphasis.regular, super.key});
+  const AppIcon(this.name, {super.key});
 
   final String name;
-  final AppIconEmphasis emphasis;
 
   @override
-  Widget build(BuildContext context) {
-    return SolarIcon(
-      name,
-      style: switch (emphasis) {
-        AppIconEmphasis.regular => SolarIconStyle.linear,
-        AppIconEmphasis.selected => SolarIconStyle.bold,
-        AppIconEmphasis.feature => SolarIconStyle.boldDuotone,
-      },
-      size: 24,
-      color: Theme.of(context).colorScheme.onSurface,
-    );
-  }
+  Widget build(BuildContext context) => SolarIcon(
+        name,
+        size: 24,
+        color: Theme.of(context).colorScheme.onSurface,
+      );
 }
-
-enum AppIconEmphasis { regular, selected, feature }
 ```
 
-Now the rest of the app uses `AppIcon(SolarIcons.home2, emphasis: AppIconEmphasis.selected)` — one place to change styling for every screen.
+Leave `style` unset there so `SolarIconTheme` still governs it.
 
 ---
 

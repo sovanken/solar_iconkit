@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'solar_icon_style.dart';
+import 'solar_icon_theme.dart';
 import 'solar_iconkit_data.g.dart';
 
 const double _kDefaultIconSize = 24.0;
@@ -59,7 +60,7 @@ class SolarIcon extends StatelessWidget {
   const SolarIcon(
     this.name, {
     super.key,
-    this.style = SolarIconStyle.linear,
+    this.style,
     this.size,
     this.color,
     this.opacity = 1.0,
@@ -77,8 +78,11 @@ class SolarIcon extends StatelessWidget {
   /// for autocomplete-safe references.
   final String name;
 
-  /// The visual style. Defaults to [SolarIconStyle.linear].
-  final SolarIconStyle style;
+  /// The visual style.
+  ///
+  /// When null, the widget reads the nearest enclosing [SolarIconTheme]. If
+  /// there is none, it falls back to [SolarIconStyle.linear].
+  final SolarIconStyle? style;
 
   /// Width and height in logical pixels.
   ///
@@ -154,6 +158,36 @@ class SolarIcon extends StatelessWidget {
   /// ```
   final List<Shadow>? shadows;
 
+  /// The package name used when loading assets. Consumers rarely need this;
+  /// exposed for advanced integrations.
+  static const String packageName = 'solar_iconkit';
+
+  /// Directory the SVGs are loaded from, relative to the bundle root.
+  ///
+  /// Defaults to this package's own `assets/icons`. Change it — together
+  /// with [assetPackage] — to load a trimmed set that ships inside your app
+  /// instead of the full 7,614-file bundle. See `dart run
+  /// solar_iconkit:subset`, which generates that set for you.
+  ///
+  /// Set it once before `runApp`, not per frame.
+  static String assetBasePath = 'assets/icons';
+
+  /// Package the SVGs are loaded from, or null to load from the app's own
+  /// bundle.
+  ///
+  /// Defaults to this package. Set to null when using a subset generated
+  /// into your app by `dart run solar_iconkit:subset`.
+  static String? assetPackage = packageName;
+
+  /// Restores [assetBasePath] and [assetPackage] to the package defaults.
+  ///
+  /// Mainly useful in tests, so one test overriding the source cannot leak
+  /// into the next.
+  static void useBundledAssets() {
+    assetBasePath = 'assets/icons';
+    assetPackage = packageName;
+  }
+
   /// Returns the asset path used to load this icon.
   ///
   /// Useful for advanced cases where you need the raw path — for example when
@@ -162,7 +196,7 @@ class SolarIcon extends StatelessWidget {
   /// Retired names are resolved through [SolarIcons.legacyAliases] first, so
   /// `assetPath('magnifer', ...)` returns the path to `magnifier.svg`.
   static String assetPath(String name, SolarIconStyle style) =>
-      'assets/icons/${style.folderName}/${resolveName(name)}.svg';
+      '$assetBasePath/${style.folderName}/${resolveName(name)}.svg';
 
   /// Maps a possibly-retired icon name to the name actually shipped as an
   /// asset. Returns [name] unchanged when it is already current.
@@ -172,10 +206,6 @@ class SolarIcon extends StatelessWidget {
   static String resolveName(String name) =>
       SolarIcons.legacyAliases[name] ?? name;
 
-  /// The package name used when loading assets. Consumers rarely need this;
-  /// exposed for advanced integrations.
-  static const String packageName = 'solar_iconkit';
-
   @override
   Widget build(BuildContext context) {
     // Debug-only: validate that [name] refers to a real Solar icon. The
@@ -183,6 +213,9 @@ class SolarIcon extends StatelessWidget {
     // A typo throws a clear FlutterError with a stack trace pointing to the
     // offending call site — much better than silently rendering blank.
     assert(_debugAssertKnownIcon(name));
+    // Style resolves like size and color do: the widget wins, then the
+    // nearest SolarIconTheme, then the package default.
+    final SolarIconStyle resolvedStyle = style ?? SolarIconTheme.of(context);
     final IconThemeData iconTheme = IconTheme.of(context);
     final double resolvedSize = size ?? iconTheme.size ?? _kDefaultIconSize;
     final Color baseColor = color ?? iconTheme.color ?? _kFallbackIconColor;
@@ -194,8 +227,8 @@ class SolarIcon extends StatelessWidget {
         : baseColor;
 
     Widget picture = SvgPicture.asset(
-      assetPath(name, style),
-      package: packageName,
+      assetPath(name, resolvedStyle),
+      package: assetPackage,
       width: resolvedSize,
       height: resolvedSize,
       colorFilter: ColorFilter.mode(resolvedColor, blendMode),
@@ -222,7 +255,7 @@ class SolarIcon extends StatelessWidget {
                 sigmaX: shadow.blurRadius,
                 sigmaY: shadow.blurRadius,
               ),
-              child: _shadowLayer(resolvedSize, shadow.color),
+              child: _shadowLayer(resolvedStyle, resolvedSize, shadow.color),
             ),
           ),
         picture,
@@ -241,12 +274,13 @@ class SolarIcon extends StatelessWidget {
   }
 
   /// Renders a solid-color copy of the icon for use as a shadow layer.
-  Widget _shadowLayer(double dimension, Color shadowColor) {
+  Widget _shadowLayer(
+      SolarIconStyle style, double dimension, Color shadowColor) {
     return SizedBox.square(
       dimension: dimension,
       child: SvgPicture.asset(
         assetPath(name, style),
-        package: packageName,
+        package: assetPackage,
         width: dimension,
         height: dimension,
         colorFilter: ColorFilter.mode(shadowColor, BlendMode.srcIn),

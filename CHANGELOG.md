@@ -4,6 +4,83 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] — 2026-09-15
+
+Three API gaps closed. The only breaking part is one field's nullability;
+everything else is additive, and the migration for most apps is nothing at
+all.
+
+### Breaking
+
+- **`SolarIcon.style` is now `SolarIconStyle?` instead of `SolarIconStyle`.**
+  It had to become nullable so the widget can tell "no style given" from
+  "explicitly linear" — which is what lets [SolarIconTheme] supply one.
+  Constructing icons is unaffected: `SolarIcon(name)` and
+  `SolarIcon(name, style: ...)` both compile unchanged, and an icon with no
+  style still renders linear.
+
+  Only code that *reads* the field breaks:
+
+  ```dart
+  // before
+  SolarIconStyle s = icon.style;
+  // after
+  SolarIconStyle s = icon.style ?? SolarIconStyle.linear;
+  ```
+
+### Added
+
+- **`SolarIconTheme`** — sets the default style for a subtree, the way
+  [IconTheme] does for size and colour:
+
+  ```dart
+  SolarIconTheme(
+    style: SolarIconStyle.boldDuotone,
+    child: MyApp(),
+  )
+  ```
+
+  Size, colour and opacity already inherited; style was the one property
+  that could not be set once for a subtree, so an app with a house style had
+  to repeat `style:` at every call site. The README used to document writing
+  a wrapper widget purely to work around this. Nesting behaves like
+  [IconTheme] — nearest ancestor wins — and an explicit `style:` always wins.
+
+- **`SolarIcons.categories`** — Solar's own grouping, 37 categories over
+  1,268 icons, plus `SolarIcons.categoryOf(name)`. The generator already
+  read these to collect names and then discarded the grouping, leaving
+  anyone building the icon picker the README promotes with a flat list of
+  1,269 names and no way to section it. `categoryOf` resolves retired names
+  through `legacyAliases` first, so it works for both spellings.
+
+- **`SolarIcon.assetBasePath` / `SolarIcon.assetPackage`** — where the SVGs
+  load from, plus `SolarIcon.useBundledAssets()` to restore the defaults.
+  Defaults are unchanged, so this is invisible unless you opt in.
+
+- **`dart run solar_iconkit:subset`** — generates a trimmed asset set
+  containing only the icons and styles an app uses, and prints the pubspec
+  entry and the two lines of setup.
+
+  The package bundles 7,614 SVGs (~5.8 MB) and Flutter's tree-shaker cannot
+  drop any of them, because paths are resolved at runtime. The only previous
+  remedy was to fork the package and delete folders by hand — giving up
+  versioned dependency management to control size. Now:
+
+  ```bash
+  dart run solar_iconkit:subset --styles linear,bold
+  ```
+
+  It refuses to run when it finds `SolarIcons.all`, `SolarIcons.categories`
+  or `legacyAliases` in the scanned sources, because an app that builds icon
+  names at runtime needs the whole set and a scan cannot tell which icons
+  that is — shipping a subset there would leave blank squares in a release.
+  Use `--all` in that case, which still drops unused styles.
+
+### Notes
+
+- `tool/fetch_icons.py` gains `--skip-assets`, which regenerates the Dart
+  catalog without re-downloading 7,614 unchanged SVGs.
+
 ## [1.2.0] — 2026-08-26
 
 Catalog resync with upstream Solar: **1,247 → 1,269 icons** (7,614 SVG
