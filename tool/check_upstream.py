@@ -90,6 +90,12 @@ def main() -> int:
         lines.append("")
 
     report = "\n".join(lines)
+    # The report contains arrows; Windows consoles default to cp1252
+    # and would raise on them. CI (Linux) never hit this.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        pass
     print(report)
     print(f"has_changes={'true' if changed else 'false'}")
 

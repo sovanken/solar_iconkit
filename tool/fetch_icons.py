@@ -270,8 +270,15 @@ def fetch_style(names: list[str], api_suffix: str, folder: str) -> int:
         default_w = data.get("width", 24)
         default_h = data.get("height", 24)
         suffix_len = len(f"-{api_suffix}")
+        requested = set(chunk)
         for full_name, meta in icons.items():
             base = full_name[:-suffix_len]
+            # The API answers an alias with its *parent* keyed under the
+            # parent's name, so a response can contain names we never asked
+            # for. Writing those leaves assets with no catalog entry, in only
+            # the styles where the alias happens to exist.
+            if base not in requested:
+                continue
             width = meta.get("width", default_w)
             height = meta.get("height", default_h)
             body = meta["body"]
