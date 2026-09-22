@@ -26,6 +26,11 @@ jobs:
   release:
     name: Verify, publish, announce
     runs-on: ubuntu-latest
+    # Publishing hangs rather than fails when pub.dev has no automated
+    # publishing configured: `pub publish` falls back to interactive OAuth
+    # and waits for a pasted code that will never come. v2.0.0 sat like that
+    # until the job was cancelled. Cap it.
+    timeout-minutes: 30
     permissions:
       # Creating the GitHub Release.
       contents: write
@@ -99,8 +104,24 @@ jobs:
           flutter pub global run pana --no-warning --json . > pana.json
           python3 tool/assert_pana_score.py pana.json
 
+      # Proves the id-token permission actually produced a token before we
+      # try to use it, so a misconfigured workflow fails here with a clear
+      # message rather than inside pub's OAuth fallback.
+      - name: Check OIDC is available
+        run: |
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then
+            echo "::error::No OIDC token available. The job needs "                  "'permissions: id-token: write'."
+            exit 1
+          fi
+          echo "OIDC token endpoint present."
+
+      # Never prompts: with automated publishing configured on pub.dev this
+      # exchanges the OIDC token silently. If it is NOT configured, pub falls
+      # back to interactive OAuth — so deny it a stdin to read and let it
+      # fail in seconds instead of hanging.
       - name: Publish to pub.dev
-        run: flutter pub publish --force
+        timeout-minutes: 10
+        run: flutter pub publish --force < /dev/null
 
       - name: Create GitHub Release
         env:

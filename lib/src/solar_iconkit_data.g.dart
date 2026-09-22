@@ -129,6 +129,9 @@ class SolarIcons {
   /// Solar icon `archive-check`.
   static const String archiveCheck = 'archive-check';
 
+  /// Solar icon `archive-close`.
+  static const String archiveClose = 'archive-close';
+
   /// Solar icon `archive-down`.
   static const String archiveDown = 'archive-down';
 
@@ -137,6 +140,9 @@ class SolarIcons {
 
   /// Solar icon `archive-minimalistic`.
   static const String archiveMinimalistic = 'archive-minimalistic';
+
+  /// Solar icon `archive-minimalistic-close`.
+  static const String archiveMinimalisticClose = 'archive-minimalistic-close';
 
   /// Solar icon `archive-up`.
   static const String archiveUp = 'archive-up';
@@ -348,6 +354,9 @@ class SolarIcons {
   /// Solar icon `black-hole-3`.
   static const String blackHole3 = 'black-hole-3';
 
+  /// Solar icon `blocks`.
+  static const String blocks = 'blocks';
+
   /// Solar icon `bluetooth`.
   static const String bluetooth = 'bluetooth';
 
@@ -448,6 +457,12 @@ class SolarIcons {
   /// Solar icon `box-minimalistic`.
   static const String boxMinimalistic = 'box-minimalistic';
 
+  /// Solar icon `braces`.
+  static const String braces = 'braces';
+
+  /// Solar icon `brackets`.
+  static const String brackets = 'brackets';
+
   /// Solar icon `brain`.
   static const String brain = 'brain';
 
@@ -535,11 +550,17 @@ class SolarIcons {
   /// Solar icon `camera-minimalistic`.
   static const String cameraMinimalistic = 'camera-minimalistic';
 
+  /// Solar icon `camera-off`.
+  static const String cameraOff = 'camera-off';
+
   /// Solar icon `camera-rotate`.
   static const String cameraRotate = 'camera-rotate';
 
   /// Solar icon `camera-square`.
   static const String cameraSquare = 'camera-square';
+
+  /// Solar icon `car`.
+  static const String car = 'car';
 
   /// Solar icon `car-battery`.
   static const String carBattery = 'car-battery';
@@ -646,20 +667,23 @@ class SolarIcons {
   /// Solar icon `chart-square`.
   static const String chartSquare = 'chart-square';
 
-  /// Solar icon `chat-dots`.
-  static const String chatDots = 'chat-dots';
-
-  /// Solar icon `chat-line`.
-  static const String chatLine = 'chat-line';
-
   /// Solar icon `chat-round`.
   static const String chatRound = 'chat-round';
+
+  /// Solar icon `chat-round-add`.
+  static const String chatRoundAdd = 'chat-round-add';
 
   /// Solar icon `chat-round-call`.
   static const String chatRoundCall = 'chat-round-call';
 
   /// Solar icon `chat-round-check`.
   static const String chatRoundCheck = 'chat-round-check';
+
+  /// Solar icon `chat-round-close`.
+  static const String chatRoundClose = 'chat-round-close';
+
+  /// Solar icon `chat-round-code`.
+  static const String chatRoundCode = 'chat-round-code';
 
   /// Solar icon `chat-round-dots`.
   static const String chatRoundDots = 'chat-round-dots';
@@ -673,17 +697,35 @@ class SolarIcons {
   /// Solar icon `chat-round-money`.
   static const String chatRoundMoney = 'chat-round-money';
 
+  /// Solar icon `chat-round-off`.
+  static const String chatRoundOff = 'chat-round-off';
+
+  /// Solar icon `chat-round-question-mark`.
+  static const String chatRoundQuestionMark = 'chat-round-question-mark';
+
+  /// Solar icon `chat-round-quote`.
+  static const String chatRoundQuote = 'chat-round-quote';
+
+  /// Solar icon `chat-round-replay`.
+  static const String chatRoundReplay = 'chat-round-replay';
+
   /// Solar icon `chat-round-unread`.
   static const String chatRoundUnread = 'chat-round-unread';
 
   /// Solar icon `chat-round-video`.
   static const String chatRoundVideo = 'chat-round-video';
 
+  /// Solar icon `chat-round-warning`.
+  static const String chatRoundWarning = 'chat-round-warning';
+
   /// Solar icon `chat-square`.
   static const String chatSquare = 'chat-square';
 
   /// Solar icon `chat-square-2`.
   static const String chatSquare2 = 'chat-square-2';
+
+  /// Solar icon `chat-square-add`.
+  static const String chatSquareAdd = 'chat-square-add';
 
   /// Solar icon `chat-square-arrow`.
   static const String chatSquareArrow = 'chat-square-arrow';
@@ -694,14 +736,38 @@ class SolarIcons {
   /// Solar icon `chat-square-check`.
   static const String chatSquareCheck = 'chat-square-check';
 
+  /// Solar icon `chat-square-close`.
+  static const String chatSquareClose = 'chat-square-close';
+
   /// Solar icon `chat-square-code`.
   static const String chatSquareCode = 'chat-square-code';
+
+  /// Solar icon `chat-square-dots`.
+  static const String chatSquareDots = 'chat-square-dots';
 
   /// Solar icon `chat-square-like`.
   static const String chatSquareLike = 'chat-square-like';
 
-  /// Solar icon `chat-unread`.
-  static const String chatUnread = 'chat-unread';
+  /// Solar icon `chat-square-line`.
+  static const String chatSquareLine = 'chat-square-line';
+
+  /// Solar icon `chat-square-off`.
+  static const String chatSquareOff = 'chat-square-off';
+
+  /// Solar icon `chat-square-question-mark`.
+  static const String chatSquareQuestionMark = 'chat-square-question-mark';
+
+  /// Solar icon `chat-square-quote`.
+  static const String chatSquareQuote = 'chat-square-quote';
+
+  /// Solar icon `chat-square-replay`.
+  static const String chatSquareReplay = 'chat-square-replay';
+
+  /// Solar icon `chat-square-unread`.
+  static const String chatSquareUnread = 'chat-square-unread';
+
+  /// Solar icon `chat-square-warning`.
+  static const String chatSquareWarning = 'chat-square-warning';
 
   /// Solar icon `check-circle`.
   static const String checkCircle = 'check-circle';
@@ -732,6 +798,9 @@ class SolarIcons {
 
   /// Solar icon `circle-bottom-up`.
   static const String circleBottomUp = 'circle-bottom-up';
+
+  /// Solar icon `circle-dashed`.
+  static const String circleDashed = 'circle-dashed';
 
   /// Solar icon `circle-top-down`.
   static const String circleTopDown = 'circle-top-down';
@@ -769,17 +838,32 @@ class SolarIcons {
   /// Solar icon `clipboard-check`.
   static const String clipboardCheck = 'clipboard-check';
 
+  /// Solar icon `clipboard-clock`.
+  static const String clipboardClock = 'clipboard-clock';
+
+  /// Solar icon `clipboard-copy`.
+  static const String clipboardCopy = 'clipboard-copy';
+
   /// Solar icon `clipboard-heart`.
   static const String clipboardHeart = 'clipboard-heart';
 
   /// Solar icon `clipboard-list`.
   static const String clipboardList = 'clipboard-list';
 
+  /// Solar icon `clipboard-minus`.
+  static const String clipboardMinus = 'clipboard-minus';
+
+  /// Solar icon `clipboard-paste`.
+  static const String clipboardPaste = 'clipboard-paste';
+
   /// Solar icon `clipboard-remove`.
   static const String clipboardRemove = 'clipboard-remove';
 
   /// Solar icon `clipboard-text`.
   static const String clipboardText = 'clipboard-text';
+
+  /// Solar icon `clipboard-type`.
+  static const String clipboardType = 'clipboard-type';
 
   /// Solar icon `clock-circle`.
   static const String clockCircle = 'clock-circle';
@@ -819,9 +903,6 @@ class SolarIcons {
 
   /// Solar icon `cloud-download`.
   static const String cloudDownload = 'cloud-download';
-
-  /// Solar icon `cloud-file`.
-  static const String cloudFile = 'cloud-file';
 
   /// Solar icon `cloud-minus`.
   static const String cloudMinus = 'cloud-minus';
@@ -874,9 +955,6 @@ class SolarIcons {
   /// Solar icon `code-circle`.
   static const String codeCircle = 'code-circle';
 
-  /// Solar icon `code-file`.
-  static const String codeFile = 'code-file';
-
   /// Solar icon `code-scan`.
   static const String codeScan = 'code-scan';
 
@@ -885,6 +963,18 @@ class SolarIcons {
 
   /// Solar icon `colour-tuning`.
   static const String colourTuning = 'colour-tuning';
+
+  /// Solar icon `columns-2`.
+  static const String columns2 = 'columns-2';
+
+  /// Solar icon `columns-3`.
+  static const String columns3 = 'columns-3';
+
+  /// Solar icon `columns-3-cog`.
+  static const String columns3Cog = 'columns-3-cog';
+
+  /// Solar icon `columns-4`.
+  static const String columns4 = 'columns-4';
 
   /// Solar icon `command`.
   static const String command = 'command';
@@ -915,6 +1005,9 @@ class SolarIcons {
 
   /// Solar icon `confounded-square`.
   static const String confoundedSquare = 'confounded-square';
+
+  /// Solar icon `container`.
+  static const String container = 'container';
 
   /// Solar icon `copy`.
   static const String copy = 'copy';
@@ -1204,14 +1297,35 @@ class SolarIcons {
   /// Solar icon `figma`.
   static const String figma = 'figma';
 
-  /// Solar icon `figma-file`.
-  static const String figmaFile = 'figma-file';
-
   /// Solar icon `file`.
   static const String file = 'file';
 
+  /// Solar icon `file-add`.
+  static const String fileAdd = 'file-add';
+
+  /// Solar icon `file-badge`.
+  static const String fileBadge = 'file-badge';
+
+  /// Solar icon `file-braces`.
+  static const String fileBraces = 'file-braces';
+
+  /// Solar icon `file-chart`.
+  static const String fileChart = 'file-chart';
+
+  /// Solar icon `file-chart-2`.
+  static const String fileChart2 = 'file-chart-2';
+
   /// Solar icon `file-check`.
   static const String fileCheck = 'file-check';
+
+  /// Solar icon `file-cloud`.
+  static const String fileCloud = 'file-cloud';
+
+  /// Solar icon `file-code`.
+  static const String fileCode = 'file-code';
+
+  /// Solar icon `file-cog`.
+  static const String fileCog = 'file-cog';
 
   /// Solar icon `file-corrupted`.
   static const String fileCorrupted = 'file-corrupted';
@@ -1222,8 +1336,20 @@ class SolarIcons {
   /// Solar icon `file-favorite`.
   static const String fileFavorite = 'file-favorite';
 
+  /// Solar icon `file-figma`.
+  static const String fileFigma = 'file-figma';
+
   /// Solar icon `file-left`.
   static const String fileLeft = 'file-left';
+
+  /// Solar icon `file-minus`.
+  static const String fileMinus = 'file-minus';
+
+  /// Solar icon `file-pen`.
+  static const String filePen = 'file-pen';
+
+  /// Solar icon `file-question-mark`.
+  static const String fileQuestionMark = 'file-question-mark';
 
   /// Solar icon `file-remove`.
   static const String fileRemove = 'file-remove';
@@ -1231,14 +1357,41 @@ class SolarIcons {
   /// Solar icon `file-right`.
   static const String fileRight = 'file-right';
 
+  /// Solar icon `file-search`.
+  static const String fileSearch = 'file-search';
+
   /// Solar icon `file-send`.
   static const String fileSend = 'file-send';
+
+  /// Solar icon `file-signal`.
+  static const String fileSignal = 'file-signal';
+
+  /// Solar icon `file-sliders`.
+  static const String fileSliders = 'file-sliders';
 
   /// Solar icon `file-smile`.
   static const String fileSmile = 'file-smile';
 
+  /// Solar icon `file-spreadsheet`.
+  static const String fileSpreadsheet = 'file-spreadsheet';
+
+  /// Solar icon `file-terminal`.
+  static const String fileTerminal = 'file-terminal';
+
   /// Solar icon `file-text`.
   static const String fileText = 'file-text';
+
+  /// Solar icon `file-type`.
+  static const String fileType = 'file-type';
+
+  /// Solar icon `file-video-camera`.
+  static const String fileVideoCamera = 'file-video-camera';
+
+  /// Solar icon `file-warning`.
+  static const String fileWarning = 'file-warning';
+
+  /// Solar icon `file-zip`.
+  static const String fileZip = 'file-zip';
 
   /// Solar icon `filter`.
   static const String filter = 'filter';
@@ -1297,8 +1450,26 @@ class SolarIcons {
   /// Solar icon `folder-check`.
   static const String folderCheck = 'folder-check';
 
+  /// Solar icon `folder-clock`.
+  static const String folderClock = 'folder-clock';
+
   /// Solar icon `folder-cloud`.
   static const String folderCloud = 'folder-cloud';
+
+  /// Solar icon `folder-code`.
+  static const String folderCode = 'folder-code';
+
+  /// Solar icon `folder-cog`.
+  static const String folderCog = 'folder-cog';
+
+  /// Solar icon `folder-dot`.
+  static const String folderDot = 'folder-dot';
+
+  /// Solar icon `folder-dot-open`.
+  static const String folderDotOpen = 'folder-dot-open';
+
+  /// Solar icon `folder-down`.
+  static const String folderDown = 'folder-down';
 
   /// Solar icon `folder-error`.
   static const String folderError = 'folder-error';
@@ -1309,17 +1480,53 @@ class SolarIcons {
   /// Solar icon `folder-favorite-star`.
   static const String folderFavoriteStar = 'folder-favorite-star';
 
+  /// Solar icon `folder-git`.
+  static const String folderGit = 'folder-git';
+
+  /// Solar icon `folder-kanban`.
+  static const String folderKanban = 'folder-kanban';
+
+  /// Solar icon `folder-lock`.
+  static const String folderLock = 'folder-lock';
+
   /// Solar icon `folder-open`.
   static const String folderOpen = 'folder-open';
+
+  /// Solar icon `folder-output`.
+  static const String folderOutput = 'folder-output';
 
   /// Solar icon `folder-path-connect`.
   static const String folderPathConnect = 'folder-path-connect';
 
+  /// Solar icon `folder-pen`.
+  static const String folderPen = 'folder-pen';
+
+  /// Solar icon `folder-search`.
+  static const String folderSearch = 'folder-search';
+
   /// Solar icon `folder-security`.
   static const String folderSecurity = 'folder-security';
 
+  /// Solar icon `folder-symlink`.
+  static const String folderSymlink = 'folder-symlink';
+
+  /// Solar icon `folder-sync`.
+  static const String folderSync = 'folder-sync';
+
+  /// Solar icon `folder-tree`.
+  static const String folderTree = 'folder-tree';
+
+  /// Solar icon `folder-up`.
+  static const String folderUp = 'folder-up';
+
   /// Solar icon `folder-with-files`.
   static const String folderWithFiles = 'folder-with-files';
+
+  /// Solar icon `folder-zip`.
+  static const String folderZip = 'folder-zip';
+
+  /// Solar icon `folders`.
+  static const String folders = 'folders';
 
   /// Solar icon `football`.
   static const String football = 'football';
@@ -1341,6 +1548,9 @@ class SolarIcons {
 
   /// Solar icon `four-k`.
   static const String fourK = 'four-k';
+
+  /// Solar icon `frame`.
+  static const String frame = 'frame';
 
   /// Solar icon `fridge`.
   static const String fridge = 'fridge';
@@ -1426,6 +1636,24 @@ class SolarIcons {
   /// Solar icon `gift`.
   static const String gift = 'gift';
 
+  /// Solar icon `git-branch`.
+  static const String gitBranch = 'git-branch';
+
+  /// Solar icon `git-commit`.
+  static const String gitCommit = 'git-commit';
+
+  /// Solar icon `git-diff`.
+  static const String gitDiff = 'git-diff';
+
+  /// Solar icon `git-fork`.
+  static const String gitFork = 'git-fork';
+
+  /// Solar icon `git-graph`.
+  static const String gitGraph = 'git-graph';
+
+  /// Solar icon `git-pull-request`.
+  static const String gitPullRequest = 'git-pull-request';
+
   /// Solar icon `glasses`.
   static const String glasses = 'glasses';
 
@@ -1458,6 +1686,30 @@ class SolarIcons {
 
   /// Solar icon `graph-up`.
   static const String graphUp = 'graph-up';
+
+  /// Solar icon `grid-2x2`.
+  static const String grid2x2 = 'grid-2x2';
+
+  /// Solar icon `grid-2x2-add`.
+  static const String grid2x2Add = 'grid-2x2-add';
+
+  /// Solar icon `grid-2x2-check`.
+  static const String grid2x2Check = 'grid-2x2-check';
+
+  /// Solar icon `grid-2x2-close`.
+  static const String grid2x2Close = 'grid-2x2-close';
+
+  /// Solar icon `grid-3x3`.
+  static const String grid3x3 = 'grid-3x3';
+
+  /// Solar icon `grip`.
+  static const String grip = 'grip';
+
+  /// Solar icon `grip-horizontal`.
+  static const String gripHorizontal = 'grip-horizontal';
+
+  /// Solar icon `grip-vertical`.
+  static const String gripVertical = 'grip-vertical';
 
   /// Solar icon `hamburger-menu`.
   static const String hamburgerMenu = 'hamburger-menu';
@@ -1654,6 +1906,12 @@ class SolarIcons {
   /// Solar icon `jar-of-pills-2`.
   static const String jarOfPills2 = 'jar-of-pills-2';
 
+  /// Solar icon `kanban`.
+  static const String kanban = 'kanban';
+
+  /// Solar icon `kanban-square`.
+  static const String kanbanSquare = 'kanban-square';
+
   /// Solar icon `key`.
   static const String key = 'key';
 
@@ -1807,6 +2065,9 @@ class SolarIcons {
 
   /// Solar icon `list-vertical`.
   static const String listVertical = 'list-vertical';
+
+  /// Solar icon `loader`.
+  static const String loader = 'loader';
 
   /// Solar icon `lock`.
   static const String lock = 'lock';
@@ -1996,6 +2257,9 @@ class SolarIcons {
   /// Solar icon `menu-dots-square`.
   static const String menuDotsSquare = 'menu-dots-square';
 
+  /// Solar icon `menu-dots-vertical`.
+  static const String menuDotsVertical = 'menu-dots-vertical';
+
   /// Solar icon `microphone`.
   static const String microphone = 'microphone';
 
@@ -2094,6 +2358,18 @@ class SolarIcons {
 
   /// Solar icon `mouse-minimalistic`.
   static const String mouseMinimalistic = 'mouse-minimalistic';
+
+  /// Solar icon `move`.
+  static const String move = 'move';
+
+  /// Solar icon `move-3d`.
+  static const String move3d = 'move-3d';
+
+  /// Solar icon `move-circle`.
+  static const String moveCircle = 'move-circle';
+
+  /// Solar icon `move-square`.
+  static const String moveSquare = 'move-square';
 
   /// Solar icon `move-to-folder`.
   static const String moveToFolder = 'move-to-folder';
@@ -2200,6 +2476,18 @@ class SolarIcons {
   /// Solar icon `palette-round`.
   static const String paletteRound = 'palette-round';
 
+  /// Solar icon `panel-top`.
+  static const String panelTop = 'panel-top';
+
+  /// Solar icon `panel-top-close`.
+  static const String panelTopClose = 'panel-top-close';
+
+  /// Solar icon `panel-top-open`.
+  static const String panelTopOpen = 'panel-top-open';
+
+  /// Solar icon `panels-top-left`.
+  static const String panelsTopLeft = 'panels-top-left';
+
   /// Solar icon `panorama`.
   static const String panorama = 'panorama';
 
@@ -2220,6 +2508,9 @@ class SolarIcons {
 
   /// Solar icon `paragraph-spacing`.
   static const String paragraphSpacing = 'paragraph-spacing';
+
+  /// Solar icon `parentheses`.
+  static const String parentheses = 'parentheses';
 
   /// Solar icon `passport`.
   static const String passport = 'passport';
@@ -2436,6 +2727,15 @@ class SolarIcons {
 
   /// Solar icon `quit-pip`.
   static const String quitPip = 'quit-pip';
+
+  /// Solar icon `quote`.
+  static const String quote = 'quote';
+
+  /// Solar icon `quote-circle`.
+  static const String quoteCircle = 'quote-circle';
+
+  /// Solar icon `quote-square`.
+  static const String quoteSquare = 'quote-square';
 
   /// Solar icon `radar`.
   static const String radar = 'radar';
@@ -2789,6 +3089,9 @@ class SolarIcons {
   /// Solar icon `share-circle`.
   static const String shareCircle = 'share-circle';
 
+  /// Solar icon `sheet`.
+  static const String sheet = 'sheet';
+
   /// Solar icon `shield`.
   static const String shield = 'shield';
 
@@ -2846,11 +3149,17 @@ class SolarIcons {
   /// Solar icon `sidebar`.
   static const String sidebar = 'sidebar';
 
+  /// Solar icon `sidebar-close`.
+  static const String sidebarClose = 'sidebar-close';
+
   /// Solar icon `sidebar-code`.
   static const String sidebarCode = 'sidebar-code';
 
   /// Solar icon `sidebar-minimalistic`.
   static const String sidebarMinimalistic = 'sidebar-minimalistic';
+
+  /// Solar icon `sidebar-open`.
+  static const String sidebarOpen = 'sidebar-open';
 
   /// Solar icon `signpost`.
   static const String signpost = 'signpost';
@@ -3083,6 +3392,9 @@ class SolarIcons {
   /// Solar icon `square-bottom-up`.
   static const String squareBottomUp = 'square-bottom-up';
 
+  /// Solar icon `square-dashed`.
+  static const String squareDashed = 'square-dashed';
+
   /// Solar icon `square-double-alt-arrow-down`.
   static const String squareDoubleAltArrowDown = 'square-double-alt-arrow-down';
 
@@ -3149,6 +3461,9 @@ class SolarIcons {
 
   /// Solar icon `star-fall-minimalistic-2`.
   static const String starFallMinimalistic2 = 'star-fall-minimalistic-2';
+
+  /// Solar icon `star-off`.
+  static const String starOff = 'star-off';
 
   /// Solar icon `star-rainbow`.
   static const String starRainbow = 'star-rainbow';
@@ -3278,6 +3593,27 @@ class SolarIcons {
 
   /// Solar icon `t-shirt`.
   static const String tShirt = 't-shirt';
+
+  /// Solar icon `table`.
+  static const String table = 'table';
+
+  /// Solar icon `table-cells-merge`.
+  static const String tableCellsMerge = 'table-cells-merge';
+
+  /// Solar icon `table-cells-split`.
+  static const String tableCellsSplit = 'table-cells-split';
+
+  /// Solar icon `table-columns-split`.
+  static const String tableColumnsSplit = 'table-columns-split';
+
+  /// Solar icon `table-minimalistic`.
+  static const String tableMinimalistic = 'table-minimalistic';
+
+  /// Solar icon `table-properties`.
+  static const String tableProperties = 'table-properties';
+
+  /// Solar icon `table-rows-split`.
+  static const String tableRowsSplit = 'table-rows-split';
 
   /// Solar icon `tablet`.
   static const String tablet = 'tablet';
@@ -3830,9 +4166,6 @@ class SolarIcons {
   /// Solar icon `xxx`.
   static const String xxx = 'xxx';
 
-  /// Solar icon `zip-file`.
-  static const String zipFile = 'zip-file';
-
   // ---- Retired names ----
   //
   // Solar renamed these icons upstream. Each constant now
@@ -3882,6 +4215,31 @@ class SolarIcons {
       "Use SolarIcons.cardReceive instead.")
   static const String cardRecive = 'card-receive';
 
+  /// Solar icon `chat-dots`, renamed to `chat-square-dots`.
+  @Deprecated("'chat-dots' was renamed to 'chat-square-dots' upstream. "
+      "Use SolarIcons.chatSquareDots instead.")
+  static const String chatDots = 'chat-square-dots';
+
+  /// Solar icon `chat-line`, renamed to `chat-square-line`.
+  @Deprecated("'chat-line' was renamed to 'chat-square-line' upstream. "
+      "Use SolarIcons.chatSquareLine instead.")
+  static const String chatLine = 'chat-square-line';
+
+  /// Solar icon `chat-unread`, renamed to `chat-square-unread`.
+  @Deprecated("'chat-unread' was renamed to 'chat-square-unread' upstream. "
+      "Use SolarIcons.chatSquareUnread instead.")
+  static const String chatUnread = 'chat-square-unread';
+
+  /// Solar icon `cloud-file`, renamed to `file-cloud`.
+  @Deprecated("'cloud-file' was renamed to 'file-cloud' upstream. "
+      "Use SolarIcons.fileCloud instead.")
+  static const String cloudFile = 'file-cloud';
+
+  /// Solar icon `code-file`, renamed to `file-code`.
+  @Deprecated("'code-file' was renamed to 'file-code' upstream. "
+      "Use SolarIcons.fileCode instead.")
+  static const String codeFile = 'file-code';
+
   /// Solar icon `colour-tuneing`, renamed to `colour-tuning`.
   @Deprecated("'colour-tuneing' was renamed to 'colour-tuning' upstream. "
       "Use SolarIcons.colourTuning instead.")
@@ -3896,6 +4254,11 @@ class SolarIcons {
   @Deprecated("'condicioner-2' was renamed to 'conditioner-2' upstream. "
       "Use SolarIcons.conditioner2 instead.")
   static const String condicioner2 = 'conditioner-2';
+
+  /// Solar icon `figma-file`, renamed to `file-figma`.
+  @Deprecated("'figma-file' was renamed to 'file-figma' upstream. "
+      "Use SolarIcons.fileFigma instead.")
+  static const String figmaFile = 'file-figma';
 
   /// Solar icon `file-favourite`, renamed to `file-favorite`.
   @Deprecated("'file-favourite' was renamed to 'file-favorite' upstream. "
@@ -4145,7 +4508,12 @@ class SolarIcons {
       "Use SolarIcons.winRar instead.")
   static const String winrar = 'win-rar';
 
-  /// Every icon in the set, sorted alphabetically (1,269 entries).
+  /// Solar icon `zip-file`, renamed to `file-zip`.
+  @Deprecated("'zip-file' was renamed to 'file-zip' upstream. "
+      "Use SolarIcons.fileZip instead.")
+  static const String zipFile = 'file-zip';
+
+  /// Every icon in the set, sorted alphabetically (1,380 entries).
   ///
   /// Retired names are excluded — see [legacyAliases].
   static const List<String> all = <String>[
@@ -4188,9 +4556,11 @@ class SolarIcons {
     'alt-arrow-up',
     'archive',
     'archive-check',
+    'archive-close',
     'archive-down',
     'archive-down-minimalistic',
     'archive-minimalistic',
+    'archive-minimalistic-close',
     'archive-up',
     'archive-up-minimalistic',
     'armchair',
@@ -4261,6 +4631,7 @@ class SolarIcons {
     'black-hole',
     'black-hole-2',
     'black-hole-3',
+    'blocks',
     'bluetooth',
     'bluetooth-circle',
     'bluetooth-square',
@@ -4294,6 +4665,8 @@ class SolarIcons {
     'bowling',
     'box',
     'box-minimalistic',
+    'braces',
+    'brackets',
     'brain',
     'branching-paths-down',
     'branching-paths-up',
@@ -4323,8 +4696,10 @@ class SolarIcons {
     'camera',
     'camera-add',
     'camera-minimalistic',
+    'camera-off',
     'camera-rotate',
     'camera-square',
+    'car',
     'car-battery',
     'card',
     'card-2',
@@ -4360,25 +4735,40 @@ class SolarIcons {
     'chart',
     'chart-2',
     'chart-square',
-    'chat-dots',
-    'chat-line',
     'chat-round',
+    'chat-round-add',
     'chat-round-call',
     'chat-round-check',
+    'chat-round-close',
+    'chat-round-code',
     'chat-round-dots',
     'chat-round-like',
     'chat-round-line',
     'chat-round-money',
+    'chat-round-off',
+    'chat-round-question-mark',
+    'chat-round-quote',
+    'chat-round-replay',
     'chat-round-unread',
     'chat-round-video',
+    'chat-round-warning',
     'chat-square',
     'chat-square-2',
+    'chat-square-add',
     'chat-square-arrow',
     'chat-square-call',
     'chat-square-check',
+    'chat-square-close',
     'chat-square-code',
+    'chat-square-dots',
     'chat-square-like',
-    'chat-unread',
+    'chat-square-line',
+    'chat-square-off',
+    'chat-square-question-mark',
+    'chat-square-quote',
+    'chat-square-replay',
+    'chat-square-unread',
+    'chat-square-warning',
     'check-circle',
     'check-read',
     'check-square',
@@ -4389,6 +4779,7 @@ class SolarIcons {
     'chef-hat-minimalistic',
     'circle-bottom-down',
     'circle-bottom-up',
+    'circle-dashed',
     'circle-top-down',
     'circle-top-up',
     'city',
@@ -4401,10 +4792,15 @@ class SolarIcons {
     'clipboard',
     'clipboard-add',
     'clipboard-check',
+    'clipboard-clock',
+    'clipboard-copy',
     'clipboard-heart',
     'clipboard-list',
+    'clipboard-minus',
+    'clipboard-paste',
     'clipboard-remove',
     'clipboard-text',
+    'clipboard-type',
     'clock-circle',
     'clock-square',
     'close',
@@ -4418,7 +4814,6 @@ class SolarIcons {
     'cloud-check',
     'cloud-cross',
     'cloud-download',
-    'cloud-file',
     'cloud-minus',
     'cloud-plus',
     'cloud-rain',
@@ -4436,10 +4831,13 @@ class SolarIcons {
     'code',
     'code-2',
     'code-circle',
-    'code-file',
     'code-scan',
     'code-square',
     'colour-tuning',
+    'columns-2',
+    'columns-3',
+    'columns-3-cog',
+    'columns-4',
     'command',
     'compass',
     'compass-big',
@@ -4450,6 +4848,7 @@ class SolarIcons {
     'confetti-minimalistic',
     'confounded-circle',
     'confounded-square',
+    'container',
     'copy',
     'copyright',
     'corkscrew',
@@ -4546,18 +4945,38 @@ class SolarIcons {
     'feed',
     'ferris-wheel',
     'figma',
-    'figma-file',
     'file',
+    'file-add',
+    'file-badge',
+    'file-braces',
+    'file-chart',
+    'file-chart-2',
     'file-check',
+    'file-cloud',
+    'file-code',
+    'file-cog',
     'file-corrupted',
     'file-download',
     'file-favorite',
+    'file-figma',
     'file-left',
+    'file-minus',
+    'file-pen',
+    'file-question-mark',
     'file-remove',
     'file-right',
+    'file-search',
     'file-send',
+    'file-signal',
+    'file-sliders',
     'file-smile',
+    'file-spreadsheet',
+    'file-terminal',
     'file-text',
+    'file-type',
+    'file-video-camera',
+    'file-warning',
+    'file-zip',
     'filter',
     'filters',
     'fire',
@@ -4577,14 +4996,32 @@ class SolarIcons {
     'folder',
     'folder-2',
     'folder-check',
+    'folder-clock',
     'folder-cloud',
+    'folder-code',
+    'folder-cog',
+    'folder-dot',
+    'folder-dot-open',
+    'folder-down',
     'folder-error',
     'folder-favorite-bookmark',
     'folder-favorite-star',
+    'folder-git',
+    'folder-kanban',
+    'folder-lock',
     'folder-open',
+    'folder-output',
     'folder-path-connect',
+    'folder-pen',
+    'folder-search',
     'folder-security',
+    'folder-symlink',
+    'folder-sync',
+    'folder-tree',
+    'folder-up',
     'folder-with-files',
+    'folder-zip',
+    'folders',
     'football',
     'forbidden',
     'forbidden-circle',
@@ -4592,6 +5029,7 @@ class SolarIcons {
     'forward-2',
     'forward-right',
     'four-k',
+    'frame',
     'fridge',
     'fuel',
     'full-screen',
@@ -4620,6 +5058,12 @@ class SolarIcons {
     'ghost',
     'ghost-smile',
     'gift',
+    'git-branch',
+    'git-commit',
+    'git-diff',
+    'git-fork',
+    'git-graph',
+    'git-pull-request',
     'glasses',
     'global',
     'globe',
@@ -4631,6 +5075,14 @@ class SolarIcons {
     'graph-new',
     'graph-new-up',
     'graph-up',
+    'grid-2x2',
+    'grid-2x2-add',
+    'grid-2x2-check',
+    'grid-2x2-close',
+    'grid-3x3',
+    'grip',
+    'grip-horizontal',
+    'grip-vertical',
     'hamburger-menu',
     'hand-heart',
     'hand-money',
@@ -4696,6 +5148,8 @@ class SolarIcons {
     'info-square',
     'jar-of-pills',
     'jar-of-pills-2',
+    'kanban',
+    'kanban-square',
     'key',
     'key-minimalistic',
     'key-minimalistic-2',
@@ -4747,6 +5201,7 @@ class SolarIcons {
     'list-up',
     'list-up-minimalistic',
     'list-vertical',
+    'loader',
     'lock',
     'lock-keyhole',
     'lock-keyhole-minimalistic',
@@ -4809,6 +5264,7 @@ class SolarIcons {
     'menu-dots',
     'menu-dots-circle',
     'menu-dots-square',
+    'menu-dots-vertical',
     'microphone',
     'microphone-2',
     'microphone-3',
@@ -4841,6 +5297,10 @@ class SolarIcons {
     'mouse',
     'mouse-circle',
     'mouse-minimalistic',
+    'move',
+    'move-3d',
+    'move-circle',
+    'move-square',
     'move-to-folder',
     'mug',
     'multiple-forward-left',
@@ -4876,6 +5336,10 @@ class SolarIcons {
     'palette',
     'palette-2',
     'palette-round',
+    'panel-top',
+    'panel-top-close',
+    'panel-top-open',
+    'panels-top-left',
     'panorama',
     'paper-bin',
     'paperclip',
@@ -4883,6 +5347,7 @@ class SolarIcons {
     'paperclip-rounded',
     'paperclip-rounded-2',
     'paragraph-spacing',
+    'parentheses',
     'passport',
     'passport-minimalistic',
     'password',
@@ -4955,6 +5420,9 @@ class SolarIcons {
     'quit-full-screen-circle',
     'quit-full-screen-square',
     'quit-pip',
+    'quote',
+    'quote-circle',
+    'quote-square',
     'radar',
     'radar-2',
     'radial-blur',
@@ -5072,6 +5540,7 @@ class SolarIcons {
     'settings-minimalistic',
     'share',
     'share-circle',
+    'sheet',
     'shield',
     'shield-check',
     'shield-cross',
@@ -5091,8 +5560,10 @@ class SolarIcons {
     'shop-minimalistic',
     'shuffle',
     'sidebar',
+    'sidebar-close',
     'sidebar-code',
     'sidebar-minimalistic',
+    'sidebar-open',
     'signpost',
     'signpost-2',
     'sim-card',
@@ -5169,6 +5640,7 @@ class SolarIcons {
     'square-arrow-up',
     'square-bottom-down',
     'square-bottom-up',
+    'square-dashed',
     'square-double-alt-arrow-down',
     'square-double-alt-arrow-left',
     'square-double-alt-arrow-right',
@@ -5191,6 +5663,7 @@ class SolarIcons {
     'star-fall-2',
     'star-fall-minimalistic',
     'star-fall-minimalistic-2',
+    'star-off',
     'star-rainbow',
     'star-ring',
     'star-rings',
@@ -5234,6 +5707,13 @@ class SolarIcons {
     'swimming',
     'syringe',
     't-shirt',
+    'table',
+    'table-cells-merge',
+    'table-cells-split',
+    'table-columns-split',
+    'table-minimalistic',
+    'table-properties',
+    'table-rows-split',
     'tablet',
     'tag',
     'tag-horizontal',
@@ -5417,14 +5897,13 @@ class SolarIcons {
     'wireless-charge',
     'women',
     'xxx',
-    'zip-file',
   ];
 
   /// Maps each retired icon name to its current replacement.
   ///
   /// [SolarIcon] consults this map so raw strings such as
   /// `SolarIcon('magnifer')` keep resolving after the rename.
-  /// (57 entries.)
+  /// (64 entries.)
   static const Map<String, String> legacyAliases = <String, String>{
     '4k': 'four-k',
     'accumulator': 'car-battery',
@@ -5434,9 +5913,15 @@ class SolarIcons {
     'bell-bing': 'bell-ring',
     'bone-broken': 'bone-fracture',
     'card-recive': 'card-receive',
+    'chat-dots': 'chat-square-dots',
+    'chat-line': 'chat-square-line',
+    'chat-unread': 'chat-square-unread',
+    'cloud-file': 'file-cloud',
+    'code-file': 'file-code',
     'colour-tuneing': 'colour-tuning',
     'condicioner': 'conditioner',
     'condicioner-2': 'conditioner-2',
+    'figma-file': 'file-figma',
     'file-favourite': 'file-favorite',
     'folder-favourite-bookmark': 'folder-favorite-bookmark',
     'folder-favourite-star': 'folder-favorite-star',
@@ -5483,6 +5968,7 @@ class SolarIcons {
     'wad-of-money': 'money-roll',
     'weigher': 'scale',
     'winrar': 'win-rar',
+    'zip-file': 'file-zip',
   };
 
   /// Solar's own grouping, category name -> icon names.
@@ -5594,6 +6080,10 @@ class SolarIcons {
       'minimize-square-2',
       'minimize-square-3',
       'minimize-square-minimalistic',
+      'move',
+      'move-3d',
+      'move-circle',
+      'move-square',
       'receive-square',
       'receive-twice-square',
       'reorder-2',
@@ -5678,11 +6168,20 @@ class SolarIcons {
       'graph-new',
       'graph-new-up',
       'graph-up',
+      'kanban',
+      'kanban-square',
       'pie-chart',
       'pie-chart-2',
       'pie-chart-3',
       'presentation-graph',
       'round-graph',
+      'table',
+      'table-cells-merge',
+      'table-cells-split',
+      'table-columns-split',
+      'table-minimalistic',
+      'table-properties',
+      'table-rows-split',
     ],
     'Call': <String>[
       'call-cancel',
@@ -5824,35 +6323,71 @@ class SolarIcons {
       'sticker-square',
     ],
     'Files': <String>[
-      'cloud-file',
-      'code-file',
-      'figma-file',
       'file',
+      'file-add',
+      'file-badge',
+      'file-braces',
+      'file-chart',
+      'file-chart-2',
       'file-check',
+      'file-cloud',
+      'file-code',
+      'file-cog',
       'file-corrupted',
       'file-download',
       'file-favorite',
+      'file-figma',
       'file-left',
+      'file-minus',
+      'file-pen',
+      'file-question-mark',
       'file-remove',
       'file-right',
+      'file-search',
       'file-send',
+      'file-signal',
+      'file-sliders',
       'file-smile',
+      'file-spreadsheet',
+      'file-terminal',
       'file-text',
-      'zip-file',
+      'file-type',
+      'file-video-camera',
+      'file-warning',
+      'file-zip',
+      'sheet',
     ],
     'Folders': <String>[
       'add-folder',
       'folder',
       'folder-2',
       'folder-check',
+      'folder-clock',
       'folder-cloud',
+      'folder-code',
+      'folder-cog',
+      'folder-dot',
+      'folder-dot-open',
+      'folder-down',
       'folder-error',
       'folder-favorite-bookmark',
       'folder-favorite-star',
+      'folder-git',
+      'folder-kanban',
+      'folder-lock',
       'folder-open',
+      'folder-output',
       'folder-path-connect',
+      'folder-pen',
+      'folder-search',
       'folder-security',
+      'folder-symlink',
+      'folder-sync',
+      'folder-tree',
+      'folder-up',
       'folder-with-files',
+      'folder-zip',
+      'folders',
       'move-to-folder',
       'remove-folder',
     ],
@@ -5921,6 +6456,8 @@ class SolarIcons {
       'washing-machine-minimalistic',
     ],
     'IT': <String>[
+      'braces',
+      'brackets',
       'bug',
       'bug-minimalistic',
       'code',
@@ -5928,16 +6465,29 @@ class SolarIcons {
       'code-circle',
       'code-square',
       'command',
+      'git-branch',
+      'git-commit',
+      'git-diff',
+      'git-fork',
+      'git-graph',
+      'git-pull-request',
       'hashtag',
       'hashtag-chat',
       'hashtag-circle',
       'hashtag-square',
+      'panel-top',
+      'panel-top-close',
+      'panel-top-open',
+      'panels-top-left',
+      'parentheses',
       'programming',
       'screencast',
       'screencast-2',
       'sidebar',
+      'sidebar-close',
       'sidebar-code',
       'sidebar-minimalistic',
+      'sidebar-open',
       'slash-circle',
       'slash-square',
       'station',
@@ -5977,6 +6527,7 @@ class SolarIcons {
       'medal-star-circle',
       'medal-star-square',
       'star',
+      'star-off',
       'star-shine',
     ],
     'List': <String>[
@@ -6084,24 +6635,39 @@ class SolarIcons {
       'virus',
     ],
     'Messages': <String>[
-      'chat-dots',
-      'chat-line',
       'chat-round',
+      'chat-round-add',
       'chat-round-call',
       'chat-round-check',
+      'chat-round-close',
+      'chat-round-code',
       'chat-round-dots',
       'chat-round-like',
       'chat-round-line',
       'chat-round-money',
+      'chat-round-off',
+      'chat-round-question-mark',
+      'chat-round-quote',
+      'chat-round-replay',
       'chat-round-unread',
       'chat-round-video',
+      'chat-round-warning',
       'chat-square',
+      'chat-square-add',
       'chat-square-arrow',
       'chat-square-call',
       'chat-square-check',
+      'chat-square-close',
       'chat-square-code',
+      'chat-square-dots',
       'chat-square-like',
-      'chat-unread',
+      'chat-square-line',
+      'chat-square-off',
+      'chat-square-question-mark',
+      'chat-square-quote',
+      'chat-square-replay',
+      'chat-square-unread',
+      'chat-square-warning',
       'check-read',
       'dialog',
       'dialog-2',
@@ -6184,18 +6750,25 @@ class SolarIcons {
     'Notes': <String>[
       'archive',
       'archive-check',
+      'archive-close',
       'archive-down',
       'archive-down-minimalistic',
       'archive-minimalistic',
+      'archive-minimalistic-close',
       'archive-up',
       'archive-up-minimalistic',
       'clipboard',
       'clipboard-add',
       'clipboard-check',
+      'clipboard-clock',
+      'clipboard-copy',
       'clipboard-heart',
       'clipboard-list',
+      'clipboard-minus',
+      'clipboard-paste',
       'clipboard-remove',
       'clipboard-text',
+      'clipboard-type',
       'document',
       'document-add',
       'document-medicine',
@@ -6217,6 +6790,7 @@ class SolarIcons {
     ],
     'Parts': <String>[
       'bus',
+      'car',
       'car-battery',
       'electric-refueling',
       'gas-station',
@@ -6332,6 +6906,17 @@ class SolarIcons {
       'siren-rounded',
     ],
     'Settings': <String>[
+      'columns-2',
+      'columns-3',
+      'columns-3-cog',
+      'columns-4',
+      'container',
+      'grid-2x2',
+      'grid-2x2-add',
+      'grid-2x2-check',
+      'grid-2x2-close',
+      'grid-3x3',
+      'loader',
       'settings',
       'settings-minimalistic',
       'tuning',
@@ -6433,6 +7018,9 @@ class SolarIcons {
       'link-round-angle',
       'link-square',
       'paragraph-spacing',
+      'quote',
+      'quote-circle',
+      'quote-square',
       'text-bold',
       'text-bold-circle',
       'text-bold-square',
@@ -6499,6 +7087,7 @@ class SolarIcons {
       'filters',
       'flip-horizontal',
       'flip-vertical',
+      'frame',
       'layers',
       'layers-minimalistic',
       'mirror-left',
@@ -6531,6 +7120,7 @@ class SolarIcons {
       'battery-half-minimalistic',
       'battery-low',
       'battery-low-minimalistic',
+      'blocks',
       'body',
       'bolt',
       'bolt-circle',
@@ -6540,6 +7130,7 @@ class SolarIcons {
       'cat',
       'check-circle',
       'check-square',
+      'circle-dashed',
       'close',
       'close-circle',
       'close-square',
@@ -6583,6 +7174,9 @@ class SolarIcons {
       'ghost-smile',
       'gift',
       'glasses',
+      'grip',
+      'grip-horizontal',
+      'grip-vertical',
       'hamburger-menu',
       'hanger',
       'hanger-2',
@@ -6614,6 +7208,7 @@ class SolarIcons {
       'menu-dots',
       'menu-dots-circle',
       'menu-dots-square',
+      'menu-dots-vertical',
       'minus',
       'minus-circle',
       'minus-square',
@@ -6648,6 +7243,7 @@ class SolarIcons {
       'smart-home-angle',
       'sort',
       'special-effects',
+      'square-dashed',
       'subtitles',
       't-shirt',
       'target',
@@ -6692,6 +7288,7 @@ class SolarIcons {
       'camera',
       'camera-add',
       'camera-minimalistic',
+      'camera-off',
       'camera-rotate',
       'camera-square',
       'clapperboard',

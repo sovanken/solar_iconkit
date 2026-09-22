@@ -294,7 +294,7 @@ class _ControlsPanel extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor: scheme.surfaceContainerHighest,
-              hintText: 'Search 1,269 icons...',
+              hintText: 'Search 1,380 icons...',
               prefixIcon: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14),
                 child: SolarIcon(SolarIcons.magnifier, size: 18),

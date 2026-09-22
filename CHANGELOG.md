@@ -4,11 +4,59 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] — 2026-09-15
+## [2.0.0] — 2026-09-22
 
-Three API gaps closed. The only breaking part is one field's nullability;
-everything else is additive, and the migration for most apps is nothing at
-all.
+Three API gaps closed, plus the largest upstream catalog change so far:
+**1,269 → 1,380 icons**. The only breaking API change is one field's
+nullability; five icons also change appearance because Solar redrew them.
+
+### Catalog
+
+- **118 new icons**, heavily weighted toward tables and text editing:
+  `table`, `table-cells-merge`, `table-cells-split`, `table-columns-split`,
+  `table-rows-split`, `table-minimalistic`, `table-properties`, `sheet`,
+  `quote`, `quote-circle`, `quote-square`, `parentheses`, `sidebar-open`,
+  `sidebar-close`, `square-dashed`, `star-off`, and 102 more.
+
+- **7 renames**, a consistent regrouping upstream. Each old name stays as a
+  `@Deprecated` constant resolving to the new one, so existing code compiles
+  and renders identically:
+
+  | Old | New |
+  | --- | --- |
+  | `chat-dots` | `chat-square-dots` |
+  | `chat-line` | `chat-square-line` |
+  | `chat-unread` | `chat-square-unread` |
+  | `cloud-file` | `file-cloud` |
+  | `code-file` | `file-code` |
+  | `figma-file` | `file-figma` |
+  | `zip-file` | `file-zip` |
+
+  `legacyAliases` now holds 64 entries.
+
+- **5 icons changed appearance under the same name** — `notebook-square`,
+  `share`, `cash-out`, `bag-music-2` and `tennis-2`. Solar redrew them in
+  place; unlike the 1.1.0 redraws, none of the old drawings moved to a new
+  name, so pin `1.2.0` if you need the previous artwork. Every icon was
+  rendered at both versions and pixel-diffed: 1,254 unchanged, three more
+  differed by under 5 % (anti-aliasing), and the seven renamed names are
+  covered by the table above.
+
+- Asset bundle is ~6.3 MB after the SVGO pass, up from ~5.8 MB for the 666
+  additional SVGs (8,280 total).
+
+- **Most SVGs differ byte-for-byte** because the minifier moved from SVGO
+  4.0.2 to 4.1.0, which merges single-fill paths that 4.0.2 left separate.
+  Verified this does not touch the duotone styles, where merging would
+  destroy the 50 %-opacity accent: every one of 500 sampled duotone assets
+  still carries its opacity, and `bold_duotone/add.svg` keeps both paths
+  while only the single-fill `bold/add.svg` merges.
+
+  Both duotone styles were also rendered against upstream and diffed. The
+  largest differences — three thin-stroke arrows at about 13 % — were
+  inspected side by side and are identical drawings; a thin stroke has few
+  ink pixels, so a sub-pixel edge shift from coordinate rounding is a large
+  percentage of a small number.
 
 ### Breaking
 
@@ -47,10 +95,10 @@ all.
   [IconTheme] — nearest ancestor wins — and an explicit `style:` always wins.
 
 - **`SolarIcons.categories`** — Solar's own grouping, 37 categories over
-  1,268 icons, plus `SolarIcons.categoryOf(name)`. The generator already
+  1,379 icons, plus `SolarIcons.categoryOf(name)`. The generator already
   read these to collect names and then discarded the grouping, leaving
   anyone building the icon picker the README promotes with a flat list of
-  1,269 names and no way to section it. `categoryOf` resolves retired names
+  1,380 names and no way to section it. `categoryOf` resolves retired names
   through `legacyAliases` first, so it works for both spellings.
 
 - **`SolarIcon.assetBasePath` / `SolarIcon.assetPackage`** — where the SVGs
@@ -61,7 +109,7 @@ all.
   containing only the icons and styles an app uses, and prints the pubspec
   entry and the two lines of setup.
 
-  The package bundles 7,614 SVGs (~5.8 MB) and Flutter's tree-shaker cannot
+  The package bundles 8,280 SVGs (~6.3 MB) and Flutter's tree-shaker cannot
   drop any of them, because paths are resolved at runtime. The only previous
   remedy was to fork the package and delete folders by hand — giving up
   versioned dependency management to control size. Now:
@@ -79,7 +127,15 @@ all.
 ### Notes
 
 - `tool/fetch_icons.py` gains `--skip-assets`, which regenerates the Dart
-  catalog without re-downloading 7,614 unchanged SVGs.
+  catalog without re-downloading unchanged SVGs.
+- `tool/fetch_icons.py` now ignores names it did not request. The API
+  answers an alias with its *parent*, keyed under the parent's name, so a
+  response could contain icons outside the catalog — this sync wrote a stray
+  `chart-square-2` into four of the six style folders, with no constant
+  pointing at it.
+- `tool/check_upstream.py` no longer crashes on Windows. It printed the
+  rename arrows to a cp1252 console; CI is Linux, so the weekly job was
+  unaffected and the failure only appeared when running it by hand.
 
 ## [1.2.0] — 2026-08-26
 
