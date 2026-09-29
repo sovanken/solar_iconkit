@@ -4,19 +4,25 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] — 2026-09-22
+## [2.0.0] — 2026-09-29
 
 Three API gaps closed, plus the largest upstream catalog change so far:
-**1,269 → 1,380 icons**. The only breaking API change is one field's
-nullability; five icons also change appearance because Solar redrew them.
+**1,269 → 1,453 icons**. The only breaking API change is one field's
+nullability; eight icons also change appearance because Solar redrew them.
 
 ### Catalog
 
-- **118 new icons**, heavily weighted toward tables and text editing:
+- **195 new icons** across two upstream batches. The first is table and
+  text-editing themed:
   `table`, `table-cells-merge`, `table-cells-split`, `table-columns-split`,
   `table-rows-split`, `table-minimalistic`, `table-properties`, `sheet`,
   `quote`, `quote-circle`, `quote-square`, `parentheses`, `sidebar-open`,
   `sidebar-close`, `square-dashed`, `star-off`, and 102 more.
+
+  The second adds directional arrows (`arrow-down-to-line`,
+  `arrow-up-from-line` and six siblings), a bookmark family
+  (`bookmark-check`, `-minus`, `-off`, `-plus`, `-x`), `chart-square-2`,
+  and 63 more.
 
 - **7 renames**, a consistent regrouping upstream. Each old name stays as a
   `@Deprecated` constant resolving to the new one, so existing code compiles
@@ -32,18 +38,33 @@ nullability; five icons also change appearance because Solar redrew them.
   | `figma-file` | `file-figma` |
   | `zip-file` | `file-zip` |
 
-  `legacyAliases` now holds 64 entries.
+  A second batch renamed the sidebar family to panels:
 
-- **5 icons changed appearance under the same name** — `notebook-square`,
-  `share`, `cash-out`, `bag-music-2` and `tennis-2`. Solar redrew them in
-  place; unlike the 1.1.0 redraws, none of the old drawings moved to a new
-  name, so pin `1.2.0` if you need the previous artwork. Every icon was
-  rendered at both versions and pixel-diffed: 1,254 unchanged, three more
-  differed by under 5 % (anti-aliasing), and the seven renamed names are
-  covered by the table above.
+  | Old | New |
+  | --- | --- |
+  | `sidebar` | `panel-text-right` |
+  | `sidebar-close` | `panel-right-close` |
+  | `sidebar-minimalistic` | `panel-right` |
+  | `sidebar-open` | `panel-right-open` |
 
-- Asset bundle is ~6.3 MB after the SVGO pass, up from ~5.8 MB for the 666
-  additional SVGs (8,280 total).
+  Note `sidebar-close` and `sidebar-open` arrived in the first batch and
+  were renamed in the second, a week later. `legacyAliases` now holds 68
+  entries.
+
+- **8 icons changed appearance under the same name.** The first batch
+  redrew `notebook-square`, `share`, `cash-out`, `bag-music-2` and
+  `tennis-2`; the second redrew `panel-top`, `panel-top-close` and
+  `panel-top-open` as part of the same sidebar-to-panel reorganisation.
+  Unlike the 1.1.0 redraws, none of the old drawings moved to a new name,
+  so pin `1.2.0` if you need the previous artwork.
+
+  Both batches were checked by rendering every shipped icon against
+  upstream and diffing pixels, with the comparator validated against
+  known-identical and known-different pairs first. Outside those eight,
+  the worst difference was under 5 % — anti-aliasing.
+
+- Asset bundle is ~6.5 MB after the SVGO pass, up from ~5.8 MB for the
+  1,104 additional SVGs (8,718 total).
 
 - **Most SVGs differ byte-for-byte** because the minifier moved from SVGO
   4.0.2 to 4.1.0, which merges single-fill paths that 4.0.2 left separate.
@@ -95,10 +116,10 @@ nullability; five icons also change appearance because Solar redrew them.
   [IconTheme] — nearest ancestor wins — and an explicit `style:` always wins.
 
 - **`SolarIcons.categories`** — Solar's own grouping, 37 categories over
-  1,379 icons, plus `SolarIcons.categoryOf(name)`. The generator already
+  1,451 icons, plus `SolarIcons.categoryOf(name)`. The generator already
   read these to collect names and then discarded the grouping, leaving
   anyone building the icon picker the README promotes with a flat list of
-  1,380 names and no way to section it. `categoryOf` resolves retired names
+  1,453 names and no way to section it. `categoryOf` resolves retired names
   through `legacyAliases` first, so it works for both spellings.
 
 - **`SolarIcon.assetBasePath` / `SolarIcon.assetPackage`** — where the SVGs
@@ -109,7 +130,7 @@ nullability; five icons also change appearance because Solar redrew them.
   containing only the icons and styles an app uses, and prints the pubspec
   entry and the two lines of setup.
 
-  The package bundles 8,280 SVGs (~6.3 MB) and Flutter's tree-shaker cannot
+  The package bundles 8,718 SVGs (~6.5 MB) and Flutter's tree-shaker cannot
   drop any of them, because paths are resolved at runtime. The only previous
   remedy was to fork the package and delete folders by hand — giving up
   versioned dependency management to control size. Now:

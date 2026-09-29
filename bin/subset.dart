@@ -1,7 +1,7 @@
 // Generates a trimmed Solar asset set for an app, so it ships only the icons
 // and styles it actually uses.
 //
-// The full package bundles 8,280 SVGs (~6.3 MB) and Flutter's tree-shaker
+// The full package bundles 8,718 SVGs (~6.5 MB) and Flutter's tree-shaker
 // cannot drop any of them, because SolarIcon resolves asset paths at runtime.
 // Until now the only remedy was to fork the package and delete folders by
 // hand, which meant giving up versioned dependency management.

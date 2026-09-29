@@ -166,7 +166,7 @@ class SolarIcon extends StatelessWidget {
   ///
   /// Defaults to this package's own `assets/icons`. Change it — together
   /// with [assetPackage] — to load a trimmed set that ships inside your app
-  /// instead of the full 8,280-file bundle. See `dart run
+  /// instead of the full 8,718-file bundle. See `dart run
   /// solar_iconkit:subset`, which generates that set for you.
   ///
   /// Set it once before `runApp`, not per frame.
