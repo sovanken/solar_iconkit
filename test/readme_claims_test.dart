@@ -3,17 +3,17 @@ import 'package:solar_iconkit/solar_iconkit.dart';
 
 void main() {
   test('every factual claim the README makes', () {
-    expect(SolarIcons.all.length, 1380, reason: '1,380 icons');
+    expect(SolarIcons.all.length, 1453, reason: '1,453 icons');
     expect(SolarIconStyle.values.length, 6, reason: '6 styles');
-    expect(SolarIcons.all.length * 6, 8280, reason: '8,280 SVG variants');
+    expect(SolarIcons.all.length * 6, 8718, reason: '8,718 SVG variants');
     expect(SolarIcons.categories.length, 37, reason: '37 categories');
-    expect(SolarIcons.categories['Arrows']!.length, 67);
+    expect(SolarIcons.categories['Arrows']!.length, 74);
     expect(SolarIcons.categoryOf('home-2'), 'UI');
     expect(SolarIcons.categoryOf('magnifier'), 'Search');
     expect(SolarIcons.categoryOf('magnifer'), 'Search');
     expect(SolarIcons.categoryOf('not-an-icon'), isNull);
     expect(SolarIcons.home2, 'home-2');
-    expect(SolarIcons.legacyAliases.length, 64);
+    expect(SolarIcons.legacyAliases.length, 68);
     // Names used in README examples must exist.
     for (final n in ['home-2', 'heart', 'rocket', 'magnifier', 'arrow-right']) {
       expect(SolarIcons.all, contains(n), reason: '$n used in README');

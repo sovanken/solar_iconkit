@@ -1,6 +1,6 @@
 name: solar_iconkit
 description: >-
-  Solar icon kit for Flutter. 1,380 icons in 6 native styles — linear, outline,
+  Solar icon kit for Flutter. 1,453 icons in 6 native styles — linear, outline,
   broken, bold, line-duotone, bold-duotone — behind a single SolarIcon widget.
 version: 2.0.0
 
@@ -20,7 +20,7 @@ topics:
   - widgets
 
 screenshots:
-  - description: The interactive icon browser — 1,380 Solar icons across 6 native styles, filterable by category
+  - description: The interactive icon browser — 1,453 Solar icons across 6 native styles, filterable by category
     path: screenshots/browser-grid.png
   - description: Icon detail view — each icon in all 6 native styles, with Flutter widget code and download formats
     path: screenshots/style-comparison.png
