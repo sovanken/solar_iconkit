@@ -115,13 +115,17 @@ jobs:
           fi
           echo "OIDC token endpoint present."
 
-      # Never prompts: with automated publishing configured on pub.dev this
-      # exchanges the OIDC token silently. If it is NOT configured, pub falls
-      # back to interactive OAuth — so deny it a stdin to read and let it
-      # fail in seconds instead of hanging.
+      # `dart pub publish`, not `flutter pub publish`. The OIDC exchange for
+      # automated publishing lives in Dart's pub client; going through the
+      # Flutter wrapper skipped it and fell back to interactive Google OAuth,
+      # which hung until the step timed out. `dart` here is the one bundled
+      # with the Flutter SDK installed above, so it resolves the same way.
+      #
+      # --force only skips the confirmation prompt, never authentication, so
+      # stdin is still denied and the step still capped.
       - name: Publish to pub.dev
         timeout-minutes: 10
-        run: flutter pub publish --force < /dev/null
+        run: dart pub publish --force < /dev/null
 
       - name: Create GitHub Release
         env:
