@@ -3,9 +3,9 @@ import 'package:solar_iconkit/solar_iconkit.dart';
 
 void main() {
   test('every factual claim the README makes', () {
-    expect(SolarIcons.all.length, 1453, reason: '1,453 icons');
+    expect(SolarIcons.all.length, 1578, reason: '1,578 icons');
     expect(SolarIconStyle.values.length, 6, reason: '6 styles');
-    expect(SolarIcons.all.length * 6, 8718, reason: '8,718 SVG variants');
+    expect(SolarIcons.all.length * 6, 9468, reason: '9,468 SVG variants');
     expect(SolarIcons.categories.length, 37, reason: '37 categories');
     expect(SolarIcons.categories['Arrows']!.length, 74);
     expect(SolarIcons.categoryOf('home-2'), 'UI');

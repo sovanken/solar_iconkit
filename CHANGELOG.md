@@ -4,6 +4,56 @@ All notable changes to this package are documented here. The format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the
 package uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+Upstream sync to `@iconify-json/solar` 1.2.16: **1,453 → 1,578 icons**.
+No API changes and no renames, but 120 existing icons were redrawn upstream.
+
+### Catalog
+
+- **125 new icons**, many of them the "-off" and finance/editor shapes Solar
+  lacked: `eye-off`, `heart-off`, `cloud-off`, `shield-off`,
+  `microphone-off`, `bank`, `bitcoin`, `coins`, `piggy-bank`, `yen`,
+  `rupee`, `pound`, `chart-candlestick`, `chart-gantt`, `chart-scatter`,
+  `text-align-left`, `list-indent-increase`, `subscript`, `superscript`,
+  `rotate-clockwise`, `signal-high`, `toggle-left`, `sparkles`,
+  `fingerprint`, `wrench`, and 100 more.
+
+- **No renames.** `legacyAliases` still holds 68 entries.
+
+- **120 icons changed appearance under the same name.** Upstream 1.2.14
+  (2026-11-07) rewrote about 6,000 SVG bodies. Most of that was
+  restructuring that renders identically, but some glyphs were genuinely
+  redrawn. Clearly visible in at least one style (62):
+  `backpack`, `bag-3`, `bag-4`, `bag-5`, `bag-check`, `bag-cross`,
+  `bag-smile`, `bill-2`, `black-hole`, `black-hole-2`, `calendar`,
+  `calendar-add`, `calendar-date`, `calendar-mark`,
+  `calendar-minimalistic`, `calendar-search`, `cart`, `cart-2`, `cart-3`,
+  `case-minimalistic`, `cat`, `circle-top-up`, `cpu`, `eye`, `eye-scan`,
+  `gallery-wide`, `gamepad`, `gamepad-old`, `history-2`, `history-3`,
+  `incognito`, `key-square`, `key-square-2`, `laptop`,
+  `link-minimalistic-2`, `list-arrow-down`, `map-point`, `mirror-left`,
+  `mirror-right`, `notebook-square`, `palette-2`, `phone-rounded`, `pill`,
+  `planet-2`, `play`, `playback-speed`, `power`, `question-mark`,
+  `sleeping-circle`, `sleeping-square`, `smartphone-update`, `stopwatch`,
+  `suitcase`, `tag-horizontal`, `tennis-2`, `toolbox`,
+  `transmission-square`, `volume`, `volume-cross`, `volume-small`,
+  `walking`, `waterdrop`.
+
+  Subtler adjustments (58), mostly corner radii and stroke ends: the
+  `home` and `magnifier` families (including `home-2`, hence the updated
+  goldens), `sunrise`/`sunset`/`sun-fog`, `call-chat`, `call-medicine`,
+  `star-ring(s)`, `thermometer`, `temperature`, `pipette`, `qr-code`, and
+  others. Pin `2.0.0` if you need the previous artwork.
+
+  Checked by rasterising every one of the 5,705 assets whose bytes changed,
+  old against new, at 96 px. 3,277 render identically; outside the 120
+  redraws above, the worst difference was 10 pixels (0.11 %), which is
+  anti-aliasing.
+
+- Asset bundle is ~7.1 MB after the SVGO pass, up from ~6.5 MB
+  (9,468 SVGs total).
+
 ## [2.0.0] — 2026-09-29
 
 Three API gaps closed, plus the largest upstream catalog change so far:
