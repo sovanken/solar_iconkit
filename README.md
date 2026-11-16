@@ -133,7 +133,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  solar_iconkit: ^2.0.0
+  solar_iconkit: ^2.1.0
 ```
 
 Or run:
@@ -182,7 +182,7 @@ Best when you want to publish semver-like versions but override to local during 
 
 ```yaml
 dependencies:
-  solar_iconkit: ^2.0.0
+  solar_iconkit: ^2.1.0
 
 dependency_overrides:
   solar_iconkit:
